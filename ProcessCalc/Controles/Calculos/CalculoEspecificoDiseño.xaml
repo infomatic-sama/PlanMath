@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="ProcessCalc.Controles.CalculoEspecificoDiseño"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="100" Width="Auto" Height="Auto" SizeChanged="UserControl_SizeChanged">
+    <UserControl.Resources>
+        <Style BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" TargetType="Button"></Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="botonFondo" Grid.Column="0" BorderBrush="{x:Null}" Width="Auto" Height="Auto" PreviewMouseLeftButtonDown="Button_PreviewMouseLeftButtonDown" >
+            <StackPanel Orientation="Horizontal">
+                <Image x:Name="iconoCalculo" Visibility="Visible" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/19.png"></Image>
+
+                <TextBlock x:Name="nombreCalculo" Margin="2" TextWrapping="Wrap" MaxWidth="150" VerticalAlignment="Center">Cálculo 1</TextBlock>
+
+
+            </StackPanel>
+        </Button>
+
+        <TextBox x:Name="edicionNombre" Grid.Column="1" TextWrapping="Wrap" Margin="2" Visibility="Collapsed" KeyDown="edicionNombre_KeyDown">Cálculo 1</TextBox>
+        <Button x:Name="btnGuardarNombre" Grid.Column="2" Visibility="Collapsed" Click="btnGuardarNombre_Click">Guardar</Button>
+
+    </Grid>
+</UserControl>

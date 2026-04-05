@@ -1,0 +1,37 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.DefinirOpcionesTextosInformacion_Entrada"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas"
+        mc:Ignorable="d"
+        Title="Definir opciones de lógica de cadenas de texto de la variable o vector de entrada" Height="450" Width="800" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Name="opcionesEntradaBusquedas" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <CheckBox x:Name="opcionTextoCondicion" Grid.Column="0" Grid.Row="0" Margin="10" Checked="opcionTextoCondicion_Checked" Unchecked="opcionTextoCondicion_Unchecked">Las cadenas de texto obtenidas en la variable o vector de entrada se utilizarán como cadena de texto de condición de lógica en las definiciones.</CheckBox>
+            <CheckBox x:Name="opcionTextoAsignacion" Grid.Column="0" Grid.Row="1" Margin="10" Checked="opcionTextoAsignacion_Checked" Unchecked="opcionTextoAsignacion_Unchecked">Las cadenas de texto obtenidas en la variable o vector de entrada se utilizarán como cadena de texto de lógica de asignación en las definiciones.</CheckBox>
+
+        </Grid>
+        
+        <Button x:Name="btnContinuar" Margin="10" Grid.Row="1" Grid.Column="1" MaxWidth="100" Click="btnContinuar_Click">Continuar</Button>
+        <Button x:Name="btnCancelar" Margin="10" Grid.Row="1" Grid.Column="0" MaxWidth="100" Click="btnCancelar_Click">Cancelar</Button>
+    </Grid>
+</Window>

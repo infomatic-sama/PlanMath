@@ -1,0 +1,95 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.SeleccionarOrigenDatos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc"
+        mc:Ignorable="d"
+        Title="Seleccionar origen de datos" Height="500" Width="405" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" ShowInTaskbar="True" WindowStyle="ToolWindow" Background="{DynamicResource {x:Static SystemColors.InactiveBorderBrushKey}}" Icon="/ProcessCalc;component/Imagenes/03.png" ResizeMode="NoResize">
+    <StackPanel CanVerticallyScroll="True">
+        <Button x:Name="btnArchivoPDF" Padding="10" Margin="20,10" Click="btnArchivoPDF_Click">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/ProcessCalc;component/Imagenes/Iconos13/icono_pdf.png" Height="24" Width="24" Grid.Column="0"></Image>
+                    <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Documento PDF</Label>
+                </Grid>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btnArchivoWord" Padding="10" Margin="20,10" Click="btnArchivoWord_Click">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/ProcessCalc;component/Imagenes/Iconos13/icono_word.png" Height="24" Width="24" Grid.Column="0"></Image>
+                    <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Documento Word</Label>
+                </Grid>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btnArchivoExcel" Padding="10" Margin="20,10" Click="btnArchivoExcel_Click">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/ProcessCalc;component/Imagenes/Iconos3/15.png" Height="24" Width="24" Grid.Column="0"></Image>
+                    <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Planilla Excel</Label>
+                </Grid>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btnURL" Padding="10" Margin="20,10" Click="btnURL_Click" >
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/ProcessCalc;component/Imagenes/Iconos3/16.png" Height="24" Width="24" Grid.Column="0"></Image>
+                    <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Desde Internet</Label>
+                </Grid>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btnArchivo" Padding="10" Margin="20,10" Click="btnArchivo_Click">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/ProcessCalc;component/Imagenes/26.png" Height="24" Width="24" Grid.Column="0"></Image>
+                    <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Archivo de texto</Label>
+                </Grid>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btnArchivoPantalla" Padding="10" Margin="20,10" Click="btnArchivoPantalla_Click">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/ProcessCalc;component/Imagenes/Iconos14/icono_01.png" Height="24" Width="24" Grid.Column="0"></Image>
+                    <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Archivo de texto en pantalla</Label>
+                </Grid>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btnCancelar" Padding="10" Margin="20,10" Click="btnCancelar_Click" >
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/ProcessCalc;component/Imagenes/27.png" Height="24" Width="24" Grid.Column="0"></Image>
+                    <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Cancelar</Label>
+                </Grid>
+            </Button.Content>
+        </Button>
+    </StackPanel>
+</Window>

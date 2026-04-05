@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="ProcessCalc.Controles.CalculoEspecifico"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="300" Width="Auto" Height="Auto">
+    <Button x:Name="botonFondo" BorderBrush="{x:Null}" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" Width="Auto" Height="Auto" Click="Button_Click">
+    <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Image x:Name="icono" Grid.Column="0" Width="32" Height="32" Source="/ProcessCalc;component/Imagenes/19.png" Margin="0,0,45,0"></Image>
+            <Image x:Name="iconoEntradas" Source="/ProcessCalc;component/Imagenes/13_02.png" Grid.Column="0" Width="32" Height="32"></Image>
+        
+            <TextBlock x:Name="nombreCalculo" Margin="10" FontSize="14" Grid.Column="1" TextWrapping="Wrap" MaxWidth="150" >Cálculo 1</TextBlock>
+            <TextBlock x:Name="descripcionCalculo" Margin="10" Grid.Column="2" TextWrapping="Wrap" MaxWidth="150" >Descripción Cálculo 1</TextBlock>
+
+        </Grid>
+    </Button>
+</UserControl>

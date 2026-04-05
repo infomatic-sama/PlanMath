@@ -1,0 +1,112 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.OrdenarNumerosOperando"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas"
+        mc:Ignorable="d"
+        Title="Ordenar los números de la variable o vector" Height="450" Width="800" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="opcionesAntesEjecucion" Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <CheckBox x:Name="opcionAntesEjecucion" Margin="10" Grid.Row="0" Checked="opcionAntesEjecucion_Checked" Unchecked="opcionAntesEjecucion_Unchecked">Ordenar antes de la ejecución</CheckBox>
+            <RadioButton x:Name="opcionOrdenarNumerosDeMenorAMayor_AntesEjecucion" GroupName="OrdenAntes" Margin="10" Grid.Row="1" Grid.Column="0" Visibility="Collapsed">De menor a mayor</RadioButton>
+            <RadioButton x:Name="opcionOrdenarNumerosDeMayorAMenor_AntesEjecucion" GroupName="OrdenAntes" Margin="10" Grid.Row="2" Grid.Column="0" Visibility="Collapsed">De mayor a menor</RadioButton>
+
+            <RadioButton x:Name="ordenarAntesEjecucion_PorNumero" Margin="10" Grid.Column="1" Grid.Row="1" Visibility="Collapsed">Por valor numérico de la cantidad</RadioButton>
+            <RadioButton x:Name="ordenarAntesEjecucion_PorNombre" Margin="10" Grid.Column="1" Grid.Row="2" Visibility="Collapsed" Checked="ordenarAntesEjecucion_PorNombre_Checked" Unchecked="ordenarAntesEjecucion_PorNombre_Unchecked">Por nombre de la cantidad</RadioButton>
+            
+            <ComboBox x:Name="opcionTipoOrdenamientoAntesEjecucion" Grid.Row="3" Grid.Column="1" Margin="10" Visibility="Collapsed">
+                <ComboBoxItem Content="Nombre y textos de información" Uid="2" IsSelected="True"/>
+                <ComboBoxItem Content="Sólo nombre de la cantidad" Uid="3"/>
+                <ComboBoxItem Content="Sólo textos de información de la cantidad" Uid="4"/>
+            </ComboBox>
+
+            <CheckBox x:Name="opcionOrdenarTextosInformacionCantidades_AntesEjecucion" Visibility="Collapsed" Margin="10" Grid.Row="4" Grid.Column="1" Checked="opcionOrdenarTextosInformacionCantidades_AntesEjecucion_Checked" Unchecked="opcionOrdenarTextosInformacionCantidades_AntesEjecucion_Unchecked">Ordenar las cadenas de texto de cada cantidad por separado</CheckBox>
+            <RadioButton x:Name="opcionOrdenarTextosDeMenorAMayor_AntesEjecucion" GroupName="OrdenAntesTextos" Margin="10" Grid.Row="5" Grid.Column="1" Visibility="Collapsed" >De menor a mayor</RadioButton>
+            <RadioButton x:Name="opcionOrdenarTextosDeMayorAMenor_AntesEjecucion" GroupName="OrdenAntesTextos" Margin="10" Grid.Row="6" Grid.Column="1" Visibility="Collapsed" >De mayor a menor</RadioButton>
+
+            <Button x:Name="opcionesDividirOrdenacionTextosInformacion_AntesEjecucion" Visibility="Collapsed" Margin="10" Grid.Row="7" Grid.Column="1" Click="opcionesDividirOrdenacionTextosInformacion_AntesEjecucion_Click">Dividir combinar ordenaciones distintas según cadenas de texto</Button>
+
+            <CheckBox x:Name="opcionOrdenarTextosInformacionCantidades_AntesEjecucion_SinOrdenarCantidades" Visibility="Collapsed" Margin="10" Grid.Row="8" Grid.Column="0" Checked="opcionOrdenarTextosInformacionCantidades_AntesEjecucion_SinOrdenarCantidades_Checked" Unchecked="opcionOrdenarTextosInformacionCantidades_AntesEjecucion_SinOrdenarCantidades_Unchecked">Ordenar las cadenas de texto de cada cantidad por separado, sin considerar ordenamiento de cantidades</CheckBox>
+            <RadioButton x:Name="opcionOrdenarTextosDeMenorAMayor_AntesEjecucion_SinOrdenarCantidades" GroupName="OrdenAntesTextos_SinOrdenarCantidades" Margin="10" Grid.Row="9" Grid.Column="1" Visibility="Collapsed">De menor a mayor</RadioButton>
+            <RadioButton x:Name="opcionOrdenarTextosDeMayorAMenor_AntesEjecucion_SinOrdenarCantidades" GroupName="OrdenAntesTextos_SinOrdenarCantidades" Margin="10" Grid.Row="10" Grid.Column="1" Visibility="Collapsed">De mayor a menor</RadioButton>
+
+        </Grid>
+
+        <Grid x:Name="opcionesDespuesEjecucion" Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <CheckBox x:Name="opcionDespuesEjecucion" Margin="10" Grid.Row="0" Checked="opcionDespuesEjecucion_Checked" Unchecked="opcionDespuesEjecucion_Unchecked">Ordenar después de la ejecución</CheckBox>
+            <RadioButton x:Name="opcionOrdenarNumerosDeMenorAMayor_DespuesEjecucion" GroupName="OrdenDespues" Margin="10" Grid.Row="1" Grid.Column="0" Visibility="Collapsed">De menor a mayor</RadioButton>
+            <RadioButton x:Name="opcionOrdenarNumerosDeMayorAMenor_DespuesEjecucion" GroupName="OrdenDespues" Margin="10" Grid.Row="2" Grid.Column="0" Visibility="Collapsed">De mayor a menor</RadioButton>
+
+            <RadioButton x:Name="ordenarDespuesEjecucion_PorNumero" Margin="10" Grid.Column="1" Grid.Row="1" Visibility="Collapsed">Por valor numérico de la cantidad</RadioButton>
+            <RadioButton x:Name="ordenarDespuesEjecucion_PorNombre" Margin="10" Grid.Column="1" Grid.Row="2" Visibility="Collapsed" Checked="ordenarDespuesEjecucion_PorNombre_Checked" Unchecked="ordenarDespuesEjecucion_PorNombre_Unchecked">Por nombre de la cantidad</RadioButton>
+            
+            <ComboBox x:Name="opcionTipoOrdenamientoDespuesEjecucion" Grid.Row="3" Grid.Column="1" Margin="10" Visibility="Collapsed">
+                <ComboBoxItem Content="Nombre y cadenas de texto" Uid="2" IsSelected="True"/>
+                <ComboBoxItem Content="Sólo nombre de la cantidad" Uid="3"/>
+                <ComboBoxItem Content="Sólo cadenas de texto de la cantidad" Uid="4"/>
+            </ComboBox>
+
+            <CheckBox x:Name="opcionOrdenarTextosInformacionCantidades_DespuesEjecucion" Visibility="Collapsed" Margin="10" Grid.Row="4" Grid.Column="1" Checked="opcionOrdenarTextosInformacionCantidades_DespuesEjecucion_Checked" Unchecked="opcionOrdenarTextosInformacionCantidades_DespuesEjecucion_Unchecked">Ordenar las cadenas de texto de cada cantidad por separado</CheckBox>
+            <RadioButton x:Name="opcionOrdenarTextosDeMenorAMayor_DespuesEjecucion" GroupName="OrdenDespuesTextos" Margin="10" Grid.Row="5" Grid.Column="1" Visibility="Collapsed" >De menor a mayor</RadioButton>
+            <RadioButton x:Name="opcionOrdenarTextosDeMayorAMenor_DespuesEjecucion" GroupName="OrdenDespuesTextos" Margin="10" Grid.Row="6" Grid.Column="1" Visibility="Collapsed" >De mayor a menor</RadioButton>
+
+            <Button x:Name="opcionesDividirOrdenacionTextosInformacion_DespuesEjecucion" Visibility="Collapsed" Margin="10" Grid.Row="7" Grid.Column="1" Click="opcionesDividirOrdenacionTextosInformacion_DespuesEjecucion_Click" >Dividir combinar ordenaciones distintas según cadenas de texto</Button>
+
+            <CheckBox x:Name="opcionOrdenarTextosInformacionCantidades_DespuesEjecucion_SinOrdenarCantidades" Visibility="Collapsed" Margin="10" Grid.Row="8" Grid.Column="0" Checked="opcionOrdenarTextosInformacionCantidades_DespuesEjecucion_SinOrdenarCantidades_Checked" Unchecked="opcionOrdenarTextosInformacionCantidades_DespuesEjecucion_SinOrdenarCantidades_Unchecked">Ordenar las cadenas de texto de cada cantidad por separado, sin considerar ordenamiento de cantidades</CheckBox>
+            <RadioButton x:Name="opcionOrdenarTextosDeMenorAMayor_DespuesEjecucion_SinOrdenarCantidades" GroupName="OrdenDespuesTextos_SinOrdenarCantidades" Margin="10" Grid.Row="9" Grid.Column="1" Visibility="Collapsed">De menor a mayor</RadioButton>
+            <RadioButton x:Name="opcionOrdenarTextosDeMayorAMenor_DespuesEjecucion_SinOrdenarCantidades" GroupName="OrdenDespuesTextos_SinOrdenarCantidades" Margin="10" Grid.Row="10" Grid.Column="1" Visibility="Collapsed">De mayor a menor</RadioButton>
+
+        </Grid>
+
+        <Button x:Name="guardarOpciones" Margin="10" Grid.Column="0" Grid.Row="1" Width="150px" Click="guardarOpciones_Click" >Guardar opciones</Button>
+        <Button x:Name="cancelar" Margin="10" Grid.Column="1" Grid.Row="1" Width="100px" Click="cancelar_Click">Cancelar</Button>
+    </Grid>
+</Window>

@@ -1,0 +1,215 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.AgregarQuitar_CondicionProcesamientoCantidades"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas"
+        xmlns:opc="clr-namespace:ProcessCalc.Controles.TextosInformacion"
+        mc:Ignorable="d"
+        Title="Definir condición de lógica de cantidades" Height="450" Width="800" Loaded="Window_Loaded" WindowState="Maximized">
+    <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="10" Padding="10" VerticalAlignment="Center">Tipo de condición lógica:</TextBlock>
+            <ComboBox x:Name="opcionTipoCondicion" Grid.Row="0" Grid.Column="1" Margin="10" VerticalAlignment="Center" SelectionChanged="opcionTipoCondicion_SelectionChanged">
+                <ComboBoxItem Content="Insertar nuevos números en la variable o vector" Uid="1"/>
+                <ComboBoxItem Content="Quitar números de la variable o vector" Uid="2"/>
+                <ComboBoxItem Content="Seguir ejecutando esta lógica según condiciones en las números" Uid="3"/>
+                <ComboBoxItem Content="Detener la ejecución de esta lógica según condiciones en los números" Uid="4"/>
+            </ComboBox>
+
+            <TextBlock x:Name="textoOpcionTipoElemento" Grid.Row="1" Grid.Column="0" Margin="10" Padding="10" VerticalAlignment="Center">Elemento donde :</TextBlock>
+            <ComboBox x:Name="opcionTipoElemento" Grid.Row="1" Grid.Column="1" Margin="10" VerticalAlignment="Center" SelectionChanged="opcionTipoElemento_SelectionChanged">
+                <ComboBoxItem Content="Variables o vectores" Uid="1"/>
+                <ComboBoxItem Content="Variables o vectores retornados" Uid="2"/>
+                <ComboBoxItem Content="Variables o vectores y variables o vectores retornados" Uid="3"/>
+            </ComboBox>
+
+            <TextBlock x:Name="textoOpcionTipoElementoAccion" Grid.Row="2" Grid.Column="0" Margin="10" Padding="10" Visibility="Collapsed" VerticalAlignment="Center">Elemento a :</TextBlock>
+            <ComboBox x:Name="opcionTipoElementoAccion" Grid.Row="2" Grid.Column="1" Margin="10" Visibility="Collapsed" VerticalAlignment="Center" SelectionChanged="opcionTipoElementoAccion_SelectionChanged" >
+                <ComboBoxItem Content="Variables o vectores" Uid="1"/>
+                <ComboBoxItem Content="Variables o vectores retornados" Uid="2"/>
+                <ComboBoxItem Content="Variables o vectores y variables o vectores retornados" Uid="3"/>
+            </ComboBox>
+
+            <CheckBox Name="opcionInsertarValorFijo" Grid.Row="3" Grid.Column="1" Margin="10" Padding="10" VerticalAlignment="Center" VerticalContentAlignment="Center" Checked="opcionInsertarValorFijo_Checked" Unchecked="opcionInsertarValorFijo_Unchecked">Insertar valor fijo</CheckBox>
+
+            <TextBlock x:Name="textoOpcionOperandosInsertar" Visibility="Collapsed" Grid.Row="4" Grid.Column="0" Margin="10" Padding="10" VerticalAlignment="Center">Insertar cantidades en:</TextBlock>
+            <StackPanel x:Name="opcionOperandosInsertar" Visibility="Collapsed" Grid.Row="4" Grid.Column="1" Margin="10" VerticalAlignment="Center"></StackPanel>
+
+            <TextBlock Grid.Row="5" Grid.Column="0" Margin="10" Padding="10" VerticalAlignment="Center">Condiciones si/entonces a cumplir:</TextBlock>
+            <opc:OpcionCondiciones_ImplicacionTextosInformacion x:Name="condicionesFiltroCantidades" Margin="10" Grid.Row="5" Grid.Column="1" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left" MaxWidth="300" MinWidth="200"></opc:OpcionCondiciones_ImplicacionTextosInformacion>
+            
+            <TextBlock x:Name="textoOpcionTipoElementoAccion_Insertar" Grid.Row="6" Grid.Column="0" Margin="10" Padding="10" Visibility="Collapsed" VerticalAlignment="Center">Insertar :</TextBlock>
+            <TextBox x:Name="valorFijo" Grid.Row="6" Grid.Column="1" Margin="10" Visibility="Collapsed" VerticalAlignment="Center" TextChanged="valorFijo_TextChanged"></TextBox>
+            <ComboBox x:Name="opcionTipoElementoAccion_Insertar" Grid.Row="6" Grid.Column="1" Margin="10" Visibility="Collapsed" VerticalAlignment="Center" SelectionChanged="opcionTipoElementoAccion_Insertar_SelectionChanged"  >
+                <ComboBoxItem Content="Número del vector en la ejecución" Uid="1"/>
+                <ComboBoxItem Content="Número anterior del vector en la ejecución" Uid="2"/>
+                <ComboBoxItem Content="Número siguiente del vector en la ejecución" Uid="3"/>
+                <ComboBoxItem Content="Número en posición específica del vector en la ejecución" Uid="4"/>
+                <ComboBoxItem Content="Número en posición específica desplazada un valor hacia las anteriores del vector en la ejecución" Uid="5"/>
+                <ComboBoxItem Content="Número en posición específica desplazada un valor hacia las siguientes del vector en la ejecución" Uid="6"/>
+                <ComboBoxItem Content="Número en posición específica desplazada un valor múltiplo hacia las anteriores del vector en la ejecución" Uid="7"/>
+                <ComboBoxItem Content="Número en posición específica desplazada un valor múltiplo hacia las siguientes del vector en la ejecución" Uid="8"/>
+            </ComboBox>
+
+            <TextBlock x:Name="textoOpcionValoresPosiciones_TipoElementoAccion_Insertar" Visibility="Collapsed" Grid.Row="7" Grid.Column="0" Margin="10">Valor asociado a posición:</TextBlock>
+            <TextBox x:Name="opcionValoresPosiciones_TipoElementoAccion_Insertar" Visibility="Collapsed" Grid.Row="7" Grid.Column="1" Margin="10" TextChanged="opcionValoresPosiciones_TipoElementoAccion_Insertar_TextChanged"></TextBox>
+
+            <CheckBox x:Name="opcionOperarAlInsertar" Grid.Row="8" Grid.Column="0" Margin="19" Padding="10" VerticalContentAlignment="Center" Visibility="Collapsed" VerticalAlignment="Center" Checked="opcionOperarAlInsertar_Checked" Unchecked="opcionOperarAlInsertar_Unchecked">Al insertar realizar operación:</CheckBox>
+            <StackPanel x:Name="opcionesOperarAlInsertar" Visibility="Collapsed" Grid.Row="8" Grid.Column="1" Margin="10" VerticalAlignment="Center" Orientation="Horizontal">
+                <ComboBox x:Name="opcionOperacionAlInsertar" Margin="10" VerticalAlignment="Center" SelectionChanged="opcionOperacionAlInsertar_SelectionChanged" >
+                    <ComboBoxItem Content="Inverso de la suma/resta" Uid="1"/>
+                    <ComboBoxItem Content="Inverso de la multiplicación/división" Uid="2"/>
+                    <ComboBoxItem Content="Redondear cantidades" Uid="3"/>
+                    <ComboBoxItem Content="Contar cantidades" Uid="4"/>
+                    <ComboBoxItem Content="Factorial" Uid="5"/>
+                    <ComboBoxItem Content="Suma" Uid="6"/>
+                    <ComboBoxItem Content="Resta" Uid="7"/>
+                    <ComboBoxItem Content="Multiplicación" Uid="8"/>
+                    <ComboBoxItem Content="División" Uid="9"/>
+                    <ComboBoxItem Content="Potencia" Uid="10"/>
+                    <ComboBoxItem Content="Raíz" Uid="11"/>
+                    <ComboBoxItem Content="Porcentaje" Uid="12"/>
+                    <ComboBoxItem Content="Logaritmo" Uid="13"/>
+                </ComboBox>
+                <Button x:Name="botonOpcionRedondearCantidadesOperacionInterna" Visibility="Collapsed" Margin="10" Grid.Row="0" Grid.Column="2" Click="botonOpcionRedondearCantidadesOperacionInterna_Click">Opciones de redondeo</Button>
+                <Grid x:Name="opcionesOperacionAlInsertar" Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock x:Name="textoOpcionTipoElementoAOperar_OperacionAlInsertar" Grid.Row="0" Grid.Column="0" Margin="10" Padding="10" VerticalAlignment="Center">Elemento a operar:</TextBlock>
+                    <ComboBox x:Name="opcionTipoElementoAOperar_OperacionAlInsertar" Grid.Row="0" Grid.Column="1" Margin="10" VerticalAlignment="Center" SelectionChanged="opcionTipoElementoAOperar_OperacionAlInsertar_SelectionChanged" >
+                        <ComboBoxItem Content="Variables o vectores" Uid="1"/>
+                        <ComboBoxItem Content="Variables o vectores retornados" Uid="2"/>
+                        <ComboBoxItem Content="Variables o vectores y variables o vectores retornados" Uid="3"/>
+                        <ComboBoxItem Content="Valor fijo" Uid="4"/>
+                    </ComboBox>
+
+                    <TextBlock x:Name="textoOpcionOperandosInsertar_OperacionAlInsertar" Visibility="Collapsed" Grid.Row="1" Grid.Column="0" Margin="10" Padding="10" VerticalAlignment="Center">Operar cantidades de:</TextBlock>
+                    <StackPanel x:Name="opcionOperandosInsertar_OperacionAlInsertar" Visibility="Collapsed" Grid.Row="1" Grid.Column="1" Margin="10" VerticalAlignment="Center"></StackPanel>
+
+                    <TextBlock x:Name="textoOpcionTipoElemento_OperacionAlInsertar" Grid.Row="2" Grid.Column="0" Margin="10" Padding="10" Visibility="Collapsed" VerticalAlignment="Center">Insertar :</TextBlock>
+                    <TextBox x:Name="valorFijo_OperacionAlInsertar" Grid.Row="2" Grid.Column="1" Margin="10" Visibility="Collapsed" VerticalAlignment="Center" TextChanged="valorFijo_OperacionAlInsertar_TextChanged"></TextBox>
+                    <ComboBox x:Name="opcionTipoElemento_OperacionAlInsertar" Grid.Row="2" Grid.Column="1" Margin="10" Visibility="Collapsed" VerticalAlignment="Center" SelectionChanged="opcionTipoElemento_OperacionAlInsertar_SelectionChanged">
+                        <ComboBoxItem Content="Número del vector en la ejecución" Uid="1"/>
+                        <ComboBoxItem Content="Número anterior del vector en la ejecución" Uid="2"/>
+                        <ComboBoxItem Content="Número siguiente del vector en la ejecución" Uid="3"/>
+                        <ComboBoxItem Content="Número en posición específica del vector en la ejecución" Uid="4"/>
+                        <ComboBoxItem Content="Número en posición específica desplazada un valor hacia las anteriores del vector en la ejecución" Uid="5"/>
+                        <ComboBoxItem Content="Número en posición específica desplazada un valor hacia las siguientes del vector en la ejecución" Uid="6"/>
+                        <ComboBoxItem Content="Número en posición específica desplazada un valor múltiplo hacia las anteriores del vector en la ejecución" Uid="7"/>
+                        <ComboBoxItem Content="Número en posición específica desplazada un valor múltiplo hacia las siguientes del vector en la ejecución" Uid="8"/>
+                    </ComboBox>
+
+                    <TextBlock x:Name="textoOpcionValoresPosiciones_TipoElemento_OperacionAlInsertar" Visibility="Collapsed" Grid.Row="3" Grid.Column="0" Margin="10">Valor asociado a posición:</TextBlock>
+                    <TextBox x:Name="opcionValoresPosiciones_TipoElemento_OperacionAlInsertar" Visibility="Collapsed" Grid.Row="3" Grid.Column="1" Margin="10" TextChanged="opcionValoresPosiciones_TipoElemento_OperacionAlInsertar_TextChanged"></TextBox>
+
+                </Grid>
+            </StackPanel>
+
+            <TextBlock x:Name="textoOpcionUbicacionAccion_Insertar" Grid.Row="9" Grid.Column="0" Margin="10" Padding="10" Visibility="Collapsed" VerticalAlignment="Center">Al insertar, ubicar en :</TextBlock>
+            <ComboBox x:Name="opcionUbicacionAccion_Insertar" Grid.Row="9" Grid.Column="1" Margin="10" Visibility="Collapsed" VerticalAlignment="Center" SelectionChanged="opcionUbicacionAccion_Insertar_SelectionChanged" >
+                <ComboBoxItem Content="Ubicación del número del vector en la ejecución" Uid="1"/>
+                <ComboBoxItem Content="Ubicación del número anterior del vector en la ejecución" Uid="2"/>
+                <ComboBoxItem Content="Ubicación del número siguiente del vector en la ejecución" Uid="3"/>
+                <ComboBoxItem Content="Ubicación del número en posición específica del vector en la ejecución" Uid="4"/>
+                <ComboBoxItem Content="Ubicación del número en posición específica desplazada un valor hacia las anteriores del vector en la ejecución" Uid="5"/>
+                <ComboBoxItem Content="Ubicación del número en posición específica desplazada un valor hacia las siguientes del vector en la ejecución" Uid="6"/>
+                <ComboBoxItem Content="Ubicación del número en posición específica desplazada un valor múltiplo hacia las anteriores del vector en la ejecución" Uid="7"/>
+                <ComboBoxItem Content="Ubicación del número en posición específica desplazada un valor múltiplo hacia las siguientes del vector en la ejecución" Uid="8"/>
+            </ComboBox>
+
+            <TextBlock x:Name="textoOpcionValoresPosiciones_UbicacionAccion_Insertar" Visibility="Collapsed" Grid.Row="10" Grid.Column="0" Margin="10">Valor asociado a posición:</TextBlock>
+            <TextBox x:Name="opcionValoresPosiciones_UbicacionAccion_Insertar" Visibility="Collapsed" Grid.Row="10" Grid.Column="1" Margin="10" TextChanged="opcionValoresPosiciones_UbicacionAccion_Insertar_TextChanged"></TextBox>
+
+            <Grid x:Name="opcionesOperandoNumeros" Visibility="Collapsed" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <CheckBox x:Name="opcionOperandosFiltroCantidades" Grid.Column="0" Margin="19" Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center">Procesar por cada variable o vector (como un todo)</CheckBox>
+                <CheckBox x:Name="opcionNumerosFiltroCantidades" Grid.Column="1" Margin="19" Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center">Procesar por cada número de la variable o vector</CheckBox>
+
+            </Grid>
+
+            <TextBlock x:Name="textoOpcionEsInsercionEdicion" Grid.Column="0" Grid.Row="12" Margin="10" Padding="10" Visibility="Collapsed" VerticalAlignment="Center">¿Es edición de números?</TextBlock>
+            <CheckBox x:Name="opcionEsInsercionEdicion" Grid.Row="12" Margin="10" Padding="10" VerticalAlignment="Center" Visibility="Collapsed" VerticalContentAlignment="Center" Grid.Column="1">Sí. Al insertar el número, se quita el número original.</CheckBox>
+
+            <TextBlock Grid.Column="0" Grid.Row="13" Margin="10" Padding="10" VerticalAlignment="Center">Aplicar:</TextBlock>
+
+            <Grid x:Name="opcionesInsertar_Posiciones" Grid.Column="1" Grid.Row="13">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">Al insertar la cantidad, desplazarse:</TextBlock>
+                <CheckBox x:Name="opcionDesplazarsePosicionAnterior" Grid.Row="1" Grid.Column="0" Checked="opcionDesplazarsePosicionAnterior_Checked">Una posición anterior</CheckBox>
+                <CheckBox x:Name="opcionDesplazarsePosicionPosterior" Grid.Row="1" Grid.Column="1" Checked="opcionDesplazarsePosicionPosterior_Checked">Una posición posterior</CheckBox>
+
+                <CheckBox x:Name="opcionNoInsertarPosicionAnterior" Visibility="Collapsed" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" >Si la cantidad está en la primera posición, no insertarla</CheckBox>
+                <CheckBox x:Name="opcionNoInsertarPosicionPosterior" Visibility="Collapsed" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" >Si la cantidad está en la última posición, no insertarla</CheckBox>
+            </Grid>
+            
+            <Grid Grid.Column="1" Grid.Row="14">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <CheckBox x:Name="opcionAplicarProcesamientoSinCondiciones" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0"  Margin="10" VerticalAlignment="Center">Aplicar los efectos de esta lógica cuando la variable o vector no esté en esta lógica.</CheckBox>
+                <CheckBox x:Name="opcionAplicarProcesamientoCantidadesInsertadas" Visibility="Collapsed" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" Margin="10" VerticalAlignment="Center" Checked="opcionAplicarProcesamientoCantidadesInsertadas_Checked">Incluir y aplicar los efectos de esta lógica a los números insertados/editados por esta lógica en las variables o vectores.</CheckBox>
+                <CheckBox x:Name="opcionAplicarProcesamientoSoloCantidadesInsertadas" Visibility="Collapsed" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2" Margin="10" VerticalAlignment="Center" Checked="opcionAplicarProcesamientoSoloCantidadesInsertadas_Checked">Aplicar los efectos de esta lógica solo a los números insertados/editados por esta lógica en las variables o vectores.</CheckBox>
+                <CheckBox x:Name="opcionReiniciarAcumulacion" Visibility="Collapsed" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="3" Margin="10" VerticalAlignment="Center" >Reiniciar a cero la acumulación por filas del vector.</CheckBox>
+                <CheckBox x:Name="opcionNoIncluirTextosInformacion" Visibility="Collapsed" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="4" Margin="10" VerticalAlignment="Center">No incluir las cadenas de texto del número a insertar</CheckBox>
+            </Grid>
+
+            <Button x:Name="Cancelar" Grid.Row="15" Grid.Column="0" Margin="10" Padding="10" MaxWidth="100" Click="Cancelar_Click">Cancelar</Button>
+            <Button x:Name="Guardar" Grid.Row="15" Grid.Column="1" Margin="10" Padding="10" MaxWidth="100" Click="Guardar_Click">Guardar lógica</Button>
+        </Grid>
+    </ScrollViewer>
+</Window>

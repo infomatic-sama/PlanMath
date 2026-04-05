@@ -1,0 +1,81 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.SeleccionarArchivoEntrada"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas"
+        mc:Ignorable="d"
+        Title="Seleccionar archivo para variable o vector de entrada" Height="700" Loaded="Window_Loaded" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+    <Grid Width="Auto">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="cabeceraEjecucion" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="titulo" Margin="10" TextWrapping="Wrap" FontSize="15" Grid.Row="0">Seleccionar archivo para variable o vector de entrada<LineBreak/>Ejecución del cálculo NombreCalculo.pmcalc</TextBlock>
+            <TextBlock x:Name="descripcionEntrada" Grid.Row="1" Margin="10" TextWrapping="Wrap">Descripción de la variable o vector de entrada</TextBlock>
+
+        </Grid>
+
+        <Grid x:Name="panelCarpeta" Grid.Column="0" Grid.Row="1" Margin="10" Width="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock Margin="10" Grid.Column="0" Height="20" Grid.Row="0">Carpeta:</TextBlock>
+            <TextBlock x:Name="carpetaSeleccionada" Margin="10" Grid.Column="1" Height="20" Grid.Row="0"></TextBlock>
+            <Button x:Name="btnSeleccionarCarpeta" Margin="10" Grid.Column="2" Grid.Row="0" Height="30" Width="130" Padding="3" Click="btnSeleccionarCarpeta_Click">Seleccionar carpeta</Button>
+        </Grid>
+        <Grid x:Name="panelArchivo" Grid.Column="0" Grid.Row="2" Margin="10" Width="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock Margin="10" Grid.Column="0" Height="20" Grid.Row="0">Archivo <TextBlock x:Name="plantilla" Visibility="Collapsed"> plantilla</TextBlock>:</TextBlock>
+            <TextBlock x:Name="archivoSeleccionado" Margin="10" Height="20" Grid.Column="1" Grid.Row="0"></TextBlock>
+            <ComboBox x:Name="seleccionarArchivo" Margin="10" Height="20" Grid.Column="1" Grid.Row="0" Width="Auto" MinWidth="250" IsEditable="True"></ComboBox>
+            <Button x:Name="btnSeleccionarArchivo" Margin="10" Grid.Column="2" Grid.Row="0" Height="30" Width="130" Padding="3" Click="btnSeleccionarArchivo_Click">Seleccionar archivo</Button>
+            <TextBlock x:Name="textoNombreArchivo" Margin="10" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center">Si escribes " <Bold>...</Bold> " en el nombre de archivo, estas indicando la carpeta contenedora. 
+                <LineBreak></LineBreak> Utiliza " <Bold>/</Bold> " para indicar una subcarpeta o el archivo.
+            <LineBreak></LineBreak> Utiliza " <Bold>*</Bold> " para indicar texto comodín en el nombre de archivo. El texto comodín implica cualquier texto.
+            <LineBreak></LineBreak>Sólo se permite un comodín en el nombre, uno para indicar texto inicial, final o dentro del nombre de archivo.</TextBlock>
+        </Grid>
+        
+        <Button x:Name="cerrar" Margin="10" Height="25" Width="100" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" Click="cerrar_Click">Cerrar</Button>
+
+        <Grid x:Name="pieEjecucion" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnPausar" Grid.Column="0" Margin="10" Padding="5" Click="btnPausar_Click">Pausar</Button>
+            <Button x:Name="btnDetener" Grid.Column="1" Margin="10" Padding="5" Click="btnDetener_Click">Detener</Button>
+            <Button x:Name="btnContinuar" Grid.Column="2" Margin="10" Padding="5" Click="btnContinuar_Click">Continuar</Button>
+        </Grid>
+    </Grid>
+</Window>

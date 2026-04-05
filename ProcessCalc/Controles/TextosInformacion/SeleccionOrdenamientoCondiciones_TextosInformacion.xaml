@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="ProcessCalc.Controles.TextosInformacion.SeleccionOrdenamientoCondiciones_TextosInformacion"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc.Controles.TextosInformacion"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Margin="10" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Agregar condiciones (si/entonces) de cadenas de texto:</TextBlock>
+        <Button x:Name="agregarTextoInformacion" Margin="10" Grid.Row="1" Grid.Column="2" MaxWidth="600" MaxHeight="50" Click="agregarTextoInformacion_Click">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/ProcessCalc;component/Imagenes/Iconos4/05.png" Height="24" Width="24" Grid.Column="0"></Image>
+                    <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Agregar nueva condición</Label>
+                </Grid>
+            </Button.Content>
+        </Button>
+
+        <CheckBox x:Name="opcionActivarCondicionCantidadesNocumplen_Anteriores" VerticalAlignment="Center" Margin="10" Grid.Row="1" Grid.Column="3" Checked="opcionActivarCondicionCantidadesNocumplen_Anteriores_Checked" Unchecked="opcionActivarCondicionCantidadesNocumplen_Anteriores_Unchecked">
+            <TextBlock>Agregar la última condición cuando las cantidades
+            <LineBreak></LineBreak> no cumplen ninguna condición anterior
+            </TextBlock>
+        </CheckBox>
+
+        <Grid x:Name="textosInformacionSeleccionados" Grid.Row="2" Grid.ColumnSpan="3" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+        </Grid>
+    </Grid>
+</UserControl>
+

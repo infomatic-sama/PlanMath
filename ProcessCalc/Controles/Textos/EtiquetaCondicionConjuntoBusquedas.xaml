@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="ProcessCalc.Controles.Textos.EtiquetaCondicionConjuntoBusquedas"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc.Controles.Textos"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" VerticalAlignment="Center" VerticalContentAlignment="Center" Loaded="UserControl_Loaded" Padding="10">
+    <UserControl.Resources>
+        <Style BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" TargetType="Button"></Style>
+    </UserControl.Resources>
+    <Button x:Name="botonFondo" BorderBrush="{x:Null}" Width="Auto" Height="Auto" PreviewMouseLeftButtonDown="botonFondo_PreviewMouseLeftButtonDown">
+        
+            <WrapPanel x:Name="textosCondiciones" Orientation="Horizontal">
+            </WrapPanel>
+        
+    </Button>
+</UserControl>

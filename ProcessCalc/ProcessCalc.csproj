@@ -1,0 +1,489 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>false</BootstrapperEnabled>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>True</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <ServerGarbageCollection>true</ServerGarbageCollection>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ProcessCalc.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Imagenes\iconoAplicacion.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <AssemblyVersion>
+    </AssemblyVersion>
+    <FileVersion>
+    </FileVersion>
+    <SignAssembly>False</SignAssembly>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <RunAnalyzersDuringLiveAnalysis>False</RunAnalyzersDuringLiveAnalysis>
+    <IsPublishable>True</IsPublishable>
+    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+    <PublishSingleFile>false</PublishSingleFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\06.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\07.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\08.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\09.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\13_01.png" />
+    <Resource Include="Imagenes\13_02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\15_01.png" />
+    <Resource Include="Imagenes\15_02.png" />
+    <Resource Include="Imagenes\15_03.png" />
+    <Resource Include="Imagenes\15_04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\19.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\25.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\27.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\31.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\iconoAplicacion.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\32.png" />
+    <Resource Include="Imagenes\33.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\34.png" />
+    <Resource Include="Imagenes\35.png" />
+    <Resource Include="Imagenes\36.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PlanMath_para_Excel\PlanMath_para_Excel.csproj" />
+    <ProjectReference Include="..\PlanMath_para_Word\PlanMath_para_Word.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos10\02.png" />
+    <Resource Include="Imagenes\Iconos10\03.png" />
+    <Resource Include="Imagenes\Iconos10\04.png" />
+    <Resource Include="Imagenes\Iconos10\05.png" />
+    <Resource Include="Imagenes\Iconos10\06.png" />
+    <Resource Include="Imagenes\Iconos10\07.png" />
+    <Resource Include="Imagenes\Iconos10\08.png" />
+    <Resource Include="Imagenes\Iconos10\09.png" />
+    <Resource Include="Imagenes\Iconos10\10.png" />
+    <Resource Include="Imagenes\Iconos10\11.png" />
+    <Resource Include="Imagenes\Iconos11\i_01.png">
+      <CopyToOutputDirectory>
+      </CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Imagenes\Iconos11\i_02.png" />
+    <Resource Include="Imagenes\Iconos11\i_03.png" />
+    <Resource Include="Imagenes\Iconos11\i_04.png" />
+    <Resource Include="Imagenes\Iconos11\i_05.png" />
+    <Resource Include="Imagenes\Iconos11\i_06.png" />
+    <Resource Include="Imagenes\Iconos11\i_08.png" />
+    <Resource Include="Imagenes\Iconos11\i_09.png" />
+    <Resource Include="Imagenes\Iconos11\i_10.png" />
+    <Resource Include="Imagenes\Iconos11\i_11.png" />
+    <Resource Include="Imagenes\Iconos11\i_12.png" />
+    <Resource Include="Imagenes\Iconos11\i_13.png" />
+    <Resource Include="Imagenes\Iconos12\icono_nuevo_01.png" />
+    <Resource Include="Imagenes\Iconos12\icono_nuevo_02.png" />
+    <Resource Include="Imagenes\Iconos12\icono_nuevo_03.png" />
+    <Resource Include="Imagenes\Iconos12\icono_nuevo_04.png" />
+    <Resource Include="Imagenes\Iconos12\icono_nuevo_05.png" />
+    <Resource Include="Imagenes\Iconos12\icono_nuevo_06.png" />
+    <Resource Include="Imagenes\Iconos12\icono_nuevo_07.png" />
+    <Resource Include="Imagenes\Iconos12\icono_nuevo_08.png" />
+    <Resource Include="Imagenes\Iconos12\icono_nuevo_09.png" />
+    <Resource Include="Imagenes\Iconos12\icono_nuevo_10.png" />
+    <Resource Include="Imagenes\Iconos12\icono_nuevo_11.png" />
+    <Resource Include="Imagenes\Iconos13\icono_pdf.png" />
+    <Resource Include="Imagenes\Iconos13\icono_word.png" />
+    <Resource Include="Imagenes\Iconos14\icono_01.png" />
+    <Resource Include="Imagenes\Iconos14\icono_02.png" />
+    <Resource Include="Imagenes\Iconos14\icono_03.png" />
+    <Resource Include="Imagenes\Iconos14\icono_04.png" />
+    <Resource Include="Imagenes\Iconos14\icono_05.png" />
+    <Resource Include="Imagenes\Iconos15\05.png" />
+    <Resource Include="Imagenes\Iconos15\06.png" />
+    <Resource Include="Imagenes\Iconos16\00_02.png" />
+    <Resource Include="Imagenes\Iconos16\00_1.png" />
+    <Resource Include="Imagenes\Iconos17\01.png" />
+    <Resource Include="Imagenes\Iconos18\icono 01.png" />
+    <Resource Include="Imagenes\Iconos18\icono 02.png" />
+    <Resource Include="Imagenes\Iconos19\icono_pm.png" />
+    <Resource Include="Imagenes\Iconos3\01.png" />
+    <Resource Include="Imagenes\Iconos3\02.png" />
+    <Resource Include="Imagenes\Iconos3\03.png" />
+    <Resource Include="Imagenes\Iconos3\04.png" />
+    <Resource Include="Imagenes\Iconos3\05.png" />
+    <Resource Include="Imagenes\Iconos3\06.png" />
+    <Resource Include="Imagenes\Iconos3\07.png" />
+    <Resource Include="Imagenes\Iconos3\08.png" />
+    <Resource Include="Imagenes\Iconos3\09.png" />
+    <Resource Include="Imagenes\Iconos3\10.png" />
+    <Resource Include="Imagenes\Iconos3\11.png" />
+    <Resource Include="Imagenes\Iconos3\12.png" />
+    <Resource Include="Imagenes\Iconos3\13.png" />
+    <Resource Include="Imagenes\Iconos3\14.png" />
+    <Resource Include="Imagenes\Iconos3\15.png" />
+    <Resource Include="Imagenes\Iconos3\16.png" />
+    <Resource Include="Imagenes\Iconos3\17.png" />
+    <Resource Include="Imagenes\Iconos3\18.png" />
+    <Resource Include="Imagenes\Iconos3\19.png" />
+    <Resource Include="Imagenes\Iconos3\20.png" />
+    <Resource Include="Imagenes\Iconos3\21.png" />
+    <Resource Include="Imagenes\Iconos3\22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\06.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\07.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\08.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\09.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\19.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos4\23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos5\agrupados.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos6\icono_01.png" />
+    <Resource Include="Imagenes\Iconos6\icono_02.png" />
+    <Resource Include="Imagenes\Iconos6\icono_03.png" />
+    <Resource Include="Imagenes\Iconos6\icono_04.png" />
+    <Resource Include="Imagenes\Iconos6\icono_05.png" />
+    <Resource Include="Imagenes\Iconos6\icono_06.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos7\Icono_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos7\Icono_02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos7\Icono_03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos7\Icono_04.png" />
+    <Resource Include="Imagenes\Iconos7\Icono_05.png" />
+    <Resource Include="Imagenes\Iconos7\Icono_06.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos7\Icono_07.png" />
+    <Resource Include="Imagenes\Iconos7\Icono_08.png" />
+    <Resource Include="Imagenes\Iconos7\Icono_09.png" />
+    <Resource Include="Imagenes\Iconos7\Icono_10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos7\Icono_11.png" />
+    <Resource Include="Imagenes\Iconos7\Icono_12.png" />
+    <Resource Include="Imagenes\Iconos7\Icono_13.png" />
+    <Resource Include="Imagenes\Iconos7\Icono_14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos7\Icono_15.png" />
+    <Resource Include="Imagenes\Iconos9\icono_pm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.23.0" />
+    <PackageReference Include="PdfPig" Version="0.1.13" />
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.421302">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Marcador.cs" />
+    <Compile Remove="Marcadores.xaml.cs" />
+    <Compile Remove="MarcadoresOperacion.xaml.cs" />
+    <Compile Remove="MarcadorEspecifico.xaml.cs" />
+    <Compile Remove="MarcadorRelacionado.xaml.cs" />
+    <Compile Remove="Ventanas\SeleccionarElementoConectar_FueraAgrupador.xaml.cs" />
+    <None Remove="Imagenes\Iconos10\01.png" />
+    <None Remove="Imagenes\Iconos10\02.png" />
+    <None Remove="Imagenes\Iconos10\03.png" />
+    <None Remove="Imagenes\Iconos10\04.png" />
+    <None Remove="Imagenes\Iconos10\05.png" />
+    <None Remove="Imagenes\Iconos10\06.png" />
+    <None Remove="Imagenes\Iconos10\07.png" />
+    <None Remove="Imagenes\Iconos10\08.png" />
+    <None Remove="Imagenes\Iconos10\09.png" />
+    <None Remove="Imagenes\Iconos10\10.png" />
+    <None Remove="Imagenes\Iconos10\11.png" />
+    <None Remove="Imagenes\Iconos11\i_01.png" />
+    <None Remove="Imagenes\Iconos11\i_02.png" />
+    <None Remove="Imagenes\Iconos11\i_03.png" />
+    <None Remove="Imagenes\Iconos11\i_04.png" />
+    <None Remove="Imagenes\Iconos11\i_05.png" />
+    <None Remove="Imagenes\Iconos11\i_06.png" />
+    <None Remove="Imagenes\Iconos11\i_07.png" />
+    <None Remove="Imagenes\Iconos11\i_08.png" />
+    <None Remove="Imagenes\Iconos11\i_09.png" />
+    <None Remove="Imagenes\Iconos11\i_10.png" />
+    <None Remove="Imagenes\Iconos11\i_11.png" />
+    <None Remove="Imagenes\Iconos11\i_12.png" />
+    <None Remove="Imagenes\Iconos11\i_13.png" />
+    <None Remove="Imagenes\Iconos12\icono_nuevo_01.png" />
+    <None Remove="Imagenes\Iconos12\icono_nuevo_02.png" />
+    <None Remove="Imagenes\Iconos12\icono_nuevo_03.png" />
+    <None Remove="Imagenes\Iconos12\icono_nuevo_04.png" />
+    <None Remove="Imagenes\Iconos12\icono_nuevo_05.png" />
+    <None Remove="Imagenes\Iconos12\icono_nuevo_06.png" />
+    <None Remove="Imagenes\Iconos12\icono_nuevo_07.png" />
+    <None Remove="Imagenes\Iconos12\icono_nuevo_08.png" />
+    <None Remove="Imagenes\Iconos12\icono_nuevo_09.png" />
+    <None Remove="Imagenes\Iconos12\icono_nuevo_10.png" />
+    <None Remove="Imagenes\Iconos12\icono_nuevo_11.png" />
+    <None Remove="Imagenes\Iconos13\icono_pdf.png" />
+    <None Remove="Imagenes\Iconos13\icono_word.png" />
+    <None Remove="Imagenes\Iconos14\icono_01.png" />
+    <None Remove="Imagenes\Iconos14\icono_02.png" />
+    <None Remove="Imagenes\Iconos14\icono_03.png" />
+    <None Remove="Imagenes\Iconos14\icono_04.png" />
+    <None Remove="Imagenes\Iconos14\icono_05.png" />
+    <None Remove="Imagenes\Iconos15\05.png" />
+    <None Remove="Imagenes\Iconos15\06.png" />
+    <None Remove="Imagenes\Iconos16\00_02.png" />
+    <None Remove="Imagenes\Iconos16\00_1.png" />
+    <None Remove="Imagenes\Iconos17\01.png" />
+    <None Remove="Imagenes\Iconos18\icono 01.png" />
+    <None Remove="Imagenes\Iconos18\icono 02.png" />
+    <None Remove="Imagenes\Iconos19\icono_pm.png" />
+    <None Remove="Imagenes\Iconos9\icono_pm.png" />
+    <None Remove="Presentacion.png" />
+    <None Remove="Presentacion2.png" />
+    <Page Remove="Marcadores.xaml" />
+    <Page Remove="MarcadoresOperacion.xaml" />
+    <Page Remove="MarcadorEspecifico.xaml" />
+    <Page Remove="MarcadorRelacionado.xaml" />
+    <Page Remove="Ventanas\SeleccionarElementoConectar_FueraAgrupador.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Presentacion.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Presentacion2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\Shared\Visual Studio Tools for Office\PIA\Office15\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\ReferenceAssemblies\v4.0\Microsoft.Office.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools.Common">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\ReferenceAssemblies\v4.0\Microsoft.Office.Tools.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools.Common.v4.0.Utilities">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\ReferenceAssemblies\v4.0\Microsoft.Office.Tools.Common.v4.0.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools.Excel">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\ReferenceAssemblies\v4.0\Microsoft.Office.Tools.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools.Excel.v4.0.Utilities">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\ReferenceAssemblies\v4.0\Microsoft.Office.Tools.Excel.v4.0.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools.v4.0.Framework">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\ReferenceAssemblies\v4.0\Microsoft.Office.Tools.v4.0.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Vbe.Interop">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\Shared\Visual Studio Tools for Office\PIA\Office15\Microsoft.Vbe.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="office">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\Shared\Visual Studio Tools for Office\PIA\Office15\Office.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos11\i_07.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\Iconos10\01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,31 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.ListaDefinicionesTextos_TextosInformacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas"
+        mc:Ignorable="d"
+        Title="Lista de lógicas de cadenas de texto a asignar" Height="450" Width="1100" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Padding="5" Margin="10">Cada lógica de cadenas de texto corresponde a un nueva cadena de texto que se asignará en función de la lógica de asignación de cadenas de texto</TextBlock>
+
+        <Button x:Name="agregarDefinicionTexto" Grid.Row="1" Grid.Column="0" Margin="10" MaxWidth="180" Click="agregarDefinicionTexto_Click">Agregar lógica</Button>
+        <Button x:Name="editarDefinicionTexto" Grid.Row="1" Grid.Column="1" Margin="10" MaxWidth="180" Click="editarDefinicionTexto_Click">Editar lógica</Button>
+        <Button x:Name="quitarDefinicionTexto" Grid.Row="1" Grid.Column="2" Margin="10" MaxWidth="180" Click="quitarDefinicionTexto_Click">Quitar lógica</Button>
+
+        <ScrollViewer Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3">
+            <StackPanel x:Name="listaDefinicionesTextos"></StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

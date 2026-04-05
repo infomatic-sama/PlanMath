@@ -1,0 +1,34 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.SeleccionarOrdenarCantidades"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas" xmlns:textosinformacion="clr-namespace:ProcessCalc.Controles.TextosInformacion"
+        mc:Ignorable="d"
+        Title="Lógica de seleccionar y ordenar números" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="titulo" Margin="10" Visibility="Collapsed"  TextWrapping="Wrap" FontSize="15" Grid.Row="0">Digitar vector de cadenas de texto para variable o vector de entrada <LineBreak/>Ejecución del cálculo NombreCalculo.pmcalc</TextBlock>
+        <TextBlock x:Name="descripcionEntrada" Visibility="Collapsed" Grid.Row="1" Margin="10" TextWrapping="Wrap">Descripción de la variable o vector de entrada</TextBlock>
+
+        <ScrollViewer x:Name="contenedorlistaTextos" Grid.Row="2" Grid.ColumnSpan="2" CanContentScroll="true" VerticalScrollBarVisibility="Auto" MaxHeight="600">
+            <textosinformacion:SeleccionOrdenamiento_TextosInformacion x:Name="listaTextos" ></textosinformacion:SeleccionOrdenamiento_TextosInformacion>
+        </ScrollViewer>
+
+        <Button x:Name="btnContinuar" Margin="10" Grid.Row="4" Grid.Column="1" MaxWidth="100" Click="btnContinuar_Click">Guardar lógica</Button>
+        <Button x:Name="btnCancelar" Margin="10" Grid.Row="4" Grid.Column="0" MaxWidth="100" Click="btnCancelar_Click">Cancelar</Button>
+    </Grid>
+</Window>

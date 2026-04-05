@@ -1,0 +1,15 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.ConfiguracionLecturaURLEntrada"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas"
+        xmlns:localEntradas="clr-namespace:ProcessCalc.Controles.Ctrl_Entradas"
+        mc:Ignorable="d"
+        Title="Configuración de navegaciones de URL de la variable o vector" Height="450" Width="800" MaxHeight="2000" SizeToContent="Width" WindowStartupLocation="CenterScreen">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <localEntradas:ConfigURLEntrada_Ctrl x:Name="config">
+
+        </localEntradas:ConfigURLEntrada_Ctrl>
+    </ScrollViewer>
+</Window>

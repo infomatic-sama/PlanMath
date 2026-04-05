@@ -1,0 +1,44 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.Definiciones.DefinirClasificadores"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas.Definiciones"
+        mc:Ignorable="d"
+        Title="Definir clasificadores" Height="450" Width="800" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="agregarClasificador" Margin="10" Padding="10" Grid.Column="0" Click="agregarClasificador_Click">Agregar clasificador</Button>
+            <Button x:Name="quitarClasificador" Margin="10" Padding="10" Grid.Column="1" Click="quitarClasificador_Click">Quitar clasificador</Button>
+            <Button x:Name="editarClasificador" Margin="10" Padding="10" Grid.Column="2" Click="editarClasificador_Click">Editar clasificador</Button>
+            <Button x:Name="subirClasificador" Margin="10" Padding="10" Grid.Column="3" Click="subirClasificador_Click">Subir clasificador</Button>
+            <Button x:Name="bajarClasificador" Margin="10" Padding="10" Grid.Column="4" Click="bajarClasificador_Click">Bajar clasificador</Button>
+        </Grid>
+        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" CanContentScroll="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <StackPanel x:Name="clasificadores" Orientation="Vertical">
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <Button x:Name="btnCancelar" Grid.Column="0" Grid.Row="2" Margin="10" Padding="5" MaxWidth="100" Click="btnCancelar_Click" >Cancelar</Button>
+        <Button x:Name="btnContinuar" Grid.Column="1" Grid.Row="2" Margin="10" Padding="5" MaxWidth="100" Click="btnContinuar_Click" >Ingresar</Button>
+    </Grid>
+</Window>

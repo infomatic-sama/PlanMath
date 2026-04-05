@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="ProcessCalc.Controles.OpcionOperacion"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="200" AllowDrop="True" Width="Auto" Height="Auto" SizeChanged="UserControl_SizeChanged">
+    <UserControl.Resources>
+        <Style BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" TargetType="Button"></Style>
+    </UserControl.Resources>
+    <Button x:Name="botonFondo" BorderBrush="{x:Null}" Width="Auto" Height="Auto" PreviewMouseLeftButtonDown="botonFondo_PreviewMouseLeftButtonDown" Drop="botonFondo_Drop" Click="botonFondo_Click">
+        <StackPanel IsHitTestVisible="True" Orientation="Horizontal" VerticalAlignment="Center">
+            <StackPanel Orientation="Vertical" Grid.Column="0">
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="iconoTodosSeparados" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/23.png"></Image>
+                    <Image x:Name="iconoTodosJuntos" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/24.png"></Image>
+                    <Image x:Name="iconoPorFila" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/25.png"></Image>
+                    <Image x:Name="iconoNota" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/30.png"></Image>
+                    <Image x:Name="iconoPotencias_Agrupando" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/25.png"></Image>
+                    <Image x:Name="iconoPotencias_SoloUnavez" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos3/13.png"></Image>
+                    <Image x:Name="iconoPotencias_PorFila" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos3/14.png"></Image>
+                    <Image x:Name="iconoRaices_Agrupando" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/25.png"></Image>
+                    <Image x:Name="iconoRaices_SoloUnavez" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos3/21.png"></Image>
+                    <Image x:Name="iconoRaices_PorFila" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos3/22.png"></Image>
+                    <Image x:Name="iconoSeleccionarOrdenarTodosSeparados" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos4/09.png"></Image>
+                    <Image x:Name="iconoSeleccionarOrdenarTodosJuntos" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos4/10.png"></Image>
+                    <Image x:Name="iconoSeleccionarOrdenar_SoloUnir" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos4/11.png"></Image>
+                    <Image x:Name="iconoSeleccionarOrdenar_ConjuntoAgrupado" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos5/agrupados.png"></Image>
+                    <Image x:Name="iconoCondicionesFlujo" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos6/icono_05.png"></Image>
+                    <Image x:Name="iconoCondicionesFlujo_PorSeparado" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos7/Icono_15.png"></Image>
+                    <Image x:Name="iconoPorFilasPorSeparados" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos9/icono_pm.png"></Image>
+                    <Image x:Name="iconoPorcentajes_SoloUnavez" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos10/04.png" ></Image>
+                    <Image x:Name="iconoPorcentajes_PorFila" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos10/05.png" ></Image>
+                    <Image x:Name="iconoLogaritmos_SoloUnavez" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos10/06.png" ></Image>
+                    <Image x:Name="iconoLogaritmos_PorFila" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos10/07.png" ></Image>
+                    <Image x:Name="iconoInverso" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos10/08.png" ></Image>
+                    <Image x:Name="iconoFactorial" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos14/icono_04.png" ></Image>
+                    <Image x:Name="iconoContarCantidades_TodosJuntos" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos10/10.png"></Image>
+                    <Image x:Name="iconoContarCantidades_Separados" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos10/11.png" ></Image>
+                    <Image x:Name="iconoEspera" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos14/icono_05.png"></Image>
+                    <Image x:Name="iconoLimpiarDatos" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos15/06.png"></Image>
+                    <Image x:Name="iconoRedondear" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos16/00_02.png" ></Image>
+                    <Image x:Name="iconoArchivoExterno" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos17/01.png"></Image>
+                    <Image x:Name="iconoSubCalculo" Visibility="Collapsed" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/Iconos18/icono 02.png"></Image>
+
+                    <TextBlock x:Name="nombreElemento" TextWrapping="Wrap" Margin="2" MaxWidth="150">Elemento Opción Operación 1</TextBlock>
+
+                    <TextBox x:Name="edicionNombre" TextWrapping="Wrap" Margin="2" Visibility="Collapsed" KeyDown="edicionNombre_KeyDown">Opción Operación 1</TextBox>
+                    <Button x:Name="btnGuardarNombre" Visibility="Collapsed" Click="btnGuardarNombre_Click">Guardar</Button>
+                </StackPanel>
+                <TextBlock x:Name="nombreOpcion" TextWrapping="Wrap" Margin="2" MaxWidth="150">Opción Operación 1</TextBlock>
+
+                <TextBlock x:Name="nombresElementosRelacionados" TextWrapping="Wrap" Margin="2" MaxWidth="150">Elementos Operación 1</TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </Button>
+</UserControl>

@@ -1,0 +1,781 @@
+﻿using Microsoft.Win32;
+using Newtonsoft.Json.Linq;
+using ProcessCalc.Controles;
+using ProcessCalc.Controles.Ctrl_Entradas;
+using ProcessCalc.Entidades;
+using ProcessCalc.Entidades.Entradas;
+using ProcessCalc.Ventanas;
+using ProcessCalc.Ventanas.Definiciones;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.Xml.Linq;
+
+namespace ProcessCalc.Vistas
+{
+    /// <summary>
+    /// Lógica de interacción para VistaArchivoEntradaConjuntoNumeros.xaml
+    /// </summary>
+    public partial class VistaArchivoEntradaConjuntoNumeros : UserControl
+    {
+        private Entrada entr;
+        public Entrada Entrada
+        {
+            get
+            {
+                return entr;
+            }
+
+            set
+            {
+                entr = value;
+                
+                lblNombreEntrada.Content = value.Nombre;
+
+                opcionMismaLectura.IsChecked = value.MismaLecturaBusquedasArchivo;
+                if (!value.MismaLecturaBusquedasArchivo)
+                    opcionLecturasDistintas.IsChecked = true;
+
+                //tipoArchivo.SelectedItem = (from ComboBoxItem I in tipoArchivo.Items where I.Uid == ((int)value.TipoArchivo).ToString() select I).FirstOrDefault();
+                listaArchivos.Children.Clear();
+                CargarListaArchivos(value.ListaArchivos);
+                //if (value.TipoArchivo == TipoArchivo.ServidorFTP |
+                //    value.TipoArchivo == TipoArchivo.Internet)
+                //    rutaFTP.Text = value.RutaArchivoConjuntoNumerosEntrada;
+
+                opcionCantidadAgregarNumeros.IsChecked = entr.UtilizarCantidadNumeros;
+                if (entr.UtilizarCantidadNumeros)
+                    opcionCantidadAgregarNumeros_Checked(this, null);
+                else
+                    opcionCantidadAgregarNumeros_Unchecked(this, null);
+
+                opcionUtilizacionCantidadAgregarNumeros.SelectedItem = (from ComboBoxItem I in opcionUtilizacionCantidadAgregarNumeros.Items where I.Uid == ((int)value.OpcionCantidadNumeros).ToString() select I).FirstOrDefault();
+
+                operacionInterna.SelectedItem = (from ComboBoxItem I in operacionInterna.Items where I.Uid == ((int)value.OperacionInterna).ToString() select I).FirstOrDefault();
+
+                operacionInterna_SelectionChanged(this, null);
+            }
+        }
+        public Calculo Calculo { get; set; }
+        public EntradaEspecifica VistaEntrada { get; set; }
+        List<List<int>> NumerosEncontrados = new List<List<int>>();
+        int indiceBusquedaNumeros = -1;
+        ConfiguracionArchivoEntrada configuracionArchivo_Seleccionada;
+        public VistaArchivoEntradaConjuntoNumeros()
+        {
+            InitializeComponent();
+        }
+
+        public void ListarBusquedas()
+        {
+            busquedas.Children.Clear();
+
+            foreach (var itemBusqueda in entr.BusquedasConjuntoNumeros)
+            {
+                BusquedaEnArchivo busquedaNumero = new BusquedaEnArchivo();
+                busquedaNumero.Entrada = Entrada;
+                busquedaNumero.VistaBusquedasArchivo = this;
+                busquedaNumero.Busqueda = itemBusqueda;
+                busquedaNumero.MostrarOcultarOpcionesTextosInformacion();
+
+                busquedas.Children.Add(busquedaNumero);
+            }
+        }
+
+        public void CargarListaArchivos(List<ConfiguracionArchivoEntrada> lista)
+        {
+            foreach (var item in lista)
+                AgregarTabArchivo(item, lista);
+        }
+
+        public void AgregarTabArchivo(ConfiguracionArchivoEntrada archivoConfig,
+            List<ConfiguracionArchivoEntrada> ListaArchivos)
+        {
+            Border configArchivo = new Border();
+            configArchivo.BorderBrush = Brushes.Black;
+            configArchivo.BorderThickness = new Thickness(0.3);
+            configArchivo.VerticalAlignment = VerticalAlignment.Center;
+            configArchivo.Margin = new Thickness(10);
+            configArchivo.Padding = new Thickness(10);
+
+            Grid gridConfigArchivo = new Grid();
+            gridConfigArchivo.RowDefinitions.Add(new RowDefinition());
+            gridConfigArchivo.RowDefinitions.Last().Height = GridLength.Auto;
+
+            gridConfigArchivo.ColumnDefinitions.Add(new ColumnDefinition());
+            gridConfigArchivo.ColumnDefinitions.Last().Width = GridLength.Auto;
+            gridConfigArchivo.ColumnDefinitions.Add(new ColumnDefinition());
+            gridConfigArchivo.ColumnDefinitions.Last().Width = GridLength.Auto;
+            gridConfigArchivo.ColumnDefinitions.Add(new ColumnDefinition());
+            gridConfigArchivo.ColumnDefinitions.Last().Width = GridLength.Auto;
+            gridConfigArchivo.ColumnDefinitions.Add(new ColumnDefinition());
+            gridConfigArchivo.ColumnDefinitions.Last().Width = GridLength.Auto;
+            gridConfigArchivo.ColumnDefinitions.Add(new ColumnDefinition());
+            gridConfigArchivo.ColumnDefinitions.Last().Width = GridLength.Auto;
+
+            if (entr.TipoFormatoArchivo_Entrada == TipoFormatoArchivoEntrada.TextoPantalla)
+            {
+                Label etiquetaConfigArchivo = new Label();
+                etiquetaConfigArchivo.Margin = new Thickness(10);
+                etiquetaConfigArchivo.Padding = new Thickness(5);
+
+                etiquetaConfigArchivo.Content = "Texto en pantalla";
+                
+                gridConfigArchivo.Children.Add(etiquetaConfigArchivo);
+                Grid.SetColumn(etiquetaConfigArchivo, 1);
+                Grid.SetRow(etiquetaConfigArchivo, 0);
+            }
+            else
+            {
+                Grid gridBoton = new Grid();
+                gridBoton.ColumnDefinitions.Add(new ColumnDefinition());
+                gridBoton.ColumnDefinitions.Last().Width = GridLength.Auto;
+                gridBoton.ColumnDefinitions.Add(new ColumnDefinition());
+                gridBoton.ColumnDefinitions.Last().Width = GridLength.Auto;
+
+                Image ImagenBoton = new Image();
+                ImagenBoton.Source = new BitmapImage(new Uri("\\Imagenes\\Iconos12\\icono_nuevo_02.png", UriKind.Relative));
+                ImagenBoton.Width = 24;
+                ImagenBoton.Height = 24;
+
+                Label EtiquetaBoton = new Label();
+                EtiquetaBoton.VerticalAlignment = VerticalAlignment.Center;
+                EtiquetaBoton.Content = string.IsNullOrEmpty(archivoConfig.NombreArchivoEntrada) ?
+                    "Seleccionar archivo y configuración" : archivoConfig.NombreArchivoEntrada;
+
+                gridBoton.Children.Add(ImagenBoton);
+                Grid.SetColumn(ImagenBoton, 0);
+
+                gridBoton.Children.Add(EtiquetaBoton);
+                Grid.SetColumn(EtiquetaBoton, 1);
+
+                Button botonConfigArchivo = new Button();
+                botonConfigArchivo.Margin = new Thickness(10);
+                botonConfigArchivo.Padding = new Thickness(5);
+
+                botonConfigArchivo.Content = gridBoton;
+                botonConfigArchivo.Tag = archivoConfig;
+                botonConfigArchivo.Click += BotonConfigArchivo_Click;
+
+                gridConfigArchivo.Children.Add(botonConfigArchivo);
+                Grid.SetColumn(botonConfigArchivo, 1);
+                Grid.SetRow(botonConfigArchivo, 0);
+
+                if (!archivoConfig.EntradaManual)
+                {
+                    Button botonTextoArchivo = new Button();
+                    botonTextoArchivo.Margin = new Thickness(10);
+                    botonTextoArchivo.Padding = new Thickness(5);
+
+                    botonTextoArchivo.Content = "Texto obtenido";
+                    botonTextoArchivo.Tag = archivoConfig;
+                    botonTextoArchivo.Click += BotonTextoArchivo_Click;
+
+                    gridConfigArchivo.Children.Add(botonTextoArchivo);
+                    Grid.SetColumn(botonTextoArchivo, 2);
+                    Grid.SetRow(botonTextoArchivo, 0);
+                }
+            }
+
+            if (archivoConfig != ListaArchivos.FirstOrDefault())
+            {
+                Button botonIzquierdo = new Button();
+                botonIzquierdo.Margin = new Thickness(10);
+                botonIzquierdo.Padding = new Thickness(5);
+
+                botonIzquierdo.Content = "<";
+                botonIzquierdo.Tag = archivoConfig;
+                botonIzquierdo.Click += BotonIzquierdo_Click;
+
+                gridConfigArchivo.Children.Add(botonIzquierdo);
+                Grid.SetColumn(botonIzquierdo, 0);
+                Grid.SetRow(botonIzquierdo, 0);
+            }
+
+            Button botonQuitar = new Button();
+            botonQuitar.Margin = new Thickness(10);
+            botonQuitar.Padding = new Thickness(5);
+
+            Image ImagenBotonQuitar = new Image();
+            ImagenBotonQuitar.Source = new BitmapImage(new Uri("\\Imagenes\\Iconos12\\icono_nuevo_05.png", UriKind.Relative));
+            ImagenBotonQuitar.Width = 24;
+            ImagenBotonQuitar.Height = 24;
+
+            botonQuitar.Content = ImagenBotonQuitar;
+            botonQuitar.Tag = archivoConfig;
+            botonQuitar.Click += quitarArchivoLista_Click;
+
+            gridConfigArchivo.Children.Add(botonQuitar);
+            Grid.SetColumn(botonQuitar, 3);
+            Grid.SetRow(botonQuitar, 0);
+
+            if (archivoConfig != ListaArchivos.LastOrDefault())
+            {
+                Button botonDerecho = new Button();
+                botonDerecho.Margin = new Thickness(10);
+                botonDerecho.Padding = new Thickness(5);
+
+                botonDerecho.Content = ">";
+                botonDerecho.Tag = archivoConfig;
+                botonDerecho.Click += BotonDerecho_Click;
+
+                gridConfigArchivo.Children.Add(botonDerecho);
+                Grid.SetColumn(botonDerecho, 4);
+                Grid.SetRow(botonDerecho, 0);
+            }
+
+            configArchivo.Child = gridConfigArchivo;
+            configArchivo.Tag = archivoConfig;
+
+            listaArchivos.Children.Add(configArchivo);
+
+            //entr.ListaArchivos.Add(archivoConfig);
+        }
+
+        private void BotonDerecho_Click(object sender, RoutedEventArgs e)
+        {
+            var archivoConfig = ((ConfiguracionArchivoEntrada)((Button)sender).Tag);
+
+            int index = entr.ListaArchivos.IndexOf(archivoConfig);
+            entr.ListaArchivos.RemoveAt(index);
+            entr.ListaArchivos.Insert(index + 1, archivoConfig);
+
+            listaArchivos.Children.Clear();
+            CargarListaArchivos(entr.ListaArchivos);
+        }
+
+        private void BotonIzquierdo_Click(object sender, RoutedEventArgs e)
+        {
+            var archivoConfig = ((ConfiguracionArchivoEntrada)((Button)sender).Tag);
+
+            int index = entr.ListaArchivos.IndexOf(archivoConfig);
+            entr.ListaArchivos.RemoveAt(index);
+            entr.ListaArchivos.Insert(index - 1, archivoConfig);
+
+            listaArchivos.Children.Clear();
+            CargarListaArchivos(entr.ListaArchivos);
+        }
+
+        private void BotonConfigArchivo_Click(object sender, RoutedEventArgs e)
+        {
+
+            configuracionArchivo_Seleccionada = (ConfiguracionArchivoEntrada)((Button)sender).Tag;
+            MostrarConfiguracionArchivo(((ConfiguracionArchivoEntrada)((Button)sender).Tag));
+
+            if (grillaLecturaArchivo.Visibility == Visibility.Visible &&
+                grillaLecturaArchivo.Tag == configuracionArchivo_Seleccionada)
+            {
+                if (!string.IsNullOrEmpty(configuracionArchivo_Seleccionada.RutaArchivoConjuntoNumerosEntrada))
+                {
+                    if (configuracionArchivo_Seleccionada.RutaArchivoConjuntoNumerosEntrada.Contains("*") &&
+                        Calculo.RutaArchivo != null)
+                    {
+                        configuracionArchivo_Seleccionada.LlenarComboRutas(rutasArchivosContenido,
+                            configuracionArchivo_Seleccionada.RutaArchivoConjuntoNumerosEntrada,
+                            Calculo.RutaArchivo.Remove(Calculo.RutaArchivo.LastIndexOf("\\")));
+
+                        rutasArchivosContenido.Visibility = Visibility.Visible;
+                        rutaArchivoContenido.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        rutaArchivoContenido.Text = configuracionArchivo_Seleccionada.RutaArchivoConjuntoNumerosEntrada;
+                        rutaArchivoContenido.Visibility = Visibility.Visible;
+                        rutasArchivosContenido.Visibility = Visibility.Collapsed;
+                    }
+                }
+            }
+        }
+
+        private void BotonTextoArchivo_Click(object sender, RoutedEventArgs e)
+        {
+
+            configuracionArchivo_Seleccionada = (ConfiguracionArchivoEntrada)((Button)sender).Tag;
+
+            if (!string.IsNullOrEmpty(configuracionArchivo_Seleccionada.RutaArchivoConjuntoNumerosEntrada))
+            {
+                grillaLecturaArchivo.Visibility = Visibility.Visible;
+                grillaLecturaArchivo.Tag = configuracionArchivo_Seleccionada;
+
+                if (configuracionArchivo_Seleccionada.RutaArchivoConjuntoNumerosEntrada.Contains("*") &&
+                    Calculo.RutaArchivo != null)
+                {
+                    configuracionArchivo_Seleccionada.LlenarComboRutas(rutasArchivosContenido, 
+                        configuracionArchivo_Seleccionada.RutaArchivoConjuntoNumerosEntrada,
+                        Calculo.RutaArchivo.Remove(Calculo.RutaArchivo.LastIndexOf("\\")));
+
+                    rutasArchivosContenido.Visibility = Visibility.Visible;
+                    rutaArchivoContenido.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    rutaArchivoContenido.Text = configuracionArchivo_Seleccionada.RutaArchivoConjuntoNumerosEntrada;
+                    rutaArchivoContenido.Visibility = Visibility.Visible;
+                    rutasArchivosContenido.Visibility = Visibility.Collapsed;
+                }
+            }
+            else
+            {
+                grillaLecturaArchivo.Visibility = Visibility.Collapsed;
+                grillaLecturaArchivo.Tag = null;
+            }
+        }
+
+        public void MostrarConfiguracionArchivo(ConfiguracionArchivoEntrada archivoConfig)
+        {
+            ConfiguracionLecturaArchivoEntrada verConfig = new ConfiguracionLecturaArchivoEntrada();
+            verConfig.config.Entrada = Entrada;
+            verConfig.config.VistaEntrada = VistaEntrada;
+            verConfig.config.Calculo = Calculo;
+            verConfig.config.VistaArchivoConjuntoNumeros = this;
+            verConfig.config.EntradaArchivo = archivoConfig;            
+            verConfig.ShowDialog();
+
+            listaArchivos.Children.Clear();
+            CargarListaArchivos(entr.ListaArchivos);
+        }
+
+        public void MarcarBusquedaSeleccionada(BusquedaEnArchivo busquedaSeleccionada)
+        {
+            foreach (var busqueda in busquedas.Children)
+            {
+                if (busquedaSeleccionada != null && 
+                    busqueda == busquedaSeleccionada)
+                {
+                    ((BusquedaEnArchivo)busqueda).Background = SystemColors.InactiveBorderBrush;
+                }
+                else
+                {
+                    ((BusquedaEnArchivo)busqueda).Background = null;
+                }
+            }
+        }
+
+        public void AgregarNuevaBusqueda()
+        {
+            BusquedaTextoArchivo nueva = new BusquedaTextoArchivo();
+            entr.BusquedasConjuntoNumeros.Add(nueva);
+            nueva.Nombre = "Búsqueda " + entr.BusquedasConjuntoNumeros.Count;
+
+            BusquedaEnArchivo nuevaBusqueda = new BusquedaEnArchivo();
+            nuevaBusqueda.Entrada = Entrada;
+            nuevaBusqueda.Busqueda = nueva;
+            nuevaBusqueda.VistaBusquedasArchivo = this;
+            nuevaBusqueda.MostrarOcultarOpcionesTextosInformacion();
+
+            busquedas.Children.Add(nuevaBusqueda);
+            nuevaBusqueda.Button_Click(this, new RoutedEventArgs());
+        }
+
+        public void ActualizarNombreBusqueda(BusquedaTextoArchivo busqueda)
+        {
+            if (contenedorBusqueda.Children.Count > 0)
+            {
+                if(((TextoEnArchivo)contenedorBusqueda.Children[0]).Busqueda == busqueda)
+                    ((TextoEnArchivo)contenedorBusqueda.Children[0]).nombreBusqueda.Text = busqueda.Nombre;
+            }
+        }
+
+        public void QuitarBusqueda(BusquedaEnArchivo busqueda)
+        {
+            entr.BusquedasConjuntoNumeros.Remove(busqueda.Busqueda);
+            busquedas.Children.Remove(busqueda);
+            contenedorBusqueda.Children.Clear();
+
+            QuitarBusquedas_LecturasNavegaciones(busqueda.Busqueda);
+
+            if (!entr.BusquedasConjuntoNumeros.Any())
+            {
+                busqueda.AgregarBusqueda_DesdeVista(this, null);
+            }
+        }
+
+        public void QuitarBusquedas_LecturasNavegaciones(BusquedaTextoArchivo busqueda)
+        {
+            foreach (var itemArchivo in entr.ListaArchivos)
+            {
+                foreach (var itemLecturaNavegacion in itemArchivo.LecturasNavegaciones)
+                {
+                    if (itemLecturaNavegacion.BusquedasARealizar.Contains(busqueda))
+                        itemLecturaNavegacion.BusquedasARealizar.Remove(busqueda);
+                }
+            }
+        }
+
+        private void opcionMismaLectura_Checked(object sender, RoutedEventArgs e)
+        {
+            if (entr != null)
+            {
+                entr.MismaLecturaBusquedasArchivo = (bool)opcionMismaLectura.IsChecked;
+            }
+        }
+
+        private void opcionLecturasDistintas_Checked(object sender, RoutedEventArgs e)
+        {
+            if (entr != null)
+            {
+                entr.MismaLecturaBusquedasArchivo = !(bool)opcionLecturasDistintas.IsChecked;
+            }
+        }
+
+        private void rutaFTP_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //if (entr != null)
+            //{
+            //    if (!string.IsNullOrEmpty(rutaFTP.Text))
+            //    {
+            //        entr.RutaArchivoConjuntoNumerosEntrada = rutaFTP.Text;
+            //        entr.NombreArchivoEntrada = rutaFTP.Text.Substring(rutaFTP.Text.LastIndexOf("\\") + 1);
+            //    }
+            //}
+        }
+
+        private void configCredencialesFTP_Click(object sender, RoutedEventArgs e)
+        {
+            //if (entr.CredencialesFTP == null)
+            //    entr.CredencialesFTP = new Entidades.Entradas.CredencialesFTP();
+
+            //Config_CredencialesFTP configurar = new Config_CredencialesFTP();
+            //configurar.Configuracion = entr.CredencialesFTP;
+            //configurar.ShowDialog();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if(Calculo.ModoSubCalculo)
+            {
+                btnAbrirCarpeta.Visibility = Visibility.Collapsed;
+            }
+
+#if !DEBUG
+            App.ClienteMetricasUso?.TrackEvent("AbrirConfiguracionEntradaCalculo");
+#endif
+        }
+
+        private void opcionCantidadAgregarNumeros_Checked(object sender, RoutedEventArgs e)
+        {
+            if (entr != null)
+            {
+                entr.UtilizarCantidadNumeros = (bool)opcionCantidadAgregarNumeros.IsChecked;
+                opcionUtilizacionCantidadAgregarNumeros.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void opcionCantidadAgregarNumeros_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (entr != null)
+            {
+                entr.UtilizarCantidadNumeros = (bool)opcionCantidadAgregarNumeros.IsChecked;
+                opcionUtilizacionCantidadAgregarNumeros.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void opcionUtilizacionCantidadAgregarNumeros_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (entr != null)
+            {
+                entr.OpcionCantidadNumeros = (OpcionCantidadNumerosEntrada)int.Parse(((ComboBoxItem)opcionUtilizacionCantidadAgregarNumeros.SelectedItem).Uid); ;
+            }
+        }
+
+        private void btnDefinirTextosInformacionFijos_Click(object sender, RoutedEventArgs e)
+        {
+            SeleccionarOrdenarCantidades seleccionarOrdenar = new SeleccionarOrdenarCantidades();
+            seleccionarOrdenar.listaTextos.TextosInformacion = Entrada.TextosInformacionFijos.ToList();
+
+            bool definicionEstablecida = (bool)seleccionarOrdenar.ShowDialog();
+            if (definicionEstablecida)
+            {
+                Entrada.TextosInformacionFijos = seleccionarOrdenar.listaTextos.TextosInformacion;
+            }
+        }
+
+        private void operacionInterna_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TipoElementoOperacion tipo = (TipoElementoOperacion)int.Parse(((ComboBoxItem)operacionInterna.SelectedItem).Uid);
+
+            if (entr != null)
+                entr.OperacionInterna = tipo;
+
+            btnDefinirTextosInformacionOperacionInterna.Visibility = Visibility.Collapsed;
+            opcionesElementosFijosInverso.Visibility = Visibility.Collapsed;
+            botonOpcionLimpiarDatosOperacionInterna.Visibility = Visibility.Collapsed;
+            botonOpcionRedondearCantidadesOperacionInterna.Visibility = Visibility.Collapsed;
+
+            if (entr.OperacionInterna == TipoElementoOperacion.SeleccionarOrdenar)
+                btnDefinirTextosInformacionOperacionInterna.Visibility = Visibility.Visible;
+
+            if(entr.OperacionInterna == TipoElementoOperacion.Inverso)
+            {
+                opcionesElementosFijosInverso.SelectedItem = (from ComboBoxItem I in opcionesElementosFijosInverso.Items where I.Uid == ((int)entr.OpcionElementosFijosInverso).ToString() select I).FirstOrDefault();
+                opcionesElementosFijosInverso.Visibility = Visibility.Visible;
+            }
+
+            if(entr.OperacionInterna == TipoElementoOperacion.LimpiarDatos)
+            {
+                botonOpcionLimpiarDatosOperacionInterna.Visibility = Visibility.Visible;
+            }
+
+            if(entr.OperacionInterna == TipoElementoOperacion.RedondearCantidades)
+            {
+                botonOpcionRedondearCantidadesOperacionInterna.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void btnDefinirTextosInformacionOperacionInterna_Click(object sender, RoutedEventArgs e)
+        {
+            SeleccionarOrdenarCantidades seleccionarOrdenar = new SeleccionarOrdenarCantidades();
+            seleccionarOrdenar.listaTextos.TextosInformacion = entr.TextosInformacion_OperacionInterna.ToList();
+
+            bool definicionEstablecida = (bool)seleccionarOrdenar.ShowDialog();
+            if (definicionEstablecida)
+            {
+                entr.TextosInformacion_OperacionInterna = seleccionarOrdenar.listaTextos.TextosInformacion;
+            }
+        }
+
+        private void opcionesElementosFijosInverso_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (IsLoaded)
+            {
+                if (entr != null)
+                {
+                    if (opcionesElementosFijosInverso.SelectedItem != null)
+                        entr.OpcionElementosFijosInverso = (TipoOpcionElementosFijosOperacionInverso)int.Parse(((ComboBoxItem)opcionesElementosFijosInverso.SelectedItem).Uid);
+                }
+            }
+        }
+
+        private void agregarBusqueda_Click(object sender, RoutedEventArgs e)
+        {
+            ((BusquedaEnArchivo)busquedas.Children[0]).AgregarBusqueda_DesdeVista(sender, e);
+        }
+
+        private void agregarArchivoLista_Click(object sender, RoutedEventArgs e)
+        {
+            entr.ListaArchivos.Add(new ConfiguracionArchivoEntrada());
+
+            listaArchivos.Children.Clear();
+            CargarListaArchivos(entr.ListaArchivos);
+        }
+
+        private void quitarArchivoLista_Click(object sender, RoutedEventArgs e)
+        {
+            Border config = (from UIElement C in listaArchivos.Children
+                             where C.GetType() == typeof(Border) &&
+                             ((Border)C).Tag == ((Button)sender).Tag
+                             select (Border)C).FirstOrDefault();
+
+            var configArchivoSeleccionado = (ConfiguracionArchivoEntrada)config.Tag;
+
+            if (configArchivoSeleccionado == configuracionArchivo_Seleccionada)
+            {
+                grillaLecturaArchivo.Visibility = Visibility.Collapsed;
+                configuracionArchivo_Seleccionada = null;
+            }
+
+            entr.ListaArchivos.Remove(configArchivoSeleccionado);
+            listaArchivos.Children.Remove(config);
+            
+        }
+
+        private void btnAbrirCarpeta_Click(object sender, RoutedEventArgs e)
+        {
+            string strRuta = rutaArchivo.Content.ToString().Substring(0, rutaArchivo.Content.ToString().LastIndexOf("\\"));
+            Process.Start("explorer.exe", strRuta);
+        }
+
+        private void btnObtenerTexto_Click(object sender, RoutedEventArgs e)
+        {
+            if (configuracionArchivo_Seleccionada != null)
+            {
+                Cursor = Cursors.Wait;
+
+                try
+                {
+                    contenidoTexto.MaxWidth = contenidoTexto.ActualWidth;
+
+                    contenidoTexto.Text = configuracionArchivo_Seleccionada.ObtenerArchivoTextoPlano_Temporal(entr, Calculo.NombreArchivo,
+                        Calculo.RutaArchivo.Remove(Calculo.RutaArchivo.LastIndexOf("\\")), Calculo.NombreArchivo,
+                        rutasArchivosContenido.Visibility == Visibility.Visible ? rutasArchivosContenido.Text : string.Empty);
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show("Hay un problema con la carpeta y el nombre del archivo. Error: " + error.Message + ".", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                Cursor = Cursors.Arrow;
+            }
+        }
+
+        private void BuscarNumeros_Click(object sender, RoutedEventArgs e)
+        {
+            BuscarNumeros_ContenidoURL();
+            PosicionarNumero_Siguiente();
+        }
+
+        private void BuscarNumeros_ContenidoURL()
+        {
+            NumerosEncontrados.Clear();
+            indiceBusquedaNumeros = -1;
+
+            int cantidadCaracteres = 0;
+            List<int> numeroEncontrado = new List<int>();
+            int indiceCaracter = 0;
+
+            Cursor = Cursors.Wait;
+
+            foreach (var caracter in contenidoTexto.Text)
+            {
+                if (char.IsDigit(caracter))
+                {
+                    if (numeroEncontrado.Count == 0)
+                    {
+                        cantidadCaracteres = 1;
+                        numeroEncontrado.Add(indiceCaracter);
+                    }
+                    else if (numeroEncontrado.Count == 1)
+                    {
+                        cantidadCaracteres++;
+                    }
+                }
+                else
+                {
+                    if (numeroEncontrado.Count == 1)
+                    {
+                        if (caracter == '.' | caracter == ',')
+                        {
+                            cantidadCaracteres++;
+                        }
+                        else
+                        {
+                            numeroEncontrado.Add(cantidadCaracteres);
+                            NumerosEncontrados.Add(new List<int>() { numeroEncontrado[0], numeroEncontrado[1] });
+                            numeroEncontrado.Clear();
+                        }
+                    }
+                }
+
+                indiceCaracter++;
+            }
+
+            Cursor = Cursors.Arrow;
+
+            if (NumerosEncontrados.Count > 0)
+            {
+                BusquedaNumeros.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BusquedaNumeros.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void SeleccionarNumero_Actual()
+        {
+            contenidoTexto.Select(NumerosEncontrados[indiceBusquedaNumeros][0], NumerosEncontrados[indiceBusquedaNumeros][1]);
+            contenidoTexto.Focus();
+        }
+
+        private void PosicionarNumero_Siguiente()
+        {
+            if (indiceBusquedaNumeros == NumerosEncontrados.Count - 1)
+            {
+                contenidoTexto.Focus();
+                return;
+            }
+            indiceBusquedaNumeros++;
+
+            SeleccionarNumero_Actual();
+        }
+
+        private void PosicionarNumero_Anterior()
+        {
+            if (indiceBusquedaNumeros == 0)
+            {
+                contenidoTexto.Focus();
+                return;
+            }
+            indiceBusquedaNumeros--;
+
+            SeleccionarNumero_Actual();
+        }
+
+        private void NumeroSiguiente_Click(object sender, RoutedEventArgs e)
+        {
+            PosicionarNumero_Siguiente();
+        }
+
+        private void NumeroAnterior_Click(object sender, RoutedEventArgs e)
+        {
+            PosicionarNumero_Anterior();
+        }
+
+        private void botonOpcionLimpiarDatosOperacionInterna_Click(object sender, RoutedEventArgs e)
+        {
+            if (IsLoaded)
+            {
+                if (entr != null)
+                {
+                    DefinirOperacion_LimpiarDatos definir = new DefinirOperacion_LimpiarDatos();
+                    definir.config = entr.ConfigLimpiarDatos_OperacionInterna.CopiarObjeto();
+                    definir.ModoComportamiento = true;
+
+                    bool opcionElegida = (bool)definir.ShowDialog();
+                    if (opcionElegida)
+                    {
+                        entr.ConfigLimpiarDatos_OperacionInterna.QuitarDuplicados = definir.config.QuitarDuplicados;
+                        entr.ConfigLimpiarDatos_OperacionInterna.QuitarCantidadesDuplicadas = definir.config.QuitarCantidadesDuplicadas;
+                        entr.ConfigLimpiarDatos_OperacionInterna.Conector1_Duplicados = definir.config.Conector1_Duplicados;
+                        entr.ConfigLimpiarDatos_OperacionInterna.QuitarCantidadesTextosDuplicadas = definir.config.QuitarCantidadesTextosDuplicadas;
+                        entr.ConfigLimpiarDatos_OperacionInterna.Conector2_Duplicados = definir.config.Conector2_Duplicados;
+                        entr.ConfigLimpiarDatos_OperacionInterna.QuitarCantidadesTextosDentroDuplicados = definir.config.QuitarCantidadesTextosDentroDuplicados;
+                        entr.ConfigLimpiarDatos_OperacionInterna.QuitarCeros = definir.config.QuitarCeros;
+                        entr.ConfigLimpiarDatos_OperacionInterna.QuitarCerosConTextos = definir.config.QuitarCerosConTextos;
+                        entr.ConfigLimpiarDatos_OperacionInterna.Conector1_Ceros = definir.config.Conector1_Ceros;
+                        entr.ConfigLimpiarDatos_OperacionInterna.QuitarCerosSinTextos = definir.config.QuitarCerosSinTextos;
+                        entr.ConfigLimpiarDatos_OperacionInterna.QuitarCantidadesSinTextos = definir.config.QuitarCantidadesSinTextos;
+                        entr.ConfigLimpiarDatos_OperacionInterna.QuitarNegativas = definir.config.QuitarNegativas;
+
+                    }
+                }
+            }
+        }
+
+        private void botonOpcionRedondearCantidadesOperacionInterna_Click(object sender, RoutedEventArgs e)
+        {
+            if (IsLoaded)
+            {
+                if (entr != null)
+                {
+                    DefinirOperacion_RedondearCantidades definir = new DefinirOperacion_RedondearCantidades();
+                    definir.config = entr.ConfigRedondeo_OperacionInterna.CopiarObjeto();
+                    definir.ModoComportamiento = true;
+
+                    bool opcionElegida = (bool)definir.ShowDialog();
+                    if (opcionElegida)
+                    {
+                        entr.ConfigRedondeo_OperacionInterna.RedondearPar_Cercano = definir.config.RedondearPar_Cercano;
+                        entr.ConfigRedondeo_OperacionInterna.RedondearNumero_LejanoDeCero = definir.config.RedondearNumero_LejanoDeCero;
+                        entr.ConfigRedondeo_OperacionInterna.RedondearNumero_CercanoDeCero = definir.config.RedondearNumero_CercanoDeCero;
+                        entr.ConfigRedondeo_OperacionInterna.RedondearNumero_Mayor = definir.config.RedondearNumero_Mayor;
+                        entr.ConfigRedondeo_OperacionInterna.RedondearNumero_Menor = definir.config.RedondearNumero_Menor;
+
+                    }
+                }
+            }
+        }
+    }
+}

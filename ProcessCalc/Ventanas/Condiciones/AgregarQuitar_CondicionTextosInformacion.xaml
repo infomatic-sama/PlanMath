@@ -1,0 +1,776 @@
+﻿<Window xmlns:Controles="clr-namespace:ProcessCalc.Controles"  x:Class="ProcessCalc.Ventanas.AgregarQuitar_CondicionTextosInformacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas"
+        mc:Ignorable="d"
+        Title="Condición si/entonces para cadenas de texto" WindowState="Maximized" Loaded="Window_Loaded">
+    <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="10">Tipo de elemento de condición si/entonces:</TextBlock>
+            <Grid Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <RadioButton x:Name="opcionTipoElemento_TextosInformacion" Grid.Row="0" Grid.Column="0" IsChecked="True" Margin="10" Checked="opcionTipoElemento_TextosInformacion_Checked" Unchecked="opcionTipoElemento_TextosInformacion_Unchecked">Cadenas de texto</RadioButton>
+                <RadioButton x:Name="opcionTipoElemento_OperacionEntrada" Grid.Row="0" Grid.Column="1" Margin="10" Checked="opcionTipoElemento_OperacionEntrada_Checked" Unchecked="opcionTipoElemento_OperacionEntrada_Unchecked">Variables o vectores</RadioButton>
+            </Grid>
+
+            <Grid x:Name="opcionesElementos" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="textoTipoElemento_OperacionEntrada" Grid.Row="0" Grid.Column="0" Margin="10" >Variable o vector relacionado a condición si/entonces:</TextBlock>
+                <ComboBox x:Name="elementoRelacionadoCondicion" Grid.Row="0" Grid.Column="1" Margin="10" SelectionChanged="elementoRelacionadoCondicion_SelectionChanged"></ComboBox>
+
+                <TextBlock x:Name="textoOpcionOperandoSubElementoCondicion" Grid.Row="0" Grid.Column="2" Margin="10">Variable o vector interior de condición si/entonces:</TextBlock>
+                <ComboBox x:Name="opcionOperandoSubElementoCondicion" Grid.Row="0" Grid.Column="3" Margin="10"></ComboBox>
+                <Button x:Name="quitarSeleccion_opcionOperandoSubElementoCondicion" Grid.Row="0" Grid.Column="4" Margin="10" Click="quitarSeleccion_opcionOperandoSubElementoCondicion_Click">Quitar selección de variable o vector interior</Button>
+
+                <TextBlock x:Name="textoOpcionSeleccionNumerosElementoCondicion_OperacionEntrada" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10">Números del vector a seleccionar en la condición si/entonces:</TextBlock>
+                <ComboBox x:Name="opcionSeleccionNumerosElementoCondicion_OperacionEntrada" Margin="10" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" SelectionChanged="opcionSeleccionNumerosElementoCondicion_OperacionEntrada_SelectionChanged">
+                    <ComboBoxItem Content="Posición actual del número del vector en la ejecución" Uid="1"/>
+                    <ComboBoxItem Content="Posición anterior del número del vector en la ejecución" Uid="3"/>
+                    <ComboBoxItem Content="Posición siguiente del número del vector en la ejecución" Uid="4"/>
+                    <ComboBoxItem Content="Posición primera del número del vector en la ejecución" Uid="8"/>
+                    <ComboBoxItem Content="Posición segunda del número del vector en la ejecución" Uid="9"/>
+                    <ComboBoxItem Content="Posición en la mitad del número del vector en la ejecución" Uid="10"/>
+                    <ComboBoxItem Content="Posición penúltima del número del vector en la ejecución" Uid="11"/>
+                    <ComboBoxItem Content="Posición última del número del vector en la ejecución" Uid="12"/>
+                    <ComboBoxItem Content="El conjunto de números de la variable o vector hasta la posición en la ejecución" Uid="6"/>
+                    <ComboBoxItem Content="El conjunto de números de la variable o vector en la ejecución" Uid="2"/>
+                    <ComboBoxItem Content="El conjunto total de números de la variable o vector (incluyendo que no cumplen las condiciones)" Uid="5"/>
+                    <ComboBoxItem Content="El conjunto total de números de la variable o vector (incluyendo que no cumplen las condiciones) hasta la posición en la ejecución" Uid="7"/>
+                </ComboBox>
+
+                <TextBlock x:Name="textoOpcionCantidadSubNumerosCumplenCondicion_OperacionEntrada" Grid.Row="2" Grid.Column="0" Margin="10" Visibility="Collapsed">Cantidad de números el vector que cumplen la condición si/entonces:</TextBlock>
+                <Grid x:Name="opcionesCantidadSubNumerosCumplenCondicion_OperacionEntrada" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <CheckBox x:Name="opcionCantidadNumeros_PorElemento" Visibility="Collapsed" Grid.Row="0" Grid.Column="0">Considerar por cada número del vector</CheckBox>
+
+                    <ComboBox x:Name="opcionCantidadSubNumerosCumplenCondicion_OperacionEntrada" Grid.Row="1" Grid.Column="0" Margin="10" SelectionChanged="opcionCantidadSubNumerosCumplenCondicion_OperacionEntrada_SelectionChanged" >
+                        <ComboBoxItem Content="Al menos 1" Uid="1" IsSelected="True"/>
+                        <ComboBoxItem Content="Todos" Uid="2"/>
+                        <ComboBoxItem Content="Cantidad determinada" Uid="3"/>
+                    </ComboBox>
+
+                    <ComboBox x:Name="opcionCantidadDeterminadaSubNumerosCumplenCondicion_OperacionEntrada" Visibility="Collapsed" Grid.Row="2" Grid.Column="0" Margin="10">
+                        <ComboBoxItem Content="Al menos" Uid="1" IsSelected="True"/>
+                        <ComboBoxItem Content="Como máximo" Uid="2"/>
+                        <ComboBoxItem Content="Exactamente" Uid="3"/>
+                    </ComboBox>
+
+                    <ComboBox x:Name="opcionTipoCantidadDeterminadaSubNumerosCumplenCondicion_OperacionEntrada" Visibility="Collapsed" Grid.Row="2" Grid.Column="1" Margin="10" SelectionChanged="opcionTipoCantidadDeterminadaSubNumerosCumplenCondicion_OperacionEntrada_SelectionChanged">
+                        <ComboBoxItem Content="Cantidad fija" Uid="1" IsSelected="True"/>
+                        <ComboBoxItem Content="Números de la variable o vector de la condición, que cumplen la condición si/entonces" Uid="2"/>
+                        <ComboBoxItem Content="Números de la variable o vector de los valores, que cumplen la condición si/entonces" Uid="3"/>
+                        <ComboBoxItem Content="Números de la variable o vector de la condición" Uid="4"/>
+                        <ComboBoxItem Content="Números de la variable o vector de los valores" Uid="5"/>
+                    </ComboBox>
+
+                    <TextBox x:Name="cantidadSubNumerosCumplenCondicion_OperacionEntrada" Visibility="Collapsed" Text="2" Margin="10" Grid.Row="2" Grid.Column="2" MinWidth="70"  ></TextBox>
+
+                    <CheckBox x:Name="opcionSaldoCantidadSubNumerosCumplenCondicion_OperacionEntrada" Margin="10" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="0">Calcular saldo de cantidades (números que cumplen la condicion menos números que no cumplen)</CheckBox>
+                </Grid>
+
+                <CheckBox x:Name="opcionConsiderarOperandoCondicion_CantidadesAsignacion_LogicaImplicaciones" Grid.Row="8" Grid.Column="1" Margin="10">Considerar las cantidades de este operando condición, para la asignación de cadenas de texto de lógicas de implicaciones</CheckBox>
+
+            </Grid>
+
+            <Grid x:Name="opcionesOperandos_TextosInformacion" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+                <TextBlock x:Name="textoOpcionOperandoCondicion_Clasificadores" Grid.Row="0" Grid.Column="0" Margin="10">Indica si las cadenas de texto del operando de condición son clasificadores:</TextBlock>
+                <CheckBox Name="OpcionOperandoCondicion_Clasificadores" Grid.Row="0" Grid.Column="1" Margin="10">Las cadenas de texto involucradas del operando de condición en esta condición son clasificadores</CheckBox>
+                <TextBlock x:Name="textoOpcionOperandoValores_Clasificadores" Grid.Row="1" Grid.Column="0" Margin="10">Indica si las cadenas de texto del operando de valores son clasificadores:</TextBlock>
+                <CheckBox Name="OpcionOperandoValores_Clasificadores" Grid.Row="1" Grid.Column="1" Margin="10">Las cadenas de texto involucradas del operando de valores en esta condición son clasificadores</CheckBox>
+
+                <TextBlock x:Name="textoOpcionOperandoCondicion_TextosInformacion" Grid.Row="2" Grid.Column="0" Margin="10">Variable o vector de condición si/entonces:</TextBlock>
+            <ComboBox x:Name="opcionOperandoCondicion_TextosInformacion" Grid.Row="2" Grid.Column="1" Margin="10"></ComboBox>
+                <TextBlock x:Name="textoOpcionOperandoSubElementoCondicion_TextosInformacion" Grid.Row="2" Grid.Column="2" Margin="10">Variable o vector interior de condición:</TextBlock>
+            <ComboBox x:Name="opcionOperandoSubElementoCondicion_TextosInformacion" Grid.Row="2" Grid.Column="3" Margin="10"></ComboBox>
+                <Button x:Name="quitarSeleccion_opcionOperandoSubElementoCondicion_TextosInformacion" Grid.Row="2" Grid.Column="4" Margin="10" Click="quitarSeleccion_opcionOperandoSubElementoCondicion_TextosInformacion_Click">Quitar selección de variable o vector interior</Button>
+
+                <TextBlock x:Name="textoopcionEntrada_TextosInformacion" Grid.Row="3" Grid.Column="0" Margin="10" Visibility="Collapsed">Variable o vector de entrada de cadenas de texto:</TextBlock>
+                <ComboBox x:Name="opcionEntrada_TextosInformacion" Margin="10" Visibility="Collapsed" Grid.Row="3" Grid.Column="1"></ComboBox>
+
+                <TextBlock x:Name="textoOpcionSeleccionNumerosElementoCondicion" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="10">Números del vector a seleccionar en la condición si/entonces:</TextBlock>
+            <ComboBox x:Name="opcionSeleccionNumerosElementoCondicion" Margin="10" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" SelectionChanged="opcionSeleccionNumerosElementoCondicion_SelectionChanged">
+                    <ComboBoxItem Content="Posición actual del número del vector en la ejecución" Uid="1"/>
+                    <ComboBoxItem Content="Posición anterior del número del vector en la ejecución" Uid="3"/>
+                    <ComboBoxItem Content="Posición siguiente del número del vector en la ejecución" Uid="4"/>
+                    <ComboBoxItem Content="Posición primera del número del vector en la ejecución" Uid="8"/>
+                    <ComboBoxItem Content="Posición segunda del número del vector en la ejecución" Uid="9"/>
+                    <ComboBoxItem Content="Posición en la mitad del número del vector en la ejecución" Uid="10"/>
+                    <ComboBoxItem Content="Posición penúltima del número del vector en la ejecución" Uid="11"/>
+                    <ComboBoxItem Content="Posición última del número del vector en la ejecución" Uid="12"/>
+                    <ComboBoxItem Content="El conjunto de números de la variable o vector hasta la posición en la ejecución" Uid="6"/>
+                    <ComboBoxItem Content="El conjunto de números de la variable o vector en la ejecución" Uid="2"/>
+                    <ComboBoxItem Content="El conjunto total de números de la variable o vector (incluyendo que no cumplen las condiciones)" Uid="5"/>
+                    <ComboBoxItem Content="El conjunto total de números de la variable o vector (incluyendo que no cumplen las condiciones) hasta la posición en la ejecución" Uid="7"/>
+                </ComboBox>
+
+            <TextBlock x:Name="textoOpcionCantidadSubNumerosCumplenCondicion_TextosInformacion" Grid.Row="5" Grid.Column="0" Margin="10" Visibility="Collapsed">Cantidad de números del vector que cumplen la condición si/entonces:</TextBlock>
+            <Grid x:Name="opcionesCantidadSubNumerosCumplenCondicion_TextosInformacion" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <ComboBox x:Name="opcionCantidadSubNumerosCumplenCondicion_TextosInformacion" Grid.Row="0" Grid.Column="0" Margin="10" SelectionChanged="opcionCantidadSubNumerosCumplenCondicion_TextosInformacion_SelectionChanged" >
+                    <ComboBoxItem Content="Al menos 1" Uid="1" IsSelected="True"/>
+                    <ComboBoxItem Content="Todos" Uid="2"/>
+                    <ComboBoxItem Content="Cantidad determinada" Uid="3"/>
+                </ComboBox>
+
+                <ComboBox x:Name="opcionCantidadDeterminadaSubNumerosCumplenCondicion_TextosInformacion" Visibility="Collapsed" Grid.Row="1" Grid.Column="0" Margin="10">
+                    <ComboBoxItem Content="Al menos" Uid="1" IsSelected="True"/>
+                    <ComboBoxItem Content="Como máximo" Uid="2"/>
+                    <ComboBoxItem Content="Exactamente" Uid="3"/>
+                </ComboBox>
+
+                <ComboBox x:Name="opcionTipoCantidadDeterminadaSubNumerosCumplenCondicion_TextosInformacion" Visibility="Collapsed" Grid.Row="1" Grid.Column="1" Margin="10" SelectionChanged="opcionTipoCantidadDeterminadaSubNumerosCumplenCondicion_TextosInformacion_SelectionChanged">
+                        <ComboBoxItem Content="Cantidad fija" Uid="1" IsSelected="True"/>
+                        <ComboBoxItem Content="Números de la variable o vector de la condición, que cumplen la condición si/entonces" Uid="2"/>
+                        <ComboBoxItem Content="Números de la variable o vector de los valores, que cumplen la condición si/entonces" Uid="3"/>
+                        <ComboBoxItem Content="Números de la variable o vector de la condición" Uid="4"/>
+                        <ComboBoxItem Content="Números de la variable o vector de los valores" Uid="5"/>
+                    </ComboBox>
+
+                <TextBox x:Name="cantidadSubNumerosCumplenCondicion_TextosInformacion" Visibility="Collapsed" Text="2" Margin="10" Grid.Row="1" Grid.Column="2" MinWidth="70"  ></TextBox>
+
+                <CheckBox x:Name="opcionSaldoCantidadSubNumerosCumplenCondicion_TextosInformacion" Margin="10" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0">Calcular saldo de cantidades (números que cumplen la condicion menos números que no cumplen)</CheckBox>
+            </Grid>
+
+                <TextBlock x:Name="textoOpcionCantidadSubNumerosCumplenCondicion_TextosInformacion_ElementoTextoInformacion" Grid.Row="6" Grid.Column="0" Margin="10" >Cantidad de cadenas de texto del del número del vector en la ejecución que cumplen la condición si/entonces:</TextBlock>
+            <Grid x:Name="opcionesCantidadSubNumerosCumplenCondicion_TextosInformacion_ElementoTextoInformacion" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="opcionCantidadTextosInformacion_SoloCadenasCumplen" Grid.Row="0" Grid.Column="0" Checked="opcionCantidadTextosInformacion_SoloCadenasCumplen_Checked" >Considerar solo las cadenas de texto que cumplen todas las condiciones hasta ésta</CheckBox>
+
+                    <CheckBox x:Name="opcionCantidadTextosInformacion_PorElemento" Visibility="Collapsed" Grid.Row="1" Grid.Column="0">Considerar la cantidad de cadenas de texto por cada número</CheckBox>
+
+                    <ComboBox x:Name="opcionCantidadSubNumerosCumplenCondicion_TextosInformacion_ElementoTextoInformacion" Grid.Row="2" Grid.Column="0" Margin="10" SelectionChanged="opcionCantidadSubNumerosCumplenCondicion_TextosInformacion_ElementoTextoInformacion_SelectionChanged" >
+                    <ComboBoxItem Content="Al menos 1" Uid="1" IsSelected="True"/>
+                    <ComboBoxItem Content="Todos" Uid="2"/>
+                    <ComboBoxItem Content="Cantidad determinada" Uid="3"/>
+                </ComboBox>
+
+                <ComboBox x:Name="opcionCantidadDeterminadaSubNumerosCumplenCondicion_TextosInformacion_ElementoTextoInformacion" Visibility="Collapsed" Grid.Row="3" Grid.Column="0" Margin="10">
+                    <ComboBoxItem Content="Al menos" Uid="1" IsSelected="True"/>
+                    <ComboBoxItem Content="Como máximo" Uid="2"/>
+                    <ComboBoxItem Content="Exactamente" Uid="3"/>
+                </ComboBox>
+
+                <ComboBox x:Name="opcionTipoCantidadDeterminadaSubNumerosCumplenCondicion_TextosInformacion_ElementoTextoInformacion" Visibility="Collapsed" Grid.Row="3" Grid.Column="1" Margin="10" SelectionChanged="opcionTipoCantidadDeterminadaSubNumerosCumplenCondicion_TextosInformacion_ElementoTextoInformacion_SelectionChanged">
+                        <ComboBoxItem Content="Cantidad fija" Uid="1" IsSelected="True"/>
+                        <ComboBoxItem Content="Cadenas de texto de la variable o vector de la condición, que cumplen la condición si/entonces" Uid="2"/>
+                        <ComboBoxItem Content="Cadenas de texto de la variable o vector de los valores, que cumplen la condición si/entonces" Uid="3"/>
+                        <ComboBoxItem Content="Cadenas de texto de la variable o vector de la condición" Uid="4"/>
+                        <ComboBoxItem Content="Cadenas de texto de la variable o vector de los valores" Uid="5"/>
+
+                    </ComboBox>
+
+                <TextBox x:Name="cantidadSubNumerosCumplenCondicion_TextosInformacion_ElementoTextoInformacion" Visibility="Collapsed" Text="2" Margin="10" Grid.Row="3" Grid.Column="2" MinWidth="70"  ></TextBox>
+
+                <CheckBox x:Name="opcionSaldoCantidadSubNumerosCumplenCondicion_TextosInformacion_ElementoTextoInformacion" Margin="10" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0">Calcular saldo de cantidades (números que cumplen la condicion menos números que no cumplen)</CheckBox>
+            </Grid>
+
+                <CheckBox x:Name="opcionConsiderarTextosInformacionComoCantidades" Margin="10" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="4" Checked="opcionConsiderarTextosInformacionComoCantidades_Checked" Unchecked="opcionConsiderarTextosInformacionComoCantidades_Unchecked" >Considerar las cadenas de texto como cantidades</CheckBox>
+
+            </Grid>
+
+            <TextBlock x:Name="textoSubelementoElementoRelacionadoCondicion" Grid.Row="2" Grid.Column="0" Margin="10" Visibility="Collapsed">Opción de la variable o vector relacionado a condición si/entonces:</TextBlock>
+            <ComboBox x:Name="subelementoElementoRelacionadoCondicion" Grid.Row="2" Grid.Column="1" Margin="10" Visibility="Collapsed" SelectionChanged="subelementoElementoRelacionadoCondicion_SelectionChanged">
+                <ComboBoxItem Content="Números en la variable o vector" Uid="1"/>
+                <ComboBoxItem Content="Cantidad de números en la variable o vector" Uid="2"/>
+                <ComboBoxItem Content="Posiciones de números en la variable o vector" Uid="3"/>
+                <ComboBoxItem Content="Cantidad de cadenas de texto en el número de la variable o vector" Uid="7"/>
+                <ComboBoxItem Content="Posiciones del operando del número de la variable o vector" Uid="8"/>
+            </ComboBox>
+                        
+            <TextBlock x:Name="textoOpcionCondicion" Grid.Row="3" Grid.Column="0" Margin="10">Opción de condición si/entonces:</TextBlock>
+
+            <Grid Grid.Row="3" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <ComboBox x:Name="opcionCondicion_TextosInformacion" Grid.Row="0" Grid.Column="0" Margin="10" SelectionChanged="opcionCondicion_TextosInformacion_SelectionChanged">
+                    <ComboBoxItem Content="Que sea igual al texto" Uid="1"/>
+                    <ComboBoxItem Content="Que no sea igual al texto" Uid="5"/>
+                    <ComboBoxItem Content="Que contenga el texto" Uid="2"/>
+                    <ComboBoxItem Content="Que no contenga el texto" Uid="14"/>
+                    <ComboBoxItem Content="Que sea parte del texto" Uid="12"/>
+                    <ComboBoxItem Content="Que no sea parte del texto" Uid="15"/>
+                    <ComboBoxItem Content="Que empiece con el texto" Uid="3"/>
+                    <ComboBoxItem Content="Que termine con el texto" Uid="4"/>                    
+                    <ComboBoxItem Content="Que coincida con la cadena de texto mediante la cadena de texto de lógica de búsqueda" Uid="13"/>
+                    <ComboBoxItem Content="Que posición de la cadena de texto sea igual a" Uid="6"/>
+                    <ComboBoxItem Content="Que posición de la cadena de texto sea distinto a" Uid="7"/>
+                    <ComboBoxItem Content="Que posición de la cadena de texto sea mayor que" Uid="8"/>
+                    <ComboBoxItem Content="Que posición de la cadena de texto sea menor que" Uid="9"/>
+                    <ComboBoxItem Content="Que posición de la cadena de texto sea mayor o igual que" Uid="10"/>
+                    <ComboBoxItem Content="Que posición de la cadena de texto sea menor o igual que" Uid="11"/>
+                    <ComboBoxItem Content="Que sea sólo número" Uid="16"/>
+                    <ComboBoxItem Content="Que sea texto" Uid="17"/>
+                    <ComboBoxItem Content="Que no contenga números" Uid="18"/>
+                    <ComboBoxItem Content="Que contenga sólo letras" Uid="19"/>
+                    <ComboBoxItem Content="Que contenga sólo símbolos" Uid="20"/>
+                    <ComboBoxItem Content="Que contenga números" Uid="21"/>
+                </ComboBox>
+                <ComboBox x:Name="opcionCondicion_OperacionEntrada_TextosInformacion" Grid.Row="1" Grid.Column="0" Margin="10" Visibility="Collapsed">
+                    <ComboBoxItem Content="Es igual a" Uid="1"/>
+                    <ComboBoxItem Content="Es distinto a" Uid="2"/>
+                    <ComboBoxItem Content="Contiene" Uid="3"/>
+                    <ComboBoxItem Content="Que sea parte de" Uid="11"/>
+                    <ComboBoxItem Content="No contiene" Uid="4"/>
+                    <ComboBoxItem Content="Empieza con" Uid="5"/>
+                    <ComboBoxItem Content="Termina con" Uid="6"/>
+                    <ComboBoxItem Content="Mayor que" Uid="7"/>
+                    <ComboBoxItem Content="Menor que" Uid="8"/>
+                    <ComboBoxItem Content="Mayor o igual que" Uid="9"/>
+                    <ComboBoxItem Content="Menor o igual que" Uid="10"/>
+                </ComboBox>
+
+            </Grid>
+            
+            <ComboBox x:Name="opcionCondicion_OperacionEntrada" Grid.Row="3" Grid.Column="1" Margin="10" Visibility="Collapsed">
+                <ComboBoxItem Content="Es igual a" Uid="1"/>
+                <ComboBoxItem Content="Es distinto a" Uid="2"/>
+                <ComboBoxItem Content="Contiene" Uid="3"/>
+                <ComboBoxItem Content="Que sea parte de" Uid="11"/>
+                <ComboBoxItem Content="No contiene" Uid="4"/>
+                <ComboBoxItem Content="Empieza con" Uid="5"/>
+                <ComboBoxItem Content="Termina con" Uid="6"/>
+                <ComboBoxItem Content="Mayor que" Uid="7"/>
+                <ComboBoxItem Content="Menor que" Uid="8"/>
+                <ComboBoxItem Content="Mayor o igual que" Uid="9"/>
+                <ComboBoxItem Content="Menor o igual que" Uid="10"/>
+            </ComboBox>
+
+            <TextBlock x:Name="textoTiposValoresCondicion_TextosInformacion" Grid.Row="4" Grid.Column="0" Margin="10">Tipo valores de condición si/entonces:</TextBlock>
+        <Grid x:Name="tiposValoresCondicion_TextosInformacion" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <RadioButton x:Name="opcionTextosInformacionFijos" GroupName="OpcionTipoValores" Grid.Row="0" Grid.Column="0" IsChecked="True" Margin="10" Grid.ColumnSpan="2" Checked="opcionTextosInformacionFijos_Checked">Cadenas de texto fijas</RadioButton>
+                <RadioButton x:Name="opcionCualquierTextoInformacion" GroupName="OpcionTipoValores" Visibility="Collapsed" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" Checked="opcionCualquierTextoInformacion_Checked" >Cualquier cadena de texto</RadioButton>
+                <RadioButton x:Name="opcionTextosInformacion_ElementoOperacion" GroupName="OpcionTipoValores" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" Checked="opcionTextosInformacion_ElementoOperacion_Checked" Unchecked="opcionTextosInformacion_ElementoOperacion_Unchecked_1" >Cadenas de texto desde número de la variable o vector</RadioButton>
+                <RadioButton x:Name="opcionTextosInformacion_ElementoEntrada" GroupName="OpcionTipoValores" Visibility="Collapsed" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" Checked="opcionTextosInformacion_ElementoEntrada_Checked" >Cadenas de texto desde variable o vector de entrada de cadenas de texto</RadioButton>
+                <RadioButton x:Name="opcionTextosInformacion_TextosInformacion_CumplenCondicion" GroupName="OpcionTipoValores" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" Checked="opcionTextosInformacion_TextosInformacion_CumplenCondicion_Checked" Unchecked="opcionTextosInformacion_TextosInformacion_CumplenCondicion_Unchecked" >Cadenas de texto del número del vector que cumplen la condición si/entonces</RadioButton>
+                <RadioButton x:Name="opcionTextosInformacion_TodosTextosInformacion_CumplenCondicion" GroupName="OpcionTipoValores" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" Checked="opcionTextosInformacion_TodosTextosInformacion_CumplenCondicion_Checked" Unchecked="opcionTextosInformacion_TodosTextosInformacion_CumplenCondicion_Unchecked" >Todas las cadenas de texto que cumplen la condición si/entonces</RadioButton>
+                <RadioButton x:Name="opcionTextosInformacion_DefinicionListas" GroupName="OpcionTipoValores" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" Checked="opcionTextosInformacion_DefinicionListas_Checked" Unchecked="opcionTextosInformacion_DefinicionListas_Unchecked">Cadenas de texto desde definición de listas de cadenas de texto</RadioButton>
+
+                            <Button x:Name="revertirOperandosCondicionValores_TextosInformacion" Margin="10" Padding="10" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Visibility="Collapsed" Click="revertirOperandosCondicionValores_TextosInformacion_Click" >
+                    <TextBlock>Cambiar el operando de condición <LineBreak></LineBreak>por el de valores y viceversa</TextBlock>
+                </Button>
+
+                <Grid x:Name="opcionesVaciarListaTextosInformacionCumplenCondicion" Visibility="Collapsed" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <CheckBox x:Name="opcionVaciarListaTextosInformacion_CumplenCondicion" Grid.Row="0" Padding="5" VerticalContentAlignment="Center" Checked="opcionVaciarListaTextosInformacion_CumplenCondicion_Checked" Unchecked="opcionVaciarListaTextosInformacion_CumplenCondicion_Unchecked">Vaciar las cadenas de texto acumuladas que cumplen condición si/entonces:</CheckBox>
+                    <RadioButton x:Name="opcionVaciarListaTextosInformacion_CumplenCondicion_CuandoCumple" GroupName="OpcionesVaciarTextosInformacion_CumplenCondicion" Grid.Row="1" Padding="5" VerticalContentAlignment="Center">Cuando cumple esta condición</RadioButton>
+                    <RadioButton x:Name="opcionVaciarListaTextosInformacion_CumplenCondicion_CuandoNoCumple" GroupName="OpcionesVaciarTextosInformacion_CumplenCondicion" Grid.Row="2" Padding="5" VerticalContentAlignment="Center">Cuando no cumple esta condición</RadioButton>
+                </Grid>
+
+                <Grid x:Name="opcionesImplicacionAsignacionTextosInformacion" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <RadioButton x:Name="opcionTextosInformacionImplicacionInstancia" GroupName="OpcionTipoValores" Grid.Row="0" Grid.Column="0" IsChecked="True" Margin="10" Checked="opcionTextosInformacionImplicacionInstancia_Checked" >Cadenas de texto asignadas en esta instancia de lógica de asignación de cadenas de texto</RadioButton>
+                    <RadioButton x:Name="opcionTextosInformacionCumplenCondicionImplicacion" GroupName="OpcionTipoValores" Grid.Row="1" Grid.Column="0" IsChecked="True" Margin="10" Checked="opcionTextosInformacionCumplenCondicionImplicacion_Checked" >Cadenas de texto que cumplen las condiciones si/entonces de esta lógica de asignación de cadenas de texto</RadioButton>
+                    <RadioButton x:Name="opcionTextosInformacionImplicacionCondicion" GroupName="OpcionTipoValores" Grid.Row="2" Grid.Column="0" IsChecked="True" Margin="10" Checked="opcionTextosInformacionImplicacionCondicion_Checked" >Cadenas de texto asignadas en esta condición si/entonces de lógica de asignación de cadenas de texto</RadioButton>
+                    <RadioButton x:Name="opcionTextosInformacionImplicacion" GroupName="OpcionTipoValores" Grid.Row="3" Grid.Column="0" IsChecked="True" Margin="10" Checked="opcionTextosInformacionImplicacion_Checked" >Todas las cadenas de texto asignadas en esta lógica de asignación de cadenas de texto</RadioButton>
+
+            </Grid>
+            
+            <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="9" Margin="10">Nombre de la variable de número:</TextBlock>
+                <RadioButton x:Name="opcionIncluirNombreElemento" GroupName="OpcionNombreElemento" IsChecked="True" Margin="10" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="10">Incluir el nombre de la variable de número con las cadenas de texto</RadioButton>
+                <RadioButton x:Name="opcionIncluirSoloNombreElemento" GroupName="OpcionNombreElemento" Margin="10" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="11">Incluir solo el nombre de la variable de número</RadioButton>
+                <RadioButton x:Name="opcionIncluirSoloTextosElemento" GroupName="OpcionNombreElemento" Margin="10" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="12">Incluir solo las cadenas de texto de la variable de número</RadioButton>
+        </Grid>
+
+            <ComboBox x:Name="opcionDefinicion_ListasTextosInformacion" Margin="10" Visibility="Collapsed" Grid.Row="8" Grid.Column="1"></ComboBox>
+
+            <TextBlock x:Name="textoOpcionSeleccionNumerosElementoCondicion_Valores_Listas" Grid.Row="9" Grid.Column="0" Margin="10">Filas de cadenas de texto a seleccionar en la condición si/entonces:</TextBlock>
+            <ComboBox x:Name="opcionSeleccionNumerosElementoCondicion_Valores_Listas" Margin="10" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="4" SelectionChanged="opcionSeleccionNumerosElementoCondicion_Valores_Listas_SelectionChanged">
+                <ComboBoxItem Content="Posición actual de la fila en la ejecución" Uid="1"/>
+                <ComboBoxItem Content="Posición anterior de la fila en la ejecución" Uid="3"/>
+                <ComboBoxItem Content="Posición siguiente de la fila en la ejecución" Uid="4"/>
+                <ComboBoxItem Content="Posición primera de la fila en la ejecución" Uid="8"/>
+                <ComboBoxItem Content="Posición segunda de la fila en la ejecución" Uid="9"/>
+                <ComboBoxItem Content="Posición en la mitad de la fila en la ejecución" Uid="10"/>
+                <ComboBoxItem Content="Posición penúltima de la fila en la ejecución" Uid="11"/>
+                <ComboBoxItem Content="Posición última de la fila en la ejecución" Uid="12"/>
+                <ComboBoxItem Content="El conjunto de filas hasta la posición en la ejecución" Uid="6"/>
+                <ComboBoxItem Content="El conjunto de filas en la ejecución" Uid="2"/>
+                <ComboBoxItem Content="El conjunto total de filas (incluyendo que no cumplen las condiciones)" Uid="5"/>
+                <ComboBoxItem Content="El conjunto total de filas (incluyendo que no cumplen las condiciones) hasta la posición en la ejecución" Uid="7"/>
+            </ComboBox>
+
+
+            <Grid x:Name="tiposValoresCondicion" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <RadioButton x:Name="opcionValoresFijos" Grid.Row="0" Grid.Column="0" GroupName="OpcionesValores" Margin="10" Checked="opcionValoresFijos_Checked" Unchecked="opcionValoresFijos_UnChecked">Valores fijos</RadioButton>
+                <RadioButton x:Name="opcionValores_ElementoOperacion" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" GroupName="OpcionesValores" Margin="10" Checked="opcionValores_ElementoOperacion_Checked" Unchecked="opcionValores_ElementoOperacion_UnChecked">Valores desde número de la variable o vector</RadioButton>
+
+                <Button x:Name="revertirOperandosCondicionValores" Margin="10" Padding="10" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Visibility="Collapsed" Click="revertirOperandosCondicionValores_Click" >
+                    <TextBlock>Cambiar el operando de condición <LineBreak></LineBreak>por el de valores y viceversa</TextBlock>
+                </Button>
+                
+                <Grid x:Name="opcionesValoresPosiciones" Grid.Row="2" Visibility="Collapsed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="10" Grid.Row="0">Valores de posiciones dentro del vector</TextBlock>
+
+                    <RadioButton x:Name="opcionValorPosicionPrimera" GroupName="OpcionesValores"   Margin="10" Grid.Row="1" Checked="opcionValorPosicion_Checked">Posición primera</RadioButton>
+                    <RadioButton x:Name="opcionValorPosicionSegunda" GroupName="OpcionesValores" Margin="10" Grid.Row="2" Checked="opcionValorPosicion_Checked">Posición segunda</RadioButton>
+                    <RadioButton x:Name="opcionValorPosicionMitad" GroupName="OpcionesValores" Margin="10" Grid.Row="3" Checked="opcionValorPosicion_Checked">Posición de la mitad</RadioButton>
+                    <RadioButton x:Name="opcionValorPosicionPeultima" GroupName="OpcionesValores" Margin="10" Grid.Row="4" Checked="opcionValorPosicion_Checked">Posición penúltima</RadioButton>
+                    <RadioButton x:Name="opcionValorPosicionUltima" GroupName="OpcionesValores" Margin="10" Grid.Row="5" Checked="opcionValorPosicion_Checked">Posición última</RadioButton>
+                    </Grid>
+               
+            </Grid>
+
+            <TextBlock x:Name="textoValores" Visibility="Collapsed" Grid.Row="5" Grid.Column="0" Margin="10">Valores de condición:</TextBlock>
+        <TextBox x:Name="valoresRelacionadosCondicion" Grid.Row="5" Grid.Column="1" Margin="10"></TextBox>
+        
+            <Grid x:Name="opcionesOperandosValoresCondicion" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <ComboBox x:Name="opcionElementoOperacion_TextosInformacion" Margin="10" Grid.Row="0" Grid.Column="1"></ComboBox>
+            <TextBlock x:Name="textoOpcionOperandoSubElemento_TextosInformacion" Grid.Row="0" Grid.Column="2" Margin="10">Variable o vector interior:</TextBlock>
+            <ComboBox x:Name="opcionOperandoSubElemento_TextosInformacion" Grid.Row="0" Grid.Column="3" Margin="10"></ComboBox>
+                <Button x:Name="quitarSeleccion_opcionOperandoSubElemento_TextosInformacion" Grid.Row="0" Grid.Column="4" Margin="10" Click="quitarSeleccion_opcionOperandoSubElemento_TextosInformacion_Click" >Quitar selección de variable o vector interior</Button>
+                <ComboBox x:Name="opcionEntrada_TextosInformacion_Valores" Margin="10" Visibility="Collapsed" Grid.Row="0" Grid.Column="1"></ComboBox>
+            
+                <TextBlock x:Name="textoOpcionTipoElementoCompararTextosInformacion" Grid.Row="1" Grid.Column="0">Elemento a comparar:</TextBlock>
+            <ComboBox x:Name="opcionTipoElementoCompararTextosInformacion" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4">
+                <ComboBoxItem Content="Cadenas de texto" Uid="1"/>
+                    <ComboBoxItem Content="Números de la variable o vector" Uid="2"/>
+                    <ComboBoxItem Content="Cantidad de números de la variable o vector" Uid="3"/>
+                    <ComboBoxItem Content="Cantidad de cadenas de texto de la variable o vector" Uid="4"/>
+            </ComboBox>
+            
+            <TextBlock x:Name="textoOpcionSeleccionNumerosElementoCondicion_Valores" Grid.Row="2" Grid.Column="0" Margin="10">Números del vector a seleccionar en la condición si/entonces:</TextBlock>
+            <ComboBox x:Name="opcionSeleccionNumerosElementoCondicion_Valores" Margin="10" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" SelectionChanged="opcionSeleccionNumerosElementoCondicion_Valores_SelectionChanged">
+                    <ComboBoxItem Content="Posición actual del número del vector en la ejecución" Uid="1"/>
+                    <ComboBoxItem Content="Posición anterior del número del vector en la ejecución" Uid="3"/>
+                    <ComboBoxItem Content="Posición siguiente del número del vector en la ejecución" Uid="4"/>
+                    <ComboBoxItem Content="Posición primera del número del vector en la ejecución" Uid="8"/>
+                    <ComboBoxItem Content="Posición segunda del número del vector en la ejecución" Uid="9"/>
+                    <ComboBoxItem Content="Posición en la mitad del número del vector en la ejecución" Uid="10"/>
+                    <ComboBoxItem Content="Posición penúltima del número del vector en la ejecución" Uid="11"/>
+                    <ComboBoxItem Content="Posición última del número del vector en la ejecución" Uid="12"/>
+                    <ComboBoxItem Content="El conjunto de números de la variable o vector hasta la posición en la ejecución" Uid="6"/>
+                    <ComboBoxItem Content="El conjunto de números de la variable o vector en la ejecución" Uid="2"/>
+                    <ComboBoxItem Content="El conjunto total de números de la variable o vector (incluyendo que no cumplen las condiciones)" Uid="5"/>
+                    <ComboBoxItem Content="El conjunto total de números de la variable o vector (incluyendo que no cumplen las condiciones) hasta la posición en la ejecución" Uid="7"/>
+                </ComboBox>
+
+            <TextBlock x:Name="textoOpcionCantidadSubNumerosCumplenCondicion_Valores" Grid.Row="3" Grid.Column="0" Margin="10" Visibility="Collapsed">Cantidad de números del vector que cumplen la condición si/entonces:</TextBlock>
+            <Grid x:Name="opcionesCantidadSubNumerosCumplenCondicion_Valores" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <ComboBox x:Name="opcionCantidadSubNumerosCumplenCondicion_Valores" Grid.Row="0" Grid.Column="0" Margin="10" SelectionChanged="opcionCantidadSubNumerosCumplenCondicion_Valores_SelectionChanged" >
+                    <ComboBoxItem Content="Al menos 1" Uid="1" IsSelected="True"/>
+                    <ComboBoxItem Content="Todos" Uid="2"/>
+                    <ComboBoxItem Content="Cantidad determinada" Uid="3"/>
+                </ComboBox>
+
+                <ComboBox x:Name="opcionCantidadDeterminadaSubNumerosCumplenCondicion_Valores" Visibility="Collapsed" Grid.Row="1" Grid.Column="0" Margin="10">
+                    <ComboBoxItem Content="Al menos" Uid="1" IsSelected="True"/>
+                    <ComboBoxItem Content="Como máximo" Uid="2"/>
+                    <ComboBoxItem Content="Exactamente" Uid="3"/>
+                </ComboBox>
+
+                <ComboBox x:Name="opcionTipoCantidadDeterminadaSubNumerosCumplenCondicion_Valores" Visibility="Collapsed" Grid.Row="1" Grid.Column="1" Margin="10" SelectionChanged="opcionTipoCantidadDeterminadaSubNumerosCumplenCondicion_Valores_SelectionChanged">
+                        <ComboBoxItem Content="Cantidad fija" Uid="1" IsSelected="True"/>
+                        <ComboBoxItem Content="Números de la variable o vector de la condición, que cumplen la condición si/entonces" Uid="2"/>
+                        <ComboBoxItem Content="Números de la variable o vector de los valores, que cumplen la condición si/entonces" Uid="3"/>
+                        <ComboBoxItem Content="Números de la variable o vector de la condición" Uid="4"/>
+                        <ComboBoxItem Content="Números de la variable o vector de los valores" Uid="5"/>
+                    </ComboBox>
+
+                <TextBox x:Name="cantidadSubNumerosCumplenCondicion_Valores" Visibility="Collapsed" Text="2" Margin="10" Grid.Row="1" Grid.Column="2" MinWidth="70" ></TextBox>
+
+                <CheckBox x:Name="opcionSaldoCantidadSubNumerosCumplenCondicion_Valores" Margin="10" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0">Calcular saldo de cantidades (números que cumplen la condicion menos números que no cumplen)</CheckBox>
+            </Grid>
+
+                <TextBlock x:Name="textoOpcionCantidadSubNumerosCumplenCondicion_Valores_ElementoTextoInformacion" Grid.Row="4" Grid.Column="0" Margin="10" >Cantidad de cadenas de texto del número del vector en la ejecución que cumplen la condición si/entonces:</TextBlock>
+            <Grid x:Name="opcionesCantidadSubNumerosCumplenCondicion_Valores_ElementoTextoInformacion" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" >
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="opcionCantidadTextosInformacion_SoloCadenasCumplen_Valores" Grid.Row="0" Grid.Column="0">Considerar solo las cadenas de texto que cumplen todas las condiciones hasta ésta</CheckBox>
+
+                    <CheckBox x:Name="opcionCantidadTextosInformacion_PorElemento_Valores" Visibility="Collapsed" Grid.Row="1" Grid.Column="0">Considerar la cantidad de cadenas de texto por cada número</CheckBox>
+
+                    <ComboBox x:Name="opcionCantidadSubNumerosCumplenCondicion_Valores_ElementoTextoInformacion" Grid.Row="2" Grid.Column="0" Margin="10" SelectionChanged="opcionCantidadSubNumerosCumplenCondicion_Valores_ElementoTextoInformacion_SelectionChanged" >
+                    <ComboBoxItem Content="Al menos 1" Uid="1" IsSelected="True"/>
+                    <ComboBoxItem Content="Todos" Uid="2"/>
+                    <ComboBoxItem Content="Cantidad determinada" Uid="3"/>
+                </ComboBox>
+
+                <ComboBox x:Name="opcionCantidadDeterminadaSubNumerosCumplenCondicion_Valores_ElementoTextoInformacion" Visibility="Collapsed" Grid.Row="3" Grid.Column="0" Margin="10">
+                    <ComboBoxItem Content="Al menos" Uid="1" IsSelected="True"/>
+                    <ComboBoxItem Content="Como máximo" Uid="2"/>
+                    <ComboBoxItem Content="Exactamente" Uid="3"/>
+                </ComboBox>
+
+                <ComboBox x:Name="opcionTipoCantidadDeterminadaSubNumerosCumplenCondicion_Valores_ElementoTextoInformacion" Visibility="Collapsed" Grid.Row="3" Grid.Column="1" Margin="10" SelectionChanged="opcionTipoCantidadDeterminadaSubNumerosCumplenCondicion_Valores_ElementoTextoInformacion_SelectionChanged">
+                        <ComboBoxItem Content="Cantidad fija" Uid="1" IsSelected="True"/>
+                        <ComboBoxItem Content="Cadenas de texto de la variable o vector de la condición, que cumplen la condición si/entonces" Uid="2"/>
+                        <ComboBoxItem Content="Cadenas de texto de la variable o vector de los valores, que cumplen la condición si/entonces" Uid="3"/>
+                        <ComboBoxItem Content="Cadenas de texto de la variable o vector de la condición" Uid="4"/>
+                        <ComboBoxItem Content="Cadenas de texto de la variable o vector de los valores" Uid="5"/>
+
+                    </ComboBox>
+
+                <TextBox x:Name="cantidadSubNumerosCumplenCondicion_Valores_ElementoTextoInformacion" Visibility="Collapsed" Text="2" Margin="10" Grid.Row="3" Grid.Column="2" MinWidth="70" ></TextBox>
+
+                <CheckBox x:Name="opcionSaldoCantidadSubNumerosCumplenCondicion_Valores_ElementoTextoInformacion" Margin="10" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0">Calcular saldo de cantidades (números que cumplen la condicion menos números que no cumplen)</CheckBox>
+            </Grid>
+        </Grid>
+
+            <Grid x:Name="opcionesOperandos_Elemento_Valores" Margin="10" Visibility="Collapsed" Grid.Row="6" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="textoOpcionOperandoCondicion_Elemento" Grid.Row="0" Grid.Column="0" Margin="10">Variable o vector de condición si/entonces:</TextBlock>
+                <ComboBox x:Name="opcionOperandoCondicion_Elemento" Grid.Row="0" Grid.Column="1" Margin="10" SelectionChanged="opcionOperandoCondicion_Elemento_SelectionChanged"></ComboBox>
+
+                <TextBlock x:Name="textoOpcionOperandoSubElementoCondicion_Elemento" Grid.Row="0" Grid.Column="2" Margin="10">Variable o vector interior de condición si/entonces:</TextBlock>
+                <ComboBox x:Name="opcionOperandoSubElementoCondicion_Elemento" Grid.Row="0" Grid.Column="3" Margin="10"></ComboBox>
+                <Button x:Name="quitarSeleccion_opcionOperandoSubElementoCondicion_Elemento" Grid.Row="0" Grid.Column="4" Margin="10" Click="quitarSeleccion_opcionOperandoSubElementoCondicion_Elemento_Click">Quitar selección de variable o vector interior</Button>
+
+                <TextBlock x:Name="textoOpcionSeleccionNumerosElementoCondicion_Valores_OperacionEntrada" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10">Números del vector a seleccionar en la condición si/entonces:</TextBlock>
+                <ComboBox x:Name="opcionSeleccionNumerosElementoCondicion_Valores_OperacionEntrada" Margin="10" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" SelectionChanged="opcionSeleccionNumerosElementoCondicion_Valores_OperacionEntrada_SelectionChanged">
+                    <ComboBoxItem Content="Posición actual del número del vector en la ejecución" Uid="1"/>
+                    <ComboBoxItem Content="Posición anterior del número del vector en la ejecución" Uid="3"/>
+                    <ComboBoxItem Content="Posición siguiente del número del vector en la ejecución" Uid="4"/>
+                    <ComboBoxItem Content="Posición primera del número del vector en la ejecución" Uid="8"/>
+                    <ComboBoxItem Content="Posición segunda del número del vector en la ejecución" Uid="9"/>
+                    <ComboBoxItem Content="Posición en la mitad del número del vector en la ejecución" Uid="10"/>
+                    <ComboBoxItem Content="Posición penúltima del número del vector en la ejecución" Uid="11"/>
+                    <ComboBoxItem Content="Posición última del número del vector en la ejecución" Uid="12"/>
+                    <ComboBoxItem Content="El conjunto de números de la variable o vector hasta la posición en la ejecución" Uid="6"/>
+                    <ComboBoxItem Content="El conjunto de números de la variable o vector en la ejecución" Uid="2"/>
+                    <ComboBoxItem Content="El conjunto total de números de la variable o vector (incluyendo que no cumplen las condiciones)" Uid="5"/>
+                    <ComboBoxItem Content="El conjunto total de números de la variable o vector (incluyendo que no cumplen las condiciones) hasta la posición en la ejecución" Uid="7"/>
+                </ComboBox>
+
+                <TextBlock x:Name="textoOpcionCantidadSubNumerosCumplenCondicion_Valores_OperacionEntrada" Grid.Row="2" Grid.Column="0" Margin="10" Visibility="Collapsed">Cantidad de números del vector que cumplen la condición si/entonces:</TextBlock>
+                <Grid x:Name="opcionesCantidadSubNumerosCumplenCondicion_Valores_OperacionEntrada" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <CheckBox x:Name="opcionCantidadNumeros_PorElemento_Valores" Visibility="Collapsed" Grid.Row="0" Grid.Column="0">Considerar por cada número</CheckBox>
+
+                    <ComboBox x:Name="opcionCantidadSubNumerosCumplenCondicion_Valores_OperacionEntrada" Grid.Row="1" Grid.Column="0" Margin="10" SelectionChanged="opcionCantidadSubNumerosCumplenCondicion_Valores_OperacionEntrada_SelectionChanged" >
+                        <ComboBoxItem Content="Al menos 1" Uid="1" IsSelected="True"/>
+                        <ComboBoxItem Content="Todos" Uid="2"/>
+                        <ComboBoxItem Content="Cantidad determinada" Uid="3"/>
+                    </ComboBox>
+
+                    <ComboBox x:Name="opcionCantidadDeterminadaSubNumerosCumplenCondicion_Valores_OperacionEntrada" Visibility="Collapsed" Grid.Row="2" Grid.Column="0" Margin="10">
+                        <ComboBoxItem Content="Al menos" Uid="1" IsSelected="True"/>
+                        <ComboBoxItem Content="Como máximo" Uid="2"/>
+                        <ComboBoxItem Content="Exactamente" Uid="3"/>
+                    </ComboBox>
+
+                    <ComboBox x:Name="opcionTipoCantidadDeterminadaSubNumerosCumplenCondicion_Valores_OperacionEntrada" Visibility="Collapsed" Grid.Row="2" Grid.Column="1" Margin="10" SelectionChanged="opcionTipoCantidadDeterminadaSubNumerosCumplenCondicion_Valores_OperacionEntrada_SelectionChanged">
+                        <ComboBoxItem Content="Cantidad fija" Uid="1" IsSelected="True"/>
+                        <ComboBoxItem Content="Números de la variable o vector de la condición, que cumplen la condición si/entonces" Uid="2"/>
+                        <ComboBoxItem Content="Números de la variable o vector de los valores, que cumplen la condición si/entonces" Uid="3"/>
+                        <ComboBoxItem Content="Números de la variable o vector de la condición" Uid="4"/>
+                        <ComboBoxItem Content="Números de la variable o vector de los valores" Uid="5"/>
+                    </ComboBox>
+
+                    <TextBox x:Name="cantidadSubNumerosCumplenCondicion_Valores_OperacionEntrada" Visibility="Collapsed" Text="2" Margin="10" Grid.Row="2" Grid.Column="2" MinWidth="70" ></TextBox>
+
+                    <CheckBox x:Name="opcionSaldoCantidadSubNumerosCumplenCondicion_Valores_OperacionEntrada" Margin="10" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="0">Calcular saldo de cantidades (números que cumplen la condicion menos números que no cumplen)</CheckBox>
+                </Grid>
+
+                <CheckBox x:Name="opcionConsiderarOperandoValores_CantidadesAsignacion_LogicaImplicaciones" Grid.Row="3" Grid.Column="0" Margin="10">Considerar las cantidades de este operando valores, para la asignación de cadenas de texto de lógicas de implicaciones</CheckBox>
+
+            </Grid>
+
+            <TextBlock x:Name="textoSubelementoElementoRelacionadoCondicion_Valores" Grid.Row="7" Grid.Column="0" Margin="10" Visibility="Collapsed">Opción de la variable o vector relacionado a valores:</TextBlock>
+            <ComboBox x:Name="subelementoElementoRelacionadoCondicion_Valores" Grid.Row="7" Grid.Column="1" Margin="10" Visibility="Collapsed">
+                <ComboBoxItem Content="Números en la variable o vector" Uid="1"/>
+                <ComboBoxItem Content="Cantidad de números en la variable o vector" Uid="2"/>
+                <ComboBoxItem Content="Posiciones de números en la variable o vector" Uid="3"/>
+                <ComboBoxItem Content="Cantidad de cadenas de texto en el número de la variable o vector" Uid="7"/>
+                <ComboBoxItem Content="Posiciones del operando del número de la variable o vector" Uid="8"/>
+            </ComboBox>
+
+            <TextBlock x:Name="textoContenedorTextoBusqueda" Margin="10" Grid.Row="10" Grid.Column="0" Visibility="Collapsed">Cadenas de texto de lógica de búsqueda:</TextBlock>
+            <ScrollViewer x:Name="contenedorTextoBusqueda" Grid.Row="10" Grid.Column="1" Visibility="Collapsed">
+                <Controles:TextoEnArchivo x:Name="textoBusqueda" />
+            </ScrollViewer>
+
+            <TextBlock Grid.Row="11" Grid.Column="0" Margin="10">Conector con la condición si/entonces anterior:</TextBlock>
+        <ComboBox x:Name="conectorCondicion" Grid.Row="11" Grid.Column="1" Margin="10" SelectionChanged="conectorCondicion_SelectionChanged">
+            <ComboBoxItem Content="Inicio de condiciones" Uid="1"/>
+            <ComboBoxItem Content="Y" Uid="2"/>
+            <ComboBoxItem Content="O" Uid="3"/>
+        </ComboBox>
+            <CheckBox x:Name="conectorO_Excluyente" VerticalContentAlignment="Center" Margin="10" Padding="5" Grid.Row="12" Grid.Column="1" Visibility="Collapsed">Conector excluyente. Esto implica que ninguna de las condiciones si/entonces anteriores con el mismo conector deben cumplirse.</CheckBox>
+
+        <TextBlock Grid.Row="13" Grid.Column="0" Margin="10">Cantidad de veces que se cumple la condición si/entonces:</TextBlock>
+        <Grid Grid.Row="13" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <ComboBox x:Name="opcionCantidadNumerosCumplenCondicion" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" SelectionChanged="opcionCantidadNumerosCumplenCondicion_SelectionChanged">
+                <ComboBoxItem Content="Al menos 1" Uid="1" IsSelected="True"/>
+                <ComboBoxItem Content="Todos" Uid="2"/>
+                <ComboBoxItem Content="Cantidad determinada" Uid="3"/>
+            </ComboBox>
+
+            <ComboBox x:Name="opcionCantidadDeterminadaNumerosCumplenCondicion" Visibility="Collapsed" Grid.Row="1" Grid.Column="0" Margin="10">
+                <ComboBoxItem Content="Al menos" Uid="1" IsSelected="True"/>
+                <ComboBoxItem Content="Como máximo" Uid="2"/>
+                <ComboBoxItem Content="Exactamente" Uid="3"/>
+            </ComboBox>
+
+            <TextBox x:Name="cantidadNumerosCumplenCondicion" Visibility="Collapsed" Text="2" Margin="10" Grid.Row="1" Grid.Column="1" MinWidth="70" TextChanged="cantidadNumerosCumplenCondicion_TextChanged"></TextBox>
+
+            <CheckBox x:Name="opcionSaldoCantidadNumerosCumplenCondicion" Margin="10" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0">Calcular saldo de cantidades (números que cumplen la condicion menos números que no cumplen)</CheckBox>
+        </Grid>
+
+            <CheckBox x:Name="opcionQuitarEspaciosTemporalmente_CadenaCondicion" Grid.Row="14" Grid.Column="1" Margin="10" VerticalAlignment="Center">Quitar espacios de la cadena de texto sólo para aplicar esta condición</CheckBox>
+
+
+            <CheckBox x:Name="opcionNegarCondicion" Grid.Row="15" Grid.Column="1" Margin="10" VerticalAlignment="Center">Negar la condición si/entonces para que se cumpla</CheckBox>
+
+        <CheckBox x:Name="opcionAplicarCondicionFinalNumerosOperando" Grid.Row="16" Grid.Column="1" Margin="10" VerticalAlignment="Center">Seguir aplicando la condición si/entonces cuando se llegue al final de los números de la variable o vector</CheckBox>
+
+        <CheckBox x:Name="opcionAplicarCondicionFinalNumerosOperandoValores" Grid.Row="17" Grid.Column="1" Margin="10" VerticalAlignment="Center">Seguir aplicando la condición si/entonces cuando se llegue al final de los números de la variable o vector de valores</CheckBox>
+
+            <CheckBox x:Name="opcionAplicarReiniciarFinalNumerosOperando" Grid.Row="18" Grid.Column="1" Margin="10" VerticalAlignment="Center">Reiniciar la posición cuando se llegue al final de los números de la variable o vector</CheckBox>
+
+            <CheckBox x:Name="opcionAplicarReiniciarFinalNumerosOperando_Valores" Grid.Row="19" Grid.Column="1" Margin="10" VerticalAlignment="Center">Reiniciar la posición cuando se llegue al final de los números de la variable o vector de valores</CheckBox>
+
+            <CheckBox x:Name="opcionCumpleCondicion_ElementoSinCantidades" Grid.Row="20" Grid.Column="1" Margin="10" VerticalAlignment="Center">Hacer que la condición si/entonces se cumpla si la variable o vector de la condición no tiene números y si el número no tiene cadenas de texto</CheckBox>
+            <CheckBox x:Name="opcionCumpleCondicion_ElementoValores_SinCantidades" Grid.Row="21" Grid.Column="1" Margin="10" VerticalAlignment="Center">Hacer que la condición si/entonces se cumpla si la variable o vector de valores no tiene números y si el número no tiene cadenas de texto</CheckBox>
+
+            <TextBlock Grid.Row="22" Grid.Column="0" Margin="10" Padding="5" VerticalAlignment="Center">Efectos de la condición si/entonces:</TextBlock>
+            <Grid Grid.Row="22" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <CheckBox x:Name="opcionConsiderarOperandoCondicion_SiCumple" VerticalContentAlignment="Center" Margin="10" Grid.Row="0" Checked="opcionConsiderarOperandoCondicion_SiCumple_Checked" Unchecked="opcionConsiderarOperandoCondicion_SiCumple_Unchecked" >Considerar la variable o vector de esta condición si/entonces para aplicar sus efectos, si cumple la condición.</CheckBox>
+                <CheckBox x:Name="opcionConsiderarCondicionesHijas" VerticalContentAlignment="Center" Margin="10" Grid.Row="1">Considerar incluir las condiciones si/entonces contenidas en esta condición en la verificación de la variable o vector.</CheckBox>
+            </Grid>
+            
+            <Grid Grid.Row="23" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="agregarCondicion" Grid.Row="0" Grid.Column="0" Margin="10" Click="agregarCondicion_Click">Agregar condición si/entonces</Button>
+            <Button x:Name="cancelar" Grid.Row="0" Grid.Column="1" Margin="10" Click="cancelar_Click">Cancelar</Button>
+        </Grid>
+    </Grid>
+    </ScrollViewer>
+</Window>

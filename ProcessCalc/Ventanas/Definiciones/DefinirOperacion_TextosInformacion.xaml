@@ -1,0 +1,31 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.DefinirOperacion_TextosInformacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas"
+        mc:Ignorable="d"
+        Title="Seleccionar variable o vector para definición de sus lógicas de asignación de cadenas de texto" WindowStartupLocation="CenterScreen" Height="450" Width="800" SizeToContent="WidthAndHeight" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="10">Cálculo:</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" Margin="10">Variable o vector:</TextBlock>
+
+        <ComboBox x:Name="calculo" Grid.Row="1" Grid.Column="1" Margin="10" DisplayMemberPath="Nombre" SelectionChanged="calculo_SelectionChanged"></ComboBox>
+        <ComboBox x:Name="operacion" Grid.Row="2" Grid.Column="1" Margin="10" DisplayMemberPath="Nombre" SelectionChanged="operacion_SelectionChanged"></ComboBox>
+
+        <Button x:Name="btnContinuar" Margin="10" Grid.Row="3" Grid.Column="1" MaxWidth="100" Click="btnContinuar_Click">Guardar</Button>
+        <Button x:Name="btnCancelar" Margin="10" Grid.Row="3" Grid.Column="0" MaxWidth="100" Click="btnCancelar_Click">Cancelar</Button>
+    </Grid>
+</Window>

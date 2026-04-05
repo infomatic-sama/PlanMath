@@ -1,0 +1,899 @@
+﻿<UserControl x:Class="ProcessCalc.Vistas.VistaDiseñoOperaciones"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vistas="clr-namespace:ProcessCalc.Vistas"
+             xmlns:Condiciones="clr-namespace:ProcessCalc.Controles.TextosInformacion"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1300" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <vistas:MaxHeightConverter x:Name="MaxHeightValue" x:Key="MaxHeightValue" />
+        <vistas:MaxWidthConverter x:Name="MaxWidthValue" x:Key="MaxWidthValue" />
+        <vistas:MinHeightConverter x:Name="MinHeightValue" x:Key="MinHeightValue"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="encabezado" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" CanHorizontallyScroll="True" CanVerticallyScroll="True" Grid.Row="0" Grid.ColumnSpan="2" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" ></ColumnDefinition>
+                    <ColumnDefinition ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid x:Name="infoArchivo" Grid.Column="1" Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition ></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label x:Name="nombreArchivo" FontWeight="Bold" Grid.Row="0" Grid.Column="0" >NombreCalculo.pmcalc</Label>
+
+                    <Button x:Name="btnAbrirCarpeta" Grid.Column="1" Grid.Row="1" Margin="5" Padding="5" VerticalAlignment="Center" Click="btnAbrirCarpeta_Click">Abrir carpeta</Button>
+                    <Label x:Name="rutaArchivo" Grid.Column="0" Grid.Row="1" FontWeight="Bold" VerticalAlignment="Center" >C:\Carpeta\SubCarpeta\NombreCalculo.pmcalc</Label>
+                </Grid>
+
+                <ScrollViewer  Grid.Row="0" Grid.Column="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <TextBlock x:Name="NombreCalculoSeleccionado" FontWeight="Bold" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">Nombre cálculo seleccionado</TextBlock>
+                </ScrollViewer>
+            </Grid>
+        </StackPanel>
+
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="grillaCalculos" Grid.Row="0" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="10">Cálculos</Label>
+            </Grid>
+            <ScrollViewer x:Name="contenedorCalculos" Grid.Row="1"  HorizontalScrollBarVisibility="Hidden"  VerticalScrollBarVisibility="Auto" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"  >
+                <Grid x:Name="calculos" ></Grid>
+            </ScrollViewer>
+        </Grid>
+        <Grid x:Name="grillaContenedora" Grid.Column="1" Grid.Row="1" Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrush}}">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.6*"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="grillaHerramientas" AllowDrop="True" Grid.Row="0" Grid.ColumnSpan="2" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="0.7*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.4*"/>
+                </Grid.RowDefinitions>
+
+                <TabControl AllowDrop="True" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" >
+                    <TabItem Header="Aritmética, lógicas y nuevas variables o vectores de entradas" AllowDrop="True" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+                        <ScrollViewer x:Name="contenedorOperaciones" AllowDrop="True" HorizontalScrollBarVisibility="Hidden"  VerticalScrollBarVisibility="Auto" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+                            <DockPanel>
+                                <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="operaciones" Orientation="Horizontal" />
+                            </DockPanel>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem Header="Variables o vectores de entradas predefinidas y de otros cálculos" AllowDrop="True" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" GotFocus="filaEntradas_GotFocus">
+                        <ScrollViewer x:Name="contenedorEntradas" AllowDrop="True" HorizontalScrollBarVisibility="Hidden"  VerticalScrollBarVisibility="Auto" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" >
+                            <DockPanel>
+                                <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="entradas" Orientation="Horizontal" />
+                            </DockPanel>
+                        </ScrollViewer>
+                    </TabItem>
+                </TabControl>
+
+                <TextBox x:Name="busquedaOperaciones" Grid.Column="0" Grid.Row="1" Margin="10"></TextBox>
+                <Button x:Name="btnBuscarOperaciones" Grid.Row="1" Grid.Column="1" Margin="10" Padding="5" Click="btnBuscarOperaciones_Click">Buscar</Button>
+
+            </Grid>
+
+            <ScrollViewer x:Name="contenedor" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto" Background="{DynamicResource {x:Static SystemColors.InactiveBorderBrushKey}}"  >
+                <Border BorderBrush="Black" BorderThickness="0,0,1,1" Width="{Binding ElementName=diagrama, Path=ActualWidth}" Height="{Binding ElementName=diagrama, Path=ActualHeight}">
+                    <Border BorderBrush="Black" BorderThickness="1,1,0,0" Width="{Binding ElementName=diagrama, Path=ActualWidth}" Height="{Binding ElementName=diagrama, Path=ActualHeight}">
+                        <Canvas x:Name="diagrama" Background="{DynamicResource {x:Static SystemColors.InactiveBorderBrushKey}}" Drop="diagrama_Drop" AllowDrop="True" MouseLeftButtonDown="diagrama_MouseLeftButtonDown" MouseMove="diagrama_MouseMove" LayoutUpdated="diagrama_LayoutUpdated" MouseLeave="diagrama_MouseLeave"/>
+                    </Border>
+                </Border>
+            </ScrollViewer>
+
+            <ScrollViewer x:Name="contenedorOrdenOperandos" Visibility="Collapsed" Grid.Row="1" Grid.Column="1" HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+                <ScrollViewer.MaxWidth>
+                    <Binding Converter="{StaticResource MaxWidthValue}" ElementName="contenedor" Path="ActualWidth" />
+                </ScrollViewer.MaxWidth>
+                <!--<Grid x:Name="ordenOperandos">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                </Grid>-->
+            </ScrollViewer>
+
+            <TabControl x:Name="contenedorInformacion" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Visibility="Collapsed" VerticalAlignment="Bottom" VerticalContentAlignment="Center" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" >
+                <TabControl.MaxHeight>
+                    <Binding Converter="{StaticResource MaxHeightValue}" ElementName="contenedor" Path="ActualHeight" />
+                </TabControl.MaxHeight>
+                <TabControl.MinHeight>
+                    <Binding Converter="{StaticResource MaxHeightValue}" ElementName="contenedor" Path="ActualHeight" />
+                </TabControl.MinHeight>
+                <TabItem Header="Información">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <TextBox x:Name="infoElemento" Margin="10" MinWidth="200" TextWrapping="Wrap" AcceptsReturn="True" TextChanged="infoElemento_TextChanged"></TextBox>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Lógica">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <CheckBox x:Name="divisionZeroContinuar" Margin="10" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Visibility="Collapsed" Checked="divisionZeroContinuar_Checked" Unchecked="divisionZeroContinuar_Unchecked" >Si la división es por cero continuar la ejecución y dejar el número original como resultado</CheckBox>
+                            <CheckBox x:Name="opcionPorcentajeRelativo" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="10" Visibility="Collapsed" Checked="opcionPorcentajeRelativo_Checked" Unchecked="opcionPorcentajeRelativo_Unchecked">Porcentaje relativo (la primera variable o número actual de ejecución del primer vector se divide entre la segunda variable o número actual de ejecución del segundo vector)</CheckBox>
+
+                            <CheckBox x:Name="opcionSeleccionarArchivoEntradaEjecucion" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" Visibility="Collapsed" Checked="opcionSeleccionarArchivoEntradaEjecucion_Checked" Unchecked="opcionSeleccionarArchivoEntradaEjecucion_Unchecked">Seleccionar el archivo a leer para la variable o vector de la entrada</CheckBox>
+
+                            <CheckBox x:Name="opcionPermitirEjecucion_SiElementoNoSeleccionado_PorCondiciones" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" Visibility="Collapsed" Checked="opcionPermitirEjecucion_SiElementoNoSeleccionado_PorCondiciones_Checked" Unchecked="opcionPermitirEjecucion_SiElementoNoSeleccionado_PorCondiciones_Unchecked">
+                                <TextBlock>Ejecutar lógica de variable o vector si no se selecciona por ningún otra lógica de selección conectada y tiene otras variables o vectores conectados
+                                </TextBlock>
+                            </CheckBox>
+
+                            <CheckBox x:Name="opcionLimpiarDatos" Margin="10" Grid.Row="4" Grid.Column="0" Checked="opcionLimpiarDatos_Checked" Unchecked="opcionLimpiarDatos_Unchecked">Limpiar datos de los números retornados</CheckBox>
+
+                            <Button x:Name="botonOpcionLimpiarDatos" Visibility="Collapsed" Margin="10" Grid.Row="4" Grid.Column="1" Click="botonOpcionLimpiarDatos_Click">Opciones de lógica de limpieza</Button>
+
+                            <CheckBox x:Name="opcionRedondearCantidades" Margin="10" Grid.Row="5" Grid.Column="0" Checked="opcionRedondearCantidades_Checked" Unchecked="opcionRedondearCantidades_Unchecked">Redondear números retornados</CheckBox>
+
+                            <Button x:Name="botonOpcionRedondearCantidades" Visibility="Collapsed" Margin="10" Grid.Row="5" Grid.Column="1" Click="botonOpcionRedondearCantidades_Click">Opciones de lógica de redondeo</Button>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Variables de números fijos">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <Grid x:Name="opcionesElementosFijos">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <ComboBox x:Name="opcionesElementosFijosPotencia" Visibility="Collapsed" Margin="10" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" SelectionChanged="opcionesElementosFijosPotencia_SelectionChanged">
+                                <ComboBoxItem Content="Base y exponente en las variables o vectores" Uid="1" IsSelected="True"/>
+                                <ComboBoxItem Content="Base fija y exponente en las variables o vectores" Uid="2"/>
+                                <ComboBoxItem Content="Base en las variables o vectores y exponente fijo" Uid="3"/>
+                            </ComboBox>
+
+                            <ComboBox x:Name="opcionesElementosFijosRaiz" Visibility="Collapsed" Margin="10" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" SelectionChanged="opcionesElementosFijosRaiz_SelectionChanged">
+                                <ComboBoxItem Content="Raíz y radical en las variables o vectores" Uid="1" IsSelected="True"/>
+                                <ComboBoxItem Content="Raíz fija y radical en las variables o vectores" Uid="2"/>
+                                <ComboBoxItem Content="Raíz en las variables o vectores y radical fijo" Uid="3"/>
+                            </ComboBox>
+
+                            <ComboBox x:Name="opcionesElementosFijosLogaritmo" Visibility="Collapsed" Margin="10" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" SelectionChanged="opcionesElementosFijosLogaritmo_SelectionChanged">
+                                <ComboBoxItem Content="Base y argumento en las variables o vectores" Uid="1" IsSelected="True"/>
+                                <ComboBoxItem Content="Base fija y argumento en las variables o vectores" Uid="2"/>
+                                <ComboBoxItem Content="Base en las variables o vectores y argumento fijo" Uid="3"/>
+                                <ComboBoxItem Content="Logaritmo natural" Uid="4"/>
+                            </ComboBox>
+
+                            <ComboBox x:Name="opcionesElementosFijosInverso" Visibility="Collapsed" Margin="10" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" SelectionChanged="opcionesElementosFijosInverso_SelectionChanged">
+                                <ComboBoxItem Content="Inverso de la suma y resta" Uid="2"/>
+                                <ComboBoxItem Content="Inverso de la multiplicación y división" Uid="3"/>
+                            </ComboBox>
+
+                            <TextBlock Name="textoOpcionElementoFijo" Margin="10" Grid.Row="1" Grid.Column="0" Visibility="Collapsed"></TextBlock>
+                            <TextBox x:Name="valorOpcionElementoFijo" Margin="10" Grid.Row="1" Grid.Column="1" Visibility="Collapsed" TextChanged="valorOpcionElementoFijo_TextChanged"></TextBox>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Cadenas de texto">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <RadioButton x:Name="opcionTextosInformacionOperandosResultados" Margin="10" GroupName="OpcionesTextosInformacionOperandosResultados" Grid.Column="0" Grid.Row="0" Checked="opcionTextosInformacionOperandosResultados_Checked" Unchecked="opcionTextosInformacionOperandosResultados_Unchecked">Asignar todas las cadenas de texto de las variables o vectores a los números retornados</RadioButton>
+                            <RadioButton x:Name="opcionTextosInformacionCondicionesOperandosResultados" Margin="10" GroupName="OpcionesTextosInformacionOperandosResultados" Grid.Column="0" Grid.Row="1" Checked="opcionTextosInformacionCondicionesOperandosResultados_Checked" Unchecked="opcionTextosInformacionCondicionesOperandosResultados_Unchecked">Asignar cadenas de texto de las variables o vectores a los números retornados que cumplan las condiciones si/entonces:</RadioButton>
+
+                            <Grid x:Name="opcionesCondicionesTextosInformacionOperandosResultados" Grid.Row="2" Grid.Column="0" Visibility="Collapsed">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Condiciones:OpcionCondiciones_TextosInformacion x:Name="condicionesTextosInformacionOperandosResultados" Width="400" Margin="10" Grid.Column="0" />
+                            </Grid>
+
+                            <RadioButton x:Name="opcionTodosOperandosTextosInformacionOperandosResultados" Margin="10" GroupName="OpcionesOperandosTextosInformacionOperandosResultados" Grid.Column="0" Grid.Row="3">Asignar todas las cadenas de texto de las variables o vectores a los números retornados</RadioButton>
+                            <RadioButton x:Name="opcionNingunOperandoTextosInformacionOperandosResultados" Margin="10" GroupName="OpcionesOperandosTextosInformacionOperandosResultados" Grid.Column="0" Grid.Row="4" Checked="opcionNingunOperandoTextosInformacionOperandosResultados_Checked" Unchecked="opcionNingunOperandoTextosInformacionOperandosResultados_Unchecked">No asignar cadenas de texto de ninguna variable o vector a los números retornados:</RadioButton>
+                            <RadioButton x:Name="opcionAlgunosOperandosTextosInformacionOperandosResultados" Margin="10" GroupName="OpcionesOperandosTextosInformacionOperandosResultados" Grid.Column="0" Grid.Row="5" Checked="opcionAlgunosOperandosTextosInformacionOperandosResultados_Checked" Unchecked="opcionAlgunosOperandosTextosInformacionOperandosResultados_Unchecked">Asignar las cadenas de texto de las variables o vectores seleccionados a los números retornados</RadioButton>
+
+                            <StackPanel x:Name="listaOperandosTextosInformacionOperandosResultados" Orientation="Vertical" CanVerticallyScroll="True" Visibility="Collapsed" Margin="10" Grid.Column="0" Grid.Row="6"></StackPanel>
+
+                            <CheckBox x:Name="opcionAsignarTextosInformacionAntes_EjecucionOperacion" Margin="10" Grid.Column="0" Grid.Row="7" Checked="opcionAsignarTextosInformacionAntes_EjecucionOperacion_Checked" Unchecked="opcionAsignarTextosInformacionAntes_EjecucionOperacion_Unchecked">Asignar cadenas de texto y nombres de cantidades durante la operación (por cada cantidad).</CheckBox>
+                            <CheckBox x:Name="opcionAsignarTextosInformacionDespues_EjecucionOperacion" Margin="10" Grid.Column="0" Grid.Row="8" Checked="opcionAsignarTextosInformacionDespues_EjecucionOperacion_Checked" Unchecked="opcionAsignarTextosInformacionDespues_EjecucionOperacion_Unchecked">Asignar cadenas de texto y nombres de cantidades al obtener resultados (por cada resultado).</CheckBox>
+
+                            <CheckBox x:Name="opcionAsignarTextosInformacionAntes_Implicaciones" Margin="10" Grid.Column="0" Grid.Row="9" Checked="opcionAsignarTextosInformacionAntes_Implicaciones_Checked" Unchecked="opcionAsignarTextosInformacionAntes_Implicaciones_Unchecked">Asignar cadenas de texto y nombres de cantidades antes de las lógicas de asignación de cadenas de texto con implicaciones.</CheckBox>
+                            <CheckBox x:Name="opcionAsignarTextosInformacionDespues_Implicaciones" Margin="10" Grid.Column="0" Grid.Row="10" Checked="opcionAsignarTextosInformacionDespues_Implicaciones_Checked" Unchecked="opcionAsignarTextosInformacionDespues_Implicaciones_Unchecked">Asignar cadenas de texto y nombres de cantidades después de las lógicas de asignación de cadenas de texto con implicaciones.</CheckBox>
+
+                            <Button x:Name="definirOperacionesCadenasTexto" Grid.Row="11" Grid.Column="0" MaxWidth="300" Click="definirOperacionesCadenasTexto_Click">Definir operaciones de cadenas de texto</Button>
+                            <CheckBox x:Name="opcionQuitarTextosInformacion_Repetidos" Margin="10" Grid.Row="12" Grid.Column="0" Checked="opcionQuitarTextosInformacion_Repetidos_Checked" Unchecked="opcionQuitarTextosInformacion_Repetidos_Unchecked">Quitar cadenas de texto repetidas</CheckBox>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Clasificadores">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid x:Name="opcionesAntesEjecucion_Clasificadores" Grid.Row="0" Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    
+                                </Grid.RowDefinitions>
+
+                                <CheckBox x:Name="opcionAntesEjecucion_Clasificadores" Margin="10" Grid.Row="0" Checked="opcionAntesEjecucion_Clasificadores_Checked" Unchecked="opcionAntesEjecucion_Clasificadores_Unchecked">Ordenar clasificadores antes de la ejecución</CheckBox>
+                                <RadioButton x:Name="opcionOrdenarClasificadoresDeMenorAMayor_AntesEjecucion" GroupName="OrdenAntes_Clasificadores" Margin="10" Grid.Row="1" Grid.Column="0" Visibility="Collapsed" Checked="opcionOrdenarClasificadoresDeMenorAMayor_AntesEjecucion_Checked" Unchecked="opcionOrdenarClasificadoresDeMenorAMayor_AntesEjecucion_Unchecked">De menor a mayor</RadioButton>
+                                <RadioButton x:Name="opcionOrdenarClasificadoresDeMayorAMenor_AntesEjecucion" GroupName="OrdenAntes_Clasificadores" Margin="10" Grid.Row="2" Grid.Column="0" Visibility="Collapsed" Checked="opcionOrdenarClasificadoresDeMayorAMenor_AntesEjecucion_Checked" Unchecked="opcionOrdenarClasificadoresDeMayorAMenor_AntesEjecucion_Unchecked">De mayor a menor</RadioButton>
+
+                            </Grid>
+
+                            <Grid x:Name="opcionesDespuesEjecucion_Clasificadores" Grid.Row="1" Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    
+                                </Grid.RowDefinitions>
+
+                                <CheckBox x:Name="opcionDespuesEjecucion_Clasificadores" Margin="10" Grid.Row="0" Checked="opcionDespuesEjecucion_Clasificadores_Checked" Unchecked="opcionDespuesEjecucion_Clasificadores_Unchecked">Ordenar clasificadores después de la ejecución</CheckBox>
+                                <RadioButton x:Name="opcionOrdenarClasificadoresDeMenorAMayor_DespuesEjecucion" GroupName="OrdenDespues_Clasificadores" Margin="10" Grid.Row="1" Grid.Column="0" Visibility="Collapsed" Checked="opcionOrdenarClasificadoresDeMenorAMayor_DespuesEjecucion_Checked" Unchecked="opcionOrdenarClasificadoresDeMenorAMayor_DespuesEjecucion_Unchecked">De menor a mayor</RadioButton>
+                                <RadioButton x:Name="opcionOrdenarClasificadoresDeMayorAMenor_DespuesEjecucion" GroupName="OrdenDespues_Clasificadores" Margin="10" Grid.Row="2" Grid.Column="0" Visibility="Collapsed" Checked="opcionOrdenarClasificadoresDeMayorAMenor_DespuesEjecucion_Checked" Unchecked="opcionOrdenarClasificadoresDeMayorAMenor_DespuesEjecucion_Unchecked">De mayor a menor</RadioButton>
+
+                            </Grid>
+
+                            <CheckBox x:Name="opcionQuitarClasificadores_AntesEjecucion" Margin="10" Grid.Row="2" Grid.Column="0" Checked="opcionQuitarClasificadores_AntesEjecucion_Checked" Unchecked="opcionQuitarClasificadores_AntesEjecucion_Unchecked">Quitar clasificadores antes de la ejecución</CheckBox>
+                            <CheckBox x:Name="opcionQuitarClasificadores_DespuesEjecucion" Margin="10" Grid.Row="3" Grid.Column="0" Checked="opcionQuitarClasificadores_DespuesEjecucion_Checked" Unchecked="opcionQuitarClasificadores_DespuesEjecucion_Unchecked">Quitar clasificadores después de la ejecución</CheckBox>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Lógicas por filas">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <Grid x:Name="opcionOperarFilasRestantes" Visibility="Collapsed">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock x:Name="opcionOperarFilasRestantes_NoOperar" Grid.Row="0" Grid.Column="0">Cuando se llegue al último número del vector (los vectores se manejan en forma de tabla/matriz):</TextBlock>
+                            <RadioButton x:Name="opcionOperarFilasRestantes_ConCeros" GroupName="opcionOperarFilasRestantes" Grid.Row="2" Grid.Column="0" Margin="10" Checked="opcionOperarFilasRestantes_ConCeros_Checked" Unchecked="opcionOperarFilasRestantes_ConCeros_Unchecked">Seguir operando las filas restantes con elemento neutro cuando se llegue al último número del vector (los vectores se manejan en forma de tabla/matriz).</RadioButton>
+                            <RadioButton x:Name="opcionOperarFilasRestantes_ConUltimoNumero" GroupName="opcionOperarFilasRestantes" Grid.Row="1" Grid.Column="0" Margin="10" Checked="opcionOperarFilasRestantes_ConUltimoNumero_Checked" Unchecked="opcionOperarFilasRestantes_ConUltimoNumero_Unchecked">Seguir operando las filas restantes con el último número del vector cuando se llegue a éste (los vectores se manejan en forma de tabla/matriz).</RadioButton>
+                            <CheckBox x:Name="acumulacion" Margin="10" Grid.Row="3" Grid.Column="0" Visibility="Collapsed" Checked="acumulacion_CambioSeleccion" Unchecked="acumulacion_CambioSeleccion" >Operar los números con acumulación (se va acumulando los valores numéricos cuando se recorre cada fila)</CheckBox>
+
+                        </Grid>
+
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Variables o vectores retornados">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Button x:Name="agregarNuevoElementoSalida" Margin="10" Grid.Row="0" Grid.Column="1" Visibility="Collapsed" Click="agregarNuevoElementoSalida_Click">Agregar variable o vector retornado</Button>
+                            <Button x:Name="definirAgrupacionesOperandosResultados" Margin="10" Grid.Row="1" Grid.Column="1" Visibility="Collapsed" Click="definirAgrupacionesOperandosResultados_Click" >Asignar variables o vectores retornados a agrupaciones de esta variable o vector</Button>
+
+                            <TextBlock x:Name="textoDescripcionesResultados" Grid.Row="2" Grid.Column="0" Margin="10" Grid.ColumnSpan="2">Establecer nombres <LineBreak></LineBreak>de los resultados obtenidos:</TextBlock>
+                            <Button x:Name="definirNombresResultados" Margin="10" Grid.Column="0" Grid.Row="3" MaxHeight="70" Click="definirNombresResultados_Click" >Definir nombres</Button>
+                            <TextBlock x:Name="descripcionDefiniciones_Resultados" Margin="10" Grid.Column="1" Grid.Row="3"></TextBlock>
+
+                        </Grid>
+
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Nombres de cantidades">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <Grid x:Name="opcionesEstablecerNombres">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="10" Grid.ColumnSpan="2">Establecer nombres <LineBreak></LineBreak>de las cantidades obtenidas:</TextBlock>
+                            <Button x:Name="definirNombresCantidades" Margin="10" Grid.Column="0" Grid.Row="1" MaxHeight="70" Click="definirNombresCantidades_Click">Definir nombres</Button>
+                            <TextBlock x:Name="descripcionDefiniciones" Margin="10" Grid.Column="1" Grid.Row="1"></TextBlock>
+                            <CheckBox x:Name="opcionUtilizarDefinicionAsignacionTextosInformacion" Margin="10" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Checked="opcionUtilizarDefinicionAsignacionTextosInformacion_Checked" Unchecked="opcionUtilizarDefinicionAsignacionTextosInformacion_Unchecked">
+                                <TextBlock>Utilizar definición de nombres de la
+    <LineBreak></LineBreak> lógica de asignación de cadenas de texto</TextBlock>
+                            </CheckBox>
+
+                            <CheckBox x:Name="opcionAgregarNombreTextoInformacion" Margin="10" Grid.Row="3" Grid.Column="0" Checked="opcionAgregarNombreTextoInformacion_Checked" Unchecked="opcionAgregarNombreTextoInformacion_Unchecked">Incluir el nombre de la cantidad como una cadena de texto más</CheckBox>
+
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Agregar cantidades">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <Grid x:Name="opcionesAgregarCantidadNumeros">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>                                
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="10">
+    Agregar la cantidad<LineBreak></LineBreak>
+    de números como:
+                            </TextBlock>
+                            <CheckBox x:Name="opcionAgregarCantidadNumerosCantidad" Margin="10" Grid.Row="0" Grid.Column="1" Checked="opcionAgregarCantidadNumerosCantidad_Checked" Unchecked="opcionAgregarCantidadNumerosCantidad_Unchecked">Un número más</CheckBox>
+                            <CheckBox x:Name="opcionIncluirCantidadNumero" Margin="10" Visibility="Collapsed" Grid.Row="1" Grid.Column="1" Checked="opcionIncluirCantidadNumero_Checked" Unchecked="opcionIncluirCantidadNumero_Unchecked">Incluir este número en el valor de la cantidad</CheckBox>
+
+                            <CheckBox x:Name="opcionAgregarCantidadNumerosTextoInformacion" Margin="10" Grid.Row="2" Grid.Column="1" Checked="opcionAgregarCantidadNumerosTextoInformacion_Checked" Unchecked="opcionAgregarCantidadNumerosTextoInformacion_Unchecked">Cadena de texto</CheckBox>
+
+                            <TextBlock Grid.Row="4" Grid.Column="0" Grid.RowSpan="2" Margin="10">Agregar los números como:</TextBlock>
+                            <CheckBox x:Name="opcionAgregarNumerosTextoInformacion" Margin="10" Grid.Row="4" Grid.Column="1" Checked="opcionAgregarNumerosTextoInformacion_Checked" Unchecked="opcionAgregarNumerosTextoInformacion_Unchecked">Texto de información</CheckBox>
+
+                        </Grid>
+
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Ordenación de números">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <Grid x:Name="opcionesOrdenarNumeros">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid x:Name="opcionesAntesEjecucion" Grid.Row="0" Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <CheckBox x:Name="opcionAntesEjecucion" Margin="10" Grid.Row="0" Checked="opcionOrdenarNumerosAntesEjecucion_Checked" Unchecked="opcionOrdenarNumerosAntesEjecucion_Unchecked">Ordenar antes de la ejecución</CheckBox>
+                                <RadioButton x:Name="opcionOrdenarNumerosDeMenorAMayor_AntesEjecucion" GroupName="OrdenAntes" Margin="10" Grid.Row="1" Grid.Column="0" Visibility="Collapsed" Checked="opcionOrdenarNumerosDeMenorAMayor_AntesEjecucion_Checked" Unchecked="opcionOrdenarNumerosDeMenorAMayor_AntesEjecucion_Unchecked">De menor a mayor</RadioButton>
+                                <RadioButton x:Name="opcionOrdenarNumerosDeMayorAMenor_AntesEjecucion" GroupName="OrdenAntes" Margin="10" Grid.Row="2" Grid.Column="0" Visibility="Collapsed" Checked="opcionOrdenarNumerosDeMayorAMenor_AntesEjecucion_Checked" Unchecked="opcionOrdenarNumerosDeMayorAMenor_AntesEjecucion_Unchecked">De mayor a menor</RadioButton>
+
+                                <RadioButton x:Name="ordenarAntesEjecucion_PorNumero" Margin="10" Grid.Column="1" Grid.Row="1" Visibility="Collapsed" Checked="ordenarAntesEjecucion_PorNumero_Checked" Unchecked="ordenarAntesEjecucion_PorNumero_Unchecked">Por número</RadioButton>
+                                <RadioButton x:Name="ordenarAntesEjecucion_PorNombre" Margin="10" Grid.Column="1" Grid.Row="2" Visibility="Collapsed" Checked="ordenarAntesEjecucion_PorNombre_Checked" Unchecked="ordenarAntesEjecucion_PorNombre_Unchecked">Por nombre y cadenas de texto</RadioButton>
+
+                                <ComboBox x:Name="opcionTipoOrdenamientoAntesEjecucion" Grid.Row="3" Grid.Column="1" Margin="10" Visibility="Collapsed" SelectionChanged="opcionTipoOrdenamientoAntesEjecucion_SelectionChanged">
+                                    <ComboBoxItem Content="Nombre y cadenas de texto" Uid="2" IsSelected="True"/>
+                                    <ComboBoxItem Content="Sólo nombre de la cantidad" Uid="3"/>
+                                    <ComboBoxItem Content="Sólo cadenas de texto de la cantidad" Uid="4"/>
+                                </ComboBox>
+
+                                <CheckBox x:Name="opcionOrdenarTextosInformacionCantidades_AntesEjecucion" Visibility="Collapsed" Margin="10" Grid.Row="4" Grid.Column="1" Checked="opcionOrdenarTextosInformacionCantidades_AntesEjecucion_Checked" Unchecked="opcionOrdenarTextosInformacionCantidades_AntesEjecucion_Unchecked">Ordenar las cadenas de texto de cada número por separado</CheckBox>
+                                <RadioButton x:Name="opcionOrdenarTextosDeMenorAMayor_AntesEjecucion" GroupName="OrdenAntesTextos" Margin="10" Grid.Row="5" Grid.Column="1" Visibility="Collapsed" Checked="opcionOrdenarTextosDeMenorAMayor_AntesEjecucion_Checked" Unchecked="opcionOrdenarTextosDeMenorAMayor_AntesEjecucion_Unchecked">De menor a mayor</RadioButton>
+                                <RadioButton x:Name="opcionOrdenarTextosDeMayorAMenor_AntesEjecucion" GroupName="OrdenAntesTextos" Margin="10" Grid.Row="6" Grid.Column="1" Visibility="Collapsed" Checked="opcionOrdenarTextosDeMayorAMenor_AntesEjecucion_Checked" Unchecked="opcionOrdenarTextosDeMayorAMenor_AntesEjecucion_Unchecked">De mayor a menor</RadioButton>
+
+                                <Button x:Name="opcionesDividirOrdenacionTextosInformacion_AntesEjecucion" Visibility="Collapsed" Margin="10" Grid.Row="7" Grid.Column="1" Click="opcionesDividirOrdenacionTextosInformacion_AntesEjecucion_Click">Dividir combinar ordenaciones distintas según cadenas de texto</Button>
+
+                                <CheckBox x:Name="opcionOrdenarTextosInformacionCantidades_AntesEjecucion_SinOrdenarCantidades" Visibility="Collapsed" Margin="10" Grid.Row="8" Grid.Column="0" Checked="opcionOrdenarTextosInformacionCantidades_AntesEjecucion_SinOrdenarCantidades_Checked" Unchecked="opcionOrdenarTextosInformacionCantidades_AntesEjecucion_SinOrdenarCantidades_Unchecked">Ordenar las cadenas de texto de cada número por separado, sin considerar ordenamiento de números</CheckBox>
+                                <RadioButton x:Name="opcionOrdenarTextosDeMenorAMayor_AntesEjecucion_SinOrdenarCantidades" GroupName="OrdenAntesTextos_SinOrdenarCantidades" Margin="10" Grid.Row="9" Grid.Column="1" Visibility="Collapsed" Checked="opcionOrdenarTextosDeMenorAMayor_AntesEjecucion_SinOrdenarCantidades_Checked" Unchecked="opcionOrdenarTextosDeMenorAMayor_AntesEjecucion_SinOrdenarCantidades_Unchecked">De menor a mayor</RadioButton>
+                                <RadioButton x:Name="opcionOrdenarTextosDeMayorAMenor_AntesEjecucion_SinOrdenarCantidades" GroupName="OrdenAntesTextos_SinOrdenarCantidades" Margin="10" Grid.Row="10" Grid.Column="1" Visibility="Collapsed" Checked="opcionOrdenarTextosDeMayorAMenor_AntesEjecucion_SinOrdenarCantidades_Checked" Unchecked="opcionOrdenarTextosDeMayorAMenor_AntesEjecucion_SinOrdenarCantidades_Unchecked">De mayor a menor</RadioButton>
+
+                            </Grid>
+
+                            <Grid x:Name="opcionesDespuesEjecucion" Grid.Row="1" Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <CheckBox x:Name="opcionDespuesEjecucion" Margin="10" Grid.Row="0" Checked="opcionOrdenarNumerosDespuesEjecucion_Checked" Unchecked="opcionOrdenarNumerosDespuesEjecucion_Unchecked">Ordenar después de la ejecución</CheckBox>
+                                <RadioButton x:Name="opcionOrdenarNumerosDeMenorAMayor_DespuesEjecucion" GroupName="OrdenDespues" Margin="10" Grid.Row="1" Grid.Column="0" Visibility="Collapsed" Checked="opcionOrdenarNumerosDeMenorAMayor_DespuesEjecucion_Checked" Unchecked="opcionOrdenarNumerosDeMenorAMayor_DespuesEjecucion_Unchecked">De menor a mayor</RadioButton>
+                                <RadioButton x:Name="opcionOrdenarNumerosDeMayorAMenor_DespuesEjecucion" GroupName="OrdenDespues" Margin="10" Grid.Row="2" Grid.Column="0" Visibility="Collapsed" Checked="opcionOrdenarNumerosDeMayorAMenor_DespuesEjecucion_Checked" Unchecked="opcionOrdenarNumerosDeMayorAMenor_DespuesEjecucion_Unchecked">De mayor a menor</RadioButton>
+
+                                <RadioButton x:Name="ordenarDespuesEjecucion_PorNumero" Margin="10" Grid.Column="1" Grid.Row="1" Visibility="Collapsed" Checked="ordenarDespuesEjecucion_PorNumero_Checked" Unchecked="ordenarDespuesEjecucion_PorNumero_Unchecked">Por número</RadioButton>
+                                <RadioButton x:Name="ordenarDespuesEjecucion_PorNombre" Margin="10" Grid.Column="1" Grid.Row="2" Visibility="Collapsed" Checked="ordenarDespuesEjecucion_PorNombre_Checked" Unchecked="ordenarDespuesEjecucion_PorNombre_Unchecked">Por nombre y cadenas de texto</RadioButton>
+
+                                <ComboBox x:Name="opcionTipoOrdenamientoDespuesEjecucion" Grid.Row="3" Grid.Column="1" Margin="10" Visibility="Collapsed" SelectionChanged="opcionTipoOrdenamientoDespuesEjecucion_SelectionChanged">
+                                    <ComboBoxItem Content="Nombre y cadenas de texto" Uid="2" IsSelected="True"/>
+                                    <ComboBoxItem Content="Sólo nombre del número" Uid="3"/>
+                                    <ComboBoxItem Content="Sólo cadenas de texto del número" Uid="4"/>
+                                </ComboBox>
+
+                                <CheckBox x:Name="opcionOrdenarTextosInformacionCantidades_DespuesEjecucion" Visibility="Collapsed" Margin="10" Grid.Row="4" Grid.Column="1" Checked="opcionOrdenarTextosInformacionCantidades_DespuesEjecucion_Checked" Unchecked="opcionOrdenarTextosInformacionCantidades_DespuesEjecucion_Unchecked">Ordenar las cadenas de texto de cada número por separado</CheckBox>
+                                <RadioButton x:Name="opcionOrdenarTextosDeMenorAMayor_DespuesEjecucion" GroupName="OrdenDespuesTextos" Margin="10" Grid.Row="5" Grid.Column="1" Visibility="Collapsed" Checked="opcionOrdenarTextosDeMenorAMayor_DespuesEjecucion_Checked" Unchecked="opcionOrdenarTextosDeMenorAMayor_DespuesEjecucion_Unchecked">De menor a mayor</RadioButton>
+                                <RadioButton x:Name="opcionOrdenarTextosDeMayorAMenor_DespuesEjecucion" GroupName="OrdenDespuesTextos" Margin="10" Grid.Row="6" Grid.Column="1" Visibility="Collapsed" Checked="opcionOrdenarTextosDeMayorAMenor_DespuesEjecucion_Checked" Unchecked="opcionOrdenarTextosDeMayorAMenor_DespuesEjecucion_Unchecked">De mayor a menor</RadioButton>
+
+                                <Button x:Name="opcionesDividirOrdenacionTextosInformacion_DespuesEjecucion" Visibility="Collapsed" Margin="10" Grid.Row="7" Grid.Column="1" Click="opcionesDividirOrdenacionTextosInformacion_DespuesEjecucion_Click" >Dividir combinar ordenaciones distintas según cadenas de texto</Button>
+
+                                <CheckBox x:Name="opcionOrdenarTextosInformacionCantidades_DespuesEjecucion_SinOrdenarCantidades" Visibility="Collapsed" Margin="10" Grid.Row="8" Grid.Column="0" Checked="opcionOrdenarTextosInformacionCantidades_DespuesEjecucion_SinOrdenarCantidades_Checked" Unchecked="opcionOrdenarTextosInformacionCantidades_DespuesEjecucion_SinOrdenarCantidades_Unchecked">Ordenar las cadenas de texto de cada número por separado, sin considerar ordenamiento de números</CheckBox>
+                                <RadioButton x:Name="opcionOrdenarTextosDeMenorAMayor_DespuesEjecucion_SinOrdenarCantidades" GroupName="OrdenDespuesTextos_SinOrdenarCantidades" Margin="10" Grid.Row="9" Grid.Column="1" Visibility="Collapsed" Checked="opcionOrdenarTextosDeMenorAMayor_DespuesEjecucion_SinOrdenarCantidades_Checked" Unchecked="opcionOrdenarTextosDeMenorAMayor_DespuesEjecucion_SinOrdenarCantidades_Unchecked">De menor a mayor</RadioButton>
+                                <RadioButton x:Name="opcionOrdenarTextosDeMayorAMenor_DespuesEjecucion_SinOrdenarCantidades" GroupName="OrdenDespuesTextos_SinOrdenarCantidades" Margin="10" Grid.Row="10" Grid.Column="1" Visibility="Collapsed" Checked="opcionOrdenarTextosDeMayorAMenor_DespuesEjecucion_SinOrdenarCantidades_Checked" Unchecked="opcionOrdenarTextosDeMayorAMenor_DespuesEjecucion_SinOrdenarCantidades_Unchecked">De mayor a menor</RadioButton>
+
+                            </Grid>
+
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
+            
+            <ScrollViewer x:Name="contenedorConfiguracionSeparadores" Grid.Row="2" Grid.Column="1" Visibility="Collapsed" HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Auto" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"  >
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <RadioButton x:Name="opcionSeparadorMilesPunto_SeparadorDecimalesComa" VerticalContentAlignment="Center" Margin="10" Grid.Row="0" Grid.Column="0" Checked="opcionSeparadorMilesPunto_SeparadorDecimalesComa_Checked">
+                        <Grid VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" FontSize="28" Padding="0,0,10,0">.</TextBlock>
+                            <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">separador de miles</TextBlock>
+
+                            <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" FontSize="28" Padding="0,0,10,0">,</TextBlock>
+                            <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">separador de decimales</TextBlock>
+                        </Grid>
+                    </RadioButton>
+                    <RadioButton x:Name="opcionSeparadorMilesComa_SeparadorDecimalesPunto" VerticalContentAlignment="Center"  Margin="10" Grid.Row="1" Grid.Column="0" Checked="opcionSeparadorMilesComa_SeparadorDecimalesPunto_Checked">
+                        <Grid VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" FontSize="28" Padding="0,0,10,0">,</TextBlock>
+                            <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">separador de miles</TextBlock>
+
+                            <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" FontSize="28" Padding="0,0,10,0">.</TextBlock>
+                            <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">separador de decimales</TextBlock>
+                        </Grid>
+                    </RadioButton>
+                    <RadioButton x:Name="opcionSeparadorMilesPunto_SeparadorDecimalesNinguno" VerticalContentAlignment="Center" Margin="10" Grid.Row="2" Grid.Column="0" Checked="opcionSeparadorMilesPunto_SeparadorDecimalesNinguno_Checked" >
+                        <Grid VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" FontSize="28" Padding="0,0,10,0">.</TextBlock>
+                            <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">separador de miles</TextBlock>
+                        </Grid>
+                    </RadioButton>
+                    <RadioButton x:Name="opcionSeparadorMilesComa_SeparadorDecimalesNinguno" VerticalContentAlignment="Center" Margin="10" Grid.Row="3" Grid.Column="0" Checked="opcionSeparadorMilesComa_SeparadorDecimalesNinguno_Checked"  >
+                        <Grid VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" FontSize="28" Padding="0,0,10,0">,</TextBlock>
+                            <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">separador de miles</TextBlock>
+                        </Grid>
+                    </RadioButton>
+                    <RadioButton x:Name="opcionSeparadorMilesNinguno_SeparadorDecimalesComa" VerticalContentAlignment="Center"  Margin="10" Grid.Row="4" Grid.Column="0" Checked="opcionSeparadorMilesNinguno_SeparadorDecimalesComa_Checked">
+                        <Grid VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" FontSize="28" Padding="0,0,10,0">,</TextBlock>
+                            <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">separador de decimales</TextBlock>
+                        </Grid>
+                    </RadioButton>
+                    <RadioButton x:Name="opcionSeparadorMilesNinguno_SeparadorDecimalesPunto" VerticalContentAlignment="Center"  Margin="10" Grid.Row="5" Grid.Column="0" Checked="opcionSeparadorMilesNinguno_SeparadorDecimalesPunto_Checked">
+                        <Grid VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" FontSize="28" Padding="0,0,10,0">.</TextBlock>
+                            <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">separador de decimales</TextBlock>
+                        </Grid>
+                    </RadioButton>
+                    
+                </Grid>                
+            </ScrollViewer>
+
+            <ScrollViewer Grid.Row="3" Grid.ColumnSpan="2" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <ToolBarPanel  Orientation="Horizontal" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+                <ToolBar ToolBarTray.IsLocked="True" Background="{x:Null}" Loaded="opciones_Loaded">
+                    <Button x:Name="btnDefinirConfigurarOperacion" Padding="5" HorizontalContentAlignment="Center" Click="btnDefinirConfigurarOperacion_Click">
+                        <Button.Content>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/ProcessCalc;component/Imagenes/Iconos11/i_01.png" Grid.Column="0" Width="24" Height="24"></Image>
+                                <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Definir</Label>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="btnQuitarOperacion" Padding="5" Click="btnQuitarOperacion_Click">
+                        <Button.Content>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/ProcessCalc;component/Imagenes/Iconos11/i_02.png" Grid.Column="0" Width="24" Height="24"></Image>
+                                <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Quitar</Label>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="btnDeshacerAgrupador" Visibility="Collapsed" Padding="5" HorizontalContentAlignment="Center" Click="btnDeshacerAgrupador_Click" >
+                        <Button.Content>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/ProcessCalc;component/Imagenes/Iconos5/agrupados.png" Grid.Column="0" Width="24" Height="24"></Image>
+                                <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Desagrupar</Label>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+
+                    <Separator></Separator>
+                    <Button x:Name="btnDefinirOrdenOperandos" Padding="5" HorizontalContentAlignment="Center" Click="btnDefinirOrdenOperandos_Click" >
+                        <Button.Content>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/ProcessCalc;component/Imagenes/Iconos11/i_03.png" Grid.Column="0" Width="24" Height="24"></Image>
+                                <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Variables o vectores</Label>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="btnInformacionElemento" Padding="5" HorizontalContentAlignment="Center" Click="btnInformacionElemento_Click" >
+                        <Button.Content>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/ProcessCalc;component/Imagenes/Iconos11/i_04.png" Grid.Column="0" Width="24" Height="24"></Image>
+                                <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Ajustes</Label>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="btnEsSalida" Padding="5" Click="btnEsSalida_Click">
+                        <Button.Content>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/ProcessCalc;component/Imagenes/Iconos11/i_05.png" Grid.Column="0" Width="24" Height="24"></Image>
+                                <Label x:Name="etiquetaBtnEsSalida" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Agregar variable o vector retornado</Label>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                    
+                    <Separator></Separator>
+                    <Button x:Name="btnDefinirAsignacionImplicacionTextos" Padding="5" HorizontalContentAlignment="Center" Click="btnDefinirAsignacionImplicacionTextos_Click">
+                        <Button.Content>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/ProcessCalc;component/Imagenes/Iconos4/12.png" Grid.Column="0" Width="24" Height="24"></Image>
+                                    <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Lógicas de implicaciones de cadenas de texto</Label>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="btnDefinirProcesamientoCantidades" Padding="5" Click="btnDefinirProcesamientoCantidades_Click" >
+                        <Button.Content>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/ProcessCalc;component/Imagenes/Iconos11/i_06.png" Grid.Column="0" Width="24" Height="24"></Image>
+                                    <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Lógicas</Label>
+                            </Grid>
+                        </Button.Content>
+                        <Button.ContextMenu>
+                            <ContextMenu x:Name="menuProcesamiento">
+                                    <MenuItem Header="Lógica de números" Click="ProcesamientoCantidades"></MenuItem>
+                                    <MenuItem Header="Lógicas de cadenas de texto" Click="ProcesamientoTextosInformacion"></MenuItem>
+                            </ContextMenu>
+                        </Button.ContextMenu>
+                    </Button>
+                    <Button x:Name="btnConfiguracionSeparadores" Padding="5" HorizontalContentAlignment="Center" Click="btnConfiguracionSeparadores_Click" >
+                        <Button.Content>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/ProcessCalc;component/Imagenes/Iconos11/i_07.png" Grid.Column="0" Width="24" Height="24"></Image>
+                                <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Puntos y comas</Label>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+
+                </ToolBar>
+            </ToolBarPanel>
+            </ScrollViewer>
+            
+            <ScrollViewer Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <Grid Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+                    <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox x:Name="textoBusquedaDiagrama" Grid.Column="0" Margin="10" TextChanged="textoBusquedaDiagrama_TextChanged"></TextBox>
+                    <Button x:Name="buscarDiagrama" Grid.Column="1" Margin="5" Click="buscarDiagrama_Click" >
+                        <Button.Content>
+                            <Image Source="/ProcessCalc;component/Imagenes/Iconos3/06.png" Width="16" Height="16"></Image>
+                        </Button.Content>
+                    </Button>
+                    <Grid x:Name="resultadosBusquedas" Grid.Column="2" Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="siguienteResultado" Grid.Column="0" Margin="5" Click="siguienteResultado_Click" >
+                            <Button.Content>
+                                <Image Source="/ProcessCalc;component/Imagenes/35.png" Width="16" Height="16"></Image>
+                            </Button.Content>
+                        </Button>
+                        <Button x:Name="anteriorResultado" Grid.Column="1" Margin="5" Click="anteriorResultado_Click" >
+                            <Button.Content>
+                                <Image Source="/ProcessCalc;component/Imagenes/34.png" Width="16" Height="16"></Image>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+                    <Button x:Name="limpiarBusqueda" Grid.Column="3" Margin="5" Click="limpiarBusqueda_Click" >
+                        <Button.Content>
+                            <Image Source="/ProcessCalc;component/Imagenes/Iconos3/07.png" Width="16" Height="16"></Image>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="mostrarOcultarInfoElementos" Grid.Column="4" Margin="5" Click="mostrarOcultarInfoElementos_Click" >
+                        <Button.Content>
+                            <Image Source="/ProcessCalc;component/Imagenes/Iconos3/09.png" Width="16" Height="16"></Image>
+                        </Button.Content>
+                    </Button>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Margin="10" Grid.Column="0" Grid.RowSpan="2">Área de pizarra:</TextBlock>
+                    <Button x:Name="aumentarArea" Grid.Column="1" Margin="5" Click="aumentarArea_Click" >
+                        <Button.Content>
+                            <Image Source="/ProcessCalc;component/Imagenes/Iconos3/04.png" Width="16" Height="16"></Image>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="disminuirArea" Grid.Column="2" Margin="5" Click="disminuirArea_Click" >
+                        <Button.Content>
+                            <Image Source="/ProcessCalc;component/Imagenes/Iconos3/05.png" Width="16" Height="16"></Image>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="ajustarTamañoPizarra" Grid.Column="3" Margin="5" Click="ajustarTamañoPizarra_Click">Ajustar tamaño</Button>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Margin="10" Grid.Column="0" Grid.RowSpan="2">Zoom:</TextBlock>
+                    <TextBox x:Name="zoom" Margin="10" Grid.Column="1" Grid.RowSpan="2" Padding="15,0,15,0" TextAlignment="Center" TextChanged="zoom_TextChanged">100</TextBox>
+                    <Label Margin="5" Grid.Column="2">%</Label>
+                    <Button x:Name="zoomNormal" Grid.Column="3" Margin="10" Click="zoomNormal_Click">
+                        <Button.Content>
+                            <Image Source="/ProcessCalc;component/Imagenes/Iconos3/01.png" Width="16" Height="16"></Image>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="aumentarZoom" Grid.Column="4" Margin="10" Click="aumentarZoom_Click">
+                        <Button.Content>
+                            <Image Source="/ProcessCalc;component/Imagenes/Iconos3/02.png" Width="16" Height="16"></Image>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="disminuirZoom" Grid.Column="5" Margin="10" Click="disminuirZoom_Click">
+                        <Button.Content>
+                            <Image Source="/ProcessCalc;component/Imagenes/Iconos3/03.png" Width="16" Height="16"></Image>
+                        </Button.Content>
+                    </Button>
+                </Grid>
+                
+            </Grid>
+            </ScrollViewer>
+        </Grid>
+    
+    </Grid>
+</UserControl>

@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="ProcessCalc.Controles.OpcionSalida"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc.Controles"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="150" SizeChanged="UserControl_SizeChanged">
+    <UserControl.Resources>
+        <Style BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" TargetType="Button"></Style>
+    </UserControl.Resources>
+    <Button x:Name="botonFondo" BorderBrush="{x:Null}" Width="Auto" Height="Auto" PreviewMouseLeftButtonDown="botonFondo_PreviewMouseLeftButtonDown" >
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Image x:Name="iconoSalida" Visibility="Visible" Width="24" Height="24" Margin="2" Source="/ProcessCalc;component/Imagenes/14.png"></Image>
+
+                <TextBlock x:Name="nombreOpcion" TextWrapping="Wrap" Margin="2" MaxWidth="150">Opción Salida 1</TextBlock>
+            </StackPanel>
+            <TextBlock x:Name="nombresElementosRelacionados" TextWrapping="Wrap" Margin="2" MaxWidth="150">Elementos Operación 1</TextBlock>
+        </StackPanel>
+    </Button>
+</UserControl>

@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="ProcessCalc.Controles.Ctrl_Entradas.SeleccionEntradasEspecifica"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc.Controles.Ctrl_Entradas"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Height="Auto" Width="Auto" Background="{DynamicResource {x:Static SystemColors.InactiveBorderBrushKey}}">
+    <Border BorderThickness="0,0,0,0.5" BorderBrush="Black">
+        <StackPanel Orientation="Vertical">
+            <WrapPanel Orientation="Horizontal" >
+
+                <Border x:Name="primeraColumna" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"></Border>
+
+                <Image x:Name="icono" Margin="10" Width="32" Height="32" Source="/ProcessCalc;component/Imagenes/Iconos12/icono_nuevo_10.png"></Image>
+                
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label x:Name="nombre" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Margin="10">Selector de entradas. Nombre:</Label>
+                    <TextBox x:Name="nombreEntrada" Margin="10" TextWrapping="Wrap" VerticalAlignment="Center" Text="Entrada 1" FontSize="14" Grid.Row="0" Grid.Column="1" TextChanged="nombreEntrada_TextChanged" AcceptsReturn="True" ></TextBox>
+
+                    <Button x:Name="subir" Margin="10" Padding="5" Grid.Column="2" Visibility="Collapsed" Click="subir_Click">Subir</Button>
+                    <Button x:Name="bajar" Margin="10" Padding="5" Grid.Column="3" Visibility="Collapsed" Click="bajar_Click">Bajar</Button>
+                </Grid>
+
+                <Button x:Name="enlazarEntradas" VerticalAlignment="Center" Margin="10" Padding="5" Click="enlazarEntradas_Click" >Enlazar entradas</Button>
+                <Button x:Name="definir" VerticalAlignment="Center" Margin="10" Padding="5" Click="definir_Click" >Definir</Button>
+                
+            </WrapPanel>
+
+            <WrapPanel x:Name="opcionesOtraEntrada" >
+                <Button x:Name="btnOtraEntrada" Margin="10" Grid.Row="0" Grid.Column="0" Padding="20,1" Click="btnOtraEntrada_Click" >Agregar otro selector</Button>
+                <Button x:Name="btnQuitarEntrada" Margin="10" Grid.Row="0" Grid.Column="1" Padding="20,1" Click="btnQuitarEntrada_Click" >Quitar este selector</Button>
+            </WrapPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

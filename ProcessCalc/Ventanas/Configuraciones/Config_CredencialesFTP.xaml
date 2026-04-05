@@ -1,0 +1,31 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.Config_CredencialesFTP"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas"
+        mc:Ignorable="d"
+        Title="Definir credenciales de la conexión FTP" Height="210" Width="630" WindowStartupLocation="CenterScreen" ShowInTaskbar="True" WindowStyle="ToolWindow" Background="{DynamicResource {x:Static SystemColors.InactiveBorderBrushKey}}" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition Width="40*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <CheckBox x:Name="chkUsuarioAnonimo" Grid.Row="0" Grid.Column="0" Margin="10,10,8,10" Grid.ColumnSpan="2" Checked="chkUsuarioAnonimo_Checked" Unchecked="chkUsuarioAnonimo_Unchecked" >Usuario anónimo:</CheckBox>
+        <Label Grid.Row="1" Grid.Column="0" Margin="10,10,9,10.4">Usuario:</Label>
+        <TextBox x:Name="txtUsuario" Grid.Row="1" Grid.Column="1" Margin="11,10,9,9.4" Width="500" TextChanged="txtUsuario_TextChanged"></TextBox>
+        <Label Grid.Row="2" Grid.Column="0" Margin="10,9.6,9,9.8">Contraseña:</Label>
+        <PasswordBox x:Name="txtClave" Grid.Row="2" Grid.Column="1" Margin="11,9.6,9,9.8" Width="500" PasswordChanged="txtClave_PasswordChanged"></PasswordBox>
+        <Button x:Name="btnCerrar" Grid.Row="3" Grid.Column="1" Margin="0,10.2,8,9.8" HorizontalAlignment="Right" Padding="5" Click="btnCerrar_Click">Cerrar</Button>
+    </Grid>
+</Window>

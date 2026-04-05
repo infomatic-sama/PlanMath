@@ -1,0 +1,93 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.Definiciones.DefinirOperacion_SubCalculo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas.Definiciones"
+        mc:Ignorable="d"
+        Title="Definir operación de SubCálculo" Height="450" Width="800" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:MaxWidthConverter_DefinirArchivoExterno x:Name="MaxWidthValue" x:Key="MaxWidthValue" />
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <RadioButton x:Name="optDefinicionNormal" Margin="10" Padding="50,0,50,0" Grid.Row="1" Grid.ColumnSpan="2" Checked="optDefinicionNormal_Checked" IsChecked="True" HorizontalAlignment="Left">Cálculo normal (tiene varios cálculos)</RadioButton>
+        <RadioButton x:Name="optDefinicionSimple" Margin="10" Padding="50,0,50,0" Grid.Row="2" Grid.ColumnSpan="2" Checked="optDefinicionSimple_Checked" HorizontalAlignment="Left">Cálculo simple (solo es 1 cálculo)</RadioButton>
+
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="archivoPlantilla" Margin="10" Grid.Row="0" Visibility="Collapsed">Se utilizará el archivo <TextBlock x:Name="rutaArchivoPlantilla"></TextBlock> como plantilla para esta configuración:</TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="10">Opciones de ejecución:</TextBlock>
+            <Grid x:Name="opcionesEjecucion" Grid.Row="2" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <CheckBox x:Name="opcionEjecucionSin_InfoVisual" Grid.Row="0" Grid.Column="0" Margin="10" VerticalAlignment="Center" Checked="opcionEjecucionSin_InfoVisual_Checked" Unchecked="opcionEjecucionSin_InfoVisual_Unchecked">Ejecutar el cálculo sin mostrar información visual</CheckBox>
+                <CheckBox x:Name="opcionEjecucion_MismaEjecucion" Visibility="Collapsed" Grid.Row="0" Grid.Column="1" Margin="10" VerticalAlignment="Center" Checked="opcionEjecucion_MismaEjecucion_Checked" Unchecked="opcionEjecucion_MismaEjecucion_Unchecked">Ejecutar el cálculo en la misma ejecución del cálculo contenedor</CheckBox>
+            </Grid>
+            <TextBlock Grid.Row="3" Grid.Column="0" Margin="10">Variables o vectores de entrada del archivo de cálculo conectadas a las variables o vectores conectados a esta lógica:</TextBlock>
+            <Grid x:Name="contenedor" Grid.Row="4" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel x:Name="operandosEntradas" Grid.Row="0" Grid.Column="0" CanHorizontallyScroll="True" CanVerticallyScroll="True" Orientation="Horizontal">
+
+                </StackPanel>
+                <ScrollViewer Grid.Row="0" Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <!--<ScrollViewer.MaxWidth>
+                        <Binding Converter="{StaticResource MaxWidthValue}" ElementName="contenedor" Path="ActualWidth" />
+                    </ScrollViewer.MaxWidth>-->
+                    <StackPanel x:Name="configEntradas"  CanHorizontallyScroll="True" CanVerticallyScroll="True" Orientation="Vertical">
+                    </StackPanel>
+
+                </ScrollViewer>
+            </Grid>
+
+            <TextBlock x:Name="textoResultados" Grid.Row="5" Grid.Column="0" Margin="10">Variables o vectores retornados del archivo de cálculo conectados a las variables o vectores conectados posteriores a esta lógica:</TextBlock>
+            <StackPanel x:Name="operandosSalidas" Grid.Row="6" Grid.Column="0" CanHorizontallyScroll="True" CanVerticallyScroll="True" Orientation="Horizontal">
+
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="btnContinuar" Margin="10" Grid.Row="0" Grid.Column="2" MaxWidth="100" Click="btnContinuar_Click">Guardar</Button>
+            <Button x:Name="btnDefinir" Margin="10" Grid.Row="0" Grid.Column="1" MaxWidth="100" Click="btnDefinir_Click" >Definir subálculo</Button>
+            <Button x:Name="btnCancelar" Margin="10" Grid.Row="0" Grid.Column="0" MaxWidth="100" Click="btnCancelar_Click">Cancelar</Button>
+        </Grid>
+        
+    </Grid>
+</Window>

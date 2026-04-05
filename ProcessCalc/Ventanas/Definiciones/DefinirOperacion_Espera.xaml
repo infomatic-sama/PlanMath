@@ -1,0 +1,127 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.DefinirOperacion_Espera"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas"
+        mc:Ignorable="d"
+        xmlns:textosinformacion="clr-namespace:ProcessCalc.Controles.TextosInformacion"
+        xmlns:condiciones="clr-namespace:ProcessCalc.Controles.Condiciones"
+        Title="Definir lógica de espera de datos" Height="450" Width="1000" MaxWidth="1000" MaxHeight="1000" SizeToContent="WidthAndHeight" Loaded="Window_Loaded" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+    <ScrollViewer CanContentScroll="true" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="opcionesImplicaciones" Visibility="Collapsed" Grid.Row="0" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <CheckBox x:Name="opcionImplicacionesAntes" Grid.Column="0" Margin="10" Padding="5" VerticalContentAlignment="Center" Checked="opcionImplicacionesAntes_Checked" Unchecked="opcionImplicacionesAntes_Unchecked">Ejecutar las lógicas de asignaciones de cadenas de texto antes de la espera</CheckBox>
+                <CheckBox x:Name="opcionImplicacionesDurante" Grid.Column="1" Margin="10" Padding="5" VerticalContentAlignment="Center" Checked="opcionImplicacionesDurante_Checked" Unchecked="opcionImplicacionesDurante_Unchecked">Ejecutar las lógicas de asignaciones de cadenas de texto durante la espera (en cada verificación)</CheckBox>
+                <CheckBox x:Name="opcionImplicacionesDespues" Grid.Column="2" Margin="10" Padding="5" VerticalContentAlignment="Center" Checked="opcionImplicacionesDespues_Checked" Unchecked="opcionImplicacionesDespues_Unchecked">Ejecutar las lógicas de asignaciones de cadenas de texto después de la espera</CheckBox>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" Padding="10" VerticalAlignment="Center">Condiciones si/entonces de verificación de cadenas de texto:</TextBlock>
+                <ScrollViewer Grid.Row="0" Grid.Column="1" CanContentScroll="true" VerticalScrollBarVisibility="Auto" MaxHeight="600">
+                    <textosinformacion:OpcionCondiciones_TextosInformacion x:Name="condicionesTextosInformacion" ></textosinformacion:OpcionCondiciones_TextosInformacion>
+                </ScrollViewer>
+
+                <TextBlock Grid.Column="0" Grid.Row="1"  Padding="10" VerticalAlignment="Center">Condiciones si/entonces de verificación de números:</TextBlock>
+                <ScrollViewer Grid.Row="1" Grid.Column="1" CanContentScroll="true" VerticalScrollBarVisibility="Auto" MaxHeight="600">
+                    <condiciones:OpcionCondicionesFlujo x:Name="condicionesCantidades" ></condiciones:OpcionCondicionesFlujo>
+                </ScrollViewer>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <RadioButton x:Name="opcionVerificacionesFijas" GroupName="OpcionCantidadVerificaciones" Grid.Row="0" Margin="10" Grid.Column="0" VerticalContentAlignment="Center" Checked="opcionVerificacionesFijas_Checked" >
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" VerticalAlignment="Center" Padding="10">Esperar una cantidad de veces fija:</TextBlock>
+                        <TextBox x:Name="cantidadVerificaciones" Grid.Column="1" Margin="10" MaxWidth="100" Width="100" TextChanged="cantidadVerificaciones_TextChanged"></TextBox>
+                    </Grid>
+                </RadioButton>
+
+                <RadioButton x:Name="opcionVerificacionesCondiciones" GroupName="OpcionCantidadVerificaciones" Grid.Row="1" Margin="10" Grid.Column="0" VerticalContentAlignment="Center" Checked="opcionVerificacionesCondiciones_Checked" >
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <RadioButton x:Name="opcionVerificacionesCondicionesHasta" GroupName="OpcionVerificarCondicionesHastaMientras" Grid.Row="0" Margin="10" Grid.Column="0" VerticalContentAlignment="Center" Checked="opcionVerificacionesCondicionesHasta_Checked">Verificar condiciones si/entonces hasta que se cumplan</RadioButton>
+                        <RadioButton x:Name="opcionVerificacionesCondicionesMientras" GroupName="OpcionVerificarCondicionesHastaMientras" Grid.Row="0" Margin="10" Grid.Column="1" VerticalContentAlignment="Center" Checked="opcionVerificacionesCondicionesMientras_Checked">Verificar condiciones si/entonces mientras se cumplan</RadioButton>
+                    </Grid>
+                </RadioButton>
+            </Grid>
+
+            <Grid Grid.Row="3" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" Padding="10">Tiempo de espera entre verificaciones o esperas:</TextBlock>
+                <TextBox x:Name="cantidadTiempo" Grid.Column="1" Margin="10" MaxWidth="100" Width="100" TextChanged="cantidadTiempo_TextChanged"></TextBox>
+                <ComboBox x:Name="opcionCantidadTiempo" Grid.Column="2" Padding="5" Margin="10" SelectionChanged="opcionCantidadTiempo_SelectionChanged">
+                    <ComboBoxItem Content="Segundos" IsSelected="True" Uid="1"/>
+                    <ComboBoxItem Content="Minutos" Uid="2"/>
+                    <ComboBoxItem Content="Horas" Uid="3"/>
+                    <ComboBoxItem Content="Días" Uid="4"/>
+                </ComboBox>
+            </Grid>
+
+            <StackPanel x:Name="operandosSalidas" Grid.Row="4" Grid.Column="0" CanHorizontallyScroll="True" CanVerticallyScroll="True" Orientation="Horizontal">
+                
+            </StackPanel>
+
+            <Grid Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="guardar" Grid.Column="0" Margin="10" Padding="6" Click="guardar_Click">Guardar</Button>
+                <Button x:Name="cancelar" Grid.Column="1" Margin="10" Padding="6" Click="cancelar_Click">Cancelar</Button>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</Window>

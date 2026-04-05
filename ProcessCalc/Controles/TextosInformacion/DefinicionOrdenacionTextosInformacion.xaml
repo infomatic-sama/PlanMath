@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="ProcessCalc.Controles.TextosInformacion.DefinicionOrdenacionTextosInformacion"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc.Controles.TextosInformacion"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1000" Loaded="UserControl_Loaded">
+    <Border BorderThickness="0.3" BorderBrush="Black" Background="White">
+        <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+        <TextBlock Margin="10" Grid.Row="0" Grid.Column="0">Cantidad de cadenas de texto <LineBreak></LineBreak>distintas antes de dividir y definir esta ordenación:</TextBlock>
+        <TextBox x:Name="cantidadDivisionTextosInformacion" Margin="10" Grid.Row="0" Grid.Column="1" MaxWidth="100" TextChanged="cantidadDivisionTextosInformacion_TextChanged"></TextBox>
+
+        <RadioButton x:Name="opcionOrdenarNumerosDeMenorAMayor" GroupName="Orden" Margin="10" Grid.Row="1" Grid.Column="0" Checked="opcionOrdenarNumerosDeMenorAMayor_Checked" Unchecked="opcionOrdenarNumerosDeMenorAMayor_Unchecked" >De menor a mayor</RadioButton>
+        <RadioButton x:Name="opcionOrdenarNumerosDeMayorAMenor" GroupName="Orden" Margin="10" Grid.Row="1" Grid.Column="1" Checked="opcionOrdenarNumerosDeMayorAMenor_Checked" Unchecked="opcionOrdenarNumerosDeMayorAMenor_Unchecked" >De mayor a menor</RadioButton>
+
+
+        <CheckBox x:Name="opcionOrdenarTextosInformacionCantidades" Margin="10" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Checked="opcionOrdenarTextosInformacionCantidades_Checked" Unchecked="opcionOrdenarTextosInformacionCantidades_Unchecked" >Ordenar las cadenas de texto de cada número por separado</CheckBox>
+        <RadioButton x:Name="opcionOrdenarTextosDeMenorAMayor" GroupName="OrdenTextos" Visibility="Collapsed" Margin="10" Grid.Row="3" Grid.Column="0" Checked="opcionOrdenarTextosDeMenorAMayor_Checked" Unchecked="opcionOrdenarTextosDeMenorAMayor_Unchecked" >De menor a mayor</RadioButton>
+        <RadioButton x:Name="opcionOrdenarTextosDeMayorAMenor" GroupName="OrdenTextos" Visibility="Collapsed" Margin="10" Grid.Row="3" Grid.Column="1" Checked="opcionOrdenarTextosDeMayorAMenor_Checked" Unchecked="opcionOrdenarTextosDeMayorAMenor_Unchecked" >De mayor a menor</RadioButton>
+
+            <CheckBox x:Name="opcionOrdenarTextosInformacionCantidades_SinOrdenarCantidades" Visibility="Collapsed" Margin="10" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Checked="opcionOrdenarTextosInformacionCantidades_SinOrdenarCantidades_Checked" Unchecked="opcionOrdenarTextosInformacionCantidades_SinOrdenarCantidades_Unchecked" >Ordenar las cadenas de textos de cada cantidad por separado, sin considerar ordenamiento de cantidades</CheckBox>
+            <RadioButton x:Name="opcionOrdenarTextosDeMenorAMayor_SinOrdenarCantidades" GroupName="OrdenTextos_SinOrdenarCantidades" Visibility="Collapsed" Margin="10" Grid.Row="5" Grid.Column="0" Checked="opcionOrdenarTextosDeMenorAMayor_SinOrdenarCantidades_Checked" Unchecked="opcionOrdenarTextosDeMenorAMayor_SinOrdenarCantidades_Unchecked" >De menor a mayor</RadioButton>
+            <RadioButton x:Name="opcionOrdenarTextosDeMayorAMenor_SinOrdenarCantidades" GroupName="OrdenTextos_SinOrdenarCantidades" Visibility="Collapsed" Margin="10" Grid.Row="5" Grid.Column="1" Checked="opcionOrdenarTextosDeMayorAMenor_SinOrdenarCantidades_Checked" Unchecked="opcionOrdenarTextosDeMayorAMenor_SinOrdenarCantidades_Unchecked" >De mayor a menor</RadioButton>
+
+            <Grid x:Name="opcionesDivisionesCadenaTexto" Grid.Row="0" Grid.Column="2" Grid.RowSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <RadioButton x:Name="opcionCadenaTextoCompleta" Grid.Row="0" IsChecked="True" Margin="10" GroupName="OpcionesDivisiones" Checked="opcionCadenaTextoCompleta_Checked">Cadenas de texto completas</RadioButton>
+                <RadioButton x:Name="opcionCadenaTextoDividida" Grid.Row="1" Margin="10" GroupName="OpcionesDivisiones" Checked="opcionCadenaTextoDividida_Checked">Cadenas de texto divididas</RadioButton>
+
+                <Button x:Name="divisionesCadenaTexto" Grid.Row="2" Visibility="Collapsed" Click="divisionesCadenaTexto_Click">Definir divisiones por cada cadena de texto</Button>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

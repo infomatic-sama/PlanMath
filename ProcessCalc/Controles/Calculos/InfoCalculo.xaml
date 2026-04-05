@@ -1,0 +1,88 @@
+﻿<UserControl xmlns:Vistas="clr-namespace:ProcessCalc.Vistas"  x:Class="ProcessCalc.Controles.InfoCalculo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProcessCalc"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <TabControl x:Name="contenido" Padding="15" BorderThickness="0" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" SelectionChanged="contenido_SelectionChanged">
+            <TabItem x:Name="inicio" Header="Archivo de Cálculo">
+                <StackPanel x:Name="encabezado" CanHorizontallyScroll="True" CanVerticallyScroll="True" Background="{DynamicResource {x:Static SystemColors.InactiveBorderBrushKey}}">
+                    <StackPanel Name="infoArchivo" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+                        <Label x:Name="nombreArchivo" FontWeight="Bold" >NombreCalculo.pmcalc</Label>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition ></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Button x:Name="btnAbrirCarpeta" Grid.Column="1" Margin="5" Padding="5" VerticalAlignment="Center" Click="btnAbrirCarpeta_Click">Abrir carpeta</Button>
+                            <Label x:Name="rutaArchivo" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" >C:\Carpeta\SubCarpeta\NombreCalculo.pmcalc</Label>
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Margin="10">
+
+                        <Label FontWeight="Bold">Descripción del archivo de cálculo</Label>
+                        <TextBox x:Name="descripcion" TextWrapping="Wrap" MinHeight="70" TextChanged="descripcion_TextChanged" AcceptsReturn="True" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"/>
+                        <Label FontWeight="Bold">Descripción de las entradas</Label>
+                        <TextBox x:Name="entradas" TextWrapping="Wrap" MinHeight="70" TextChanged="entradas_TextChanged" AcceptsReturn="True" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"></TextBox>
+                        <Label FontWeight="Bold">Descripción de los resultados</Label>
+                        <TextBox x:Name="resultados" TextWrapping="Wrap" MinHeight="70" TextChanged="resultados_TextChanged" AcceptsReturn="True" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"></TextBox>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            
+                            <CheckBox x:Name="opcionMostrarInformacionElementos_InformeResultados" Margin="0,20" Checked="opcionMostrarInformacionElementos_InformeResultados_Checked" Unchecked="opcionMostrarInformacionElementos_InformeResultados_Unchecked">Mostrar información adicional de los elementos en el informe de ejecución y resultados</CheckBox>
+                            <Button x:Name="configCantidadesDigitadas" Margin="10" Grid.Column="1" MaxWidth="200" Click="configCantidadesDigitadas_Click">Cantidades digitadas en entradas</Button>
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="10" VerticalAlignment="Center">Cantidad de decimales para mostrar en cantidades:</TextBlock>
+                            <TextBox x:Name="cantidadDecimales" Grid.Row="0" Grid.Column="1" Margin="10" MaxWidth="50" MinWidth="50" VerticalAlignment="Center" HorizontalAlignment="Left" TextChanged="cantidadDecimales_TextChanged"></TextBox>
+
+                            <Grid x:Name="opcionesMostrarCantidadesInforme_EjecucionResultados" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Margin="10" Grid.ColumnSpan="2">No mostrar las siguientes cantidades en el informe de ejecución y resultados:</TextBlock>
+                                <CheckBox x:Name="opcionNoMostrarCeros_InformeEjecucionResultados" Margin="10" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Checked="opcionNoMostrarCeros_InformeEjecucionResultados_Checked" Unchecked="opcionNoMostrarCeros_InformeEjecucionResultados_Unchecked">Ceros</CheckBox>
+                                <CheckBox x:Name="opcionNoMostrarSinTextos_InformeEjecucionResultados" Margin="10" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Checked="opcionNoMostrarSinTextos_InformeEjecucionResultados_Checked" Unchecked="opcionNoMostrarSinTextos_InformeEjecucionResultados_Unchecked">Cantidades sin textos</CheckBox>
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
+
+
+                </StackPanel>
+            </TabItem>
+            <TabItem x:Name="opcionesEntradas_Ejecucion" Header="Opciones de entradas desde otra ejecución">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <StackPanel x:Name="configEntradas" CanHorizontallyScroll="True" CanVerticallyScroll="True" Orientation="Vertical">
+
+                </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,15 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.SeleccionarTipoEntrada"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc"
+        mc:Ignorable="d"
+        Title="Tipo de variable o vector de entrada" Height="260" Width="405" WindowStartupLocation="CenterScreen" ShowInTaskbar="True" WindowStyle="ToolWindow" Background="{DynamicResource {x:Static SystemColors.InactiveBorderBrushKey}}" Icon="/ProcessCalc;component/Imagenes/03.png" ResizeMode="NoResize" Loaded="Window_Loaded" SizeToContent="WidthAndHeight">
+    <StackPanel CanVerticallyScroll="True">
+        <Button x:Name="btnNumero" Padding="10" Margin="20,10" Click="btnNumero_Click">Variables de números</Button>
+        <Button x:Name="btnConjuntoNumeros" Padding="10" Margin="20,10" Click="btnConjuntoNumeros_Click">Vectores de números</Button>
+        <Button x:Name="btnTextosInformacion" Padding="10" Margin="20,10" Click="btnTextosInformacion_Click" >Cadenas de texto</Button>
+        <Button x:Name="btnCancelar" Padding="10" Margin="20,10" Click="btnCancelar_Click" >Cancelar</Button>
+    </StackPanel>
+</Window>

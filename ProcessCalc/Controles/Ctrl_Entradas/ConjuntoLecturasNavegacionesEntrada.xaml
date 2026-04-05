@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="ProcessCalc.Controles.Ctrl_Entradas.ConjuntoLecturasNavegacionesEntrada"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc.Controles.Ctrl_Entradas"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="10" Padding="5">Las <TextBlock x:Name="etiqueta"></TextBlock> agregadas se realizarán en el orden establecido aquí.</TextBlock>
+        <Button x:Name="agregar" Margin="10" Padding="5" Grid.Row="0" Grid.Column="1" MaxWidth="200" Click="agregar_Click">
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/ProcessCalc;component/Imagenes/Iconos12/icono_nuevo_06.png" Height="24" Width="24" Grid.Column="0"></Image>
+                    <Label x:Name="etiquetaAgregar" Grid.Column="1" VerticalAlignment="Center">Agregar </Label>
+                </Grid>
+            </Button.Content>
+        </Button>
+
+        <StackPanel x:Name="lista" Margin="10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></StackPanel>
+    </Grid>
+</UserControl>

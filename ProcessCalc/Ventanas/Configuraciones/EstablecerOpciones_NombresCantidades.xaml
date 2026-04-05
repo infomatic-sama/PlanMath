@@ -1,0 +1,243 @@
+﻿<Window xmlns:Condiciones="clr-namespace:ProcessCalc.Controles.Condiciones"  xmlns:TextosInformacion="clr-namespace:ProcessCalc.Controles.TextosInformacion"  x:Class="ProcessCalc.Ventanas.EstablecerOpciones_NombresCantidades"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas"
+        mc:Ignorable="d"
+        Title="Establecer opciones de lógica de definición de nombres de números" Height="850" Width="1300" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid x:Name="contenedor">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>            
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+        <Grid x:Name="opcionesOperandos" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>                
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="textoOpcionOperando_TextosInformacion" Grid.Row="0" Grid.Column="0" Margin="10">Variable o vector:</TextBlock>
+            <ComboBox x:Name="opcionOperando_TextosInformacion" Grid.Row="0" Grid.Column="1" Margin="10"></ComboBox>
+                <Button x:Name="quitarSeleccion_opcionOperandoElemento_TextosInformacion" Grid.Row="0" Grid.Column="2" Margin="10" Click="quitarSeleccion_opcionOperandoElemento_TextosInformacion_Click" >Quitar selección de variable o vector</Button>
+
+                <TextBlock x:Name="textoOpcionOperandoSubElemento_TextosInformacion" Grid.Row="0" Grid.Column="3" Margin="10">Variable o vector interior:</TextBlock>
+            <ComboBox x:Name="opcionOperandoSubElemento_TextosInformacion" Grid.Row="0" Grid.Column="4" Margin="10"></ComboBox>
+                <Button x:Name="quitarSeleccion_opcionOperandoSubElemento_TextosInformacion" Grid.Row="0" Grid.Column="5" Margin="10" Click="quitarSeleccion_opcionOperandoSubElemento_TextosInformacion_Click" >Quitar selección de variable o vector interior</Button>
+        </Grid>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10">Cadenas de texto de la variable o vector</TextBlock>
+
+        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <RadioButton x:Name="opcionTodosTextosInformacion" IsChecked="True" GroupName="Opciones" Grid.Row="0" Grid.Column="0" Margin="10">Todas las cadenas de texto de la variable o vector</RadioButton>
+            <RadioButton x:Name="opcionTextoInformacionFijoNombreElemento" GroupName="Opciones" Grid.Row="1" Grid.Column="0" Margin="10" >Cadena de texto fija que corresponde al nombre de la variable o vector</RadioButton>
+                <RadioButton x:Name="opcionTextoInformacionFijoCantidadElemento" GroupName="Opciones" Grid.Row="2" Grid.Column="0" Margin="10" >Cadena de texto fija que corresponde al valor numérico de la variable o vector</RadioButton>
+                <RadioButton x:Name="opcionPrimerTextoInformacion" GroupName="Opciones" Grid.Row="3" Grid.Column="0" Margin="10">Primera cadena de texto de la variable o vector</RadioButton>
+                <RadioButton x:Name="opcionPrimerosNTextosInformacion" GroupName="Opciones" Grid.Row="4" Grid.Column="0" Margin="10" Checked="opcionPrimerosNTextosInformacion_Checked" Unchecked="opcionPrimerosNTextosInformacion_Unchecked">Primeras N cadenas de texto de la variable o vector</RadioButton>
+            <TextBox x:Name="NPrimerosTextosInformacion" Grid.Row="4" Grid.Column="1" Margin="10" Visibility="Collapsed" Width="50"></TextBox>
+                <RadioButton x:Name="opcionUltimoTextoInformacion" GroupName="Opciones" Grid.Row="5" Grid.Column="0" Margin="10">Última cadena de texto de la variable o vector</RadioButton>
+                <RadioButton x:Name="opcionUltimosNTextosInformacion" GroupName="Opciones" Grid.Row="6" Grid.Column="0" Margin="10" Checked="opcionUltimosNTextosInformacion_Checked" Unchecked="opcionUltimosNTextosInformacion_Unchecked">Ultimas N cadenas de texto de la variable o vector</RadioButton>
+            <TextBox x:Name="NUltimosTextosInformacion" Grid.Row="6" Grid.Column="1" Margin="10" Visibility="Collapsed" Width="50"></TextBox>
+                <RadioButton x:Name="opcionTextosInformacionCumplenCondiciones" GroupName="Opciones" Grid.Row="7" Grid.Column="0" Margin="10" Checked="opcionTextosInformacionCumplenCondiciones_Checked" Unchecked="opcionTextosInformacionCumplenCondiciones_Unchecked">Cadenas de texto de la variable o vector que cumplen condiciones si/entonces:</RadioButton>
+            <Grid x:Name="opcionesCondiciones" Grid.Row="7" Grid.Column="1" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Condiciones:OpcionCondicionesFlujo x:Name="condicionesTexto" Width="400" MaxWidth="400" Margin="10" Grid.Column="0" />
+            </Grid>
+                <RadioButton x:Name="opcionTextosInformacionPosiciones" GroupName="Opciones" Grid.Row="8" Grid.Column="0" Margin="10" Checked="opcionTextosInformacionPosiciones_Checked" Unchecked="opcionTextosInformacionPosiciones_Unchecked">Cadenas de texto de la variable o vector que están en las posiciones:</RadioButton>
+            <Grid x:Name="posiciones" Grid.Row="8" Grid.Column="1" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="10" Grid.Column="0">(Separadas por coma)</TextBlock>
+                <TextBox x:Name="posicionesTextos" Margin="10" Grid.Row="0" Grid.Column="1" Width="70"></TextBox>
+            </Grid>
+        </Grid>
+
+            <TextBlock Grid.Row="1" Grid.Column="2" Margin="10">Cadena de texto de números dentro de la variable o vector</TextBlock>
+
+        <Grid Grid.Row="2" Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+            <RadioButton x:Name="opcionFiltroNumerosTodos" Grid.Row="0" Grid.Column="0" Margin="10" GroupName="OpcionesFiltro" IsChecked="True" >Todos los números</RadioButton>
+            <RadioButton x:Name="opcionFiltroNumerosCumplenCondiciones" Grid.Row="1" Grid.Column="0" Margin="10" GroupName="OpcionesFiltro" Checked="opcionFiltroNumerosCumplenCondiciones_Checked" Unchecked="opcionFiltroNumerosCumplenCondiciones_Unchecked" >Filtrar números que cumplen condición si/entonces:</RadioButton>
+            <Grid x:Name="opcionesCondicionesFiltroNumeros" Grid.Row="1" Grid.Column="1" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Condiciones:OpcionCondicionesFlujo x:Name="condicionesFiltroNumeros" Width="400" MaxWidth="400" Margin="10" Grid.Column="0" />
+            </Grid>
+            <RadioButton x:Name="opcionFiltroNumerosPosiciones" GroupName="OpcionesFiltro" Grid.Row="2" Grid.Column="0" Margin="10" Checked="opcionTextosInformacionNombreNumeroPosicion_Checked" Unchecked="opcionTextosInformacionNombreNumeroPosicion_Unchecked" >Filtrar números, en las posiciones dentro del vector:</RadioButton>
+            <Grid x:Name="posicionesNumero" Grid.Row="2" Grid.Column="1" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="10" Grid.Column="0">(Separadas por coma)</TextBlock>
+                <TextBox x:Name="posicionesTextosNumeros" Margin="10" Grid.Row="4" Grid.Column="1" Width="70"></TextBox>
+            </Grid>
+
+            <RadioButton x:Name="opcionTodosTextosInformacionNumerosFiltrados" GroupName="Opciones" Grid.Row="3" Grid.Column="0" Margin="10">Todas las cadenas de texto de cada número</RadioButton>
+            <RadioButton x:Name="opcionTextosInformacionNombreNumerosFiltrados" GroupName="Opciones" Grid.Row="4" Grid.Column="0" Margin="10" >Cadena de texto que corresponde al nombre del número</RadioButton>
+                <RadioButton x:Name="opcionTextosInformacionCantidadNumerosFiltrados" GroupName="Opciones" Grid.Row="5" Grid.Column="0" Margin="10" >Cadena de texto que corresponde al valor numérico del número</RadioButton>
+                <RadioButton x:Name="opcionPrimerTextoInformacionNumerosFiltrados" Grid.Row="6" Grid.Column="0" Margin="10" GroupName="Opciones">Primera cadena de texto de cada número</RadioButton>
+                <RadioButton x:Name="opcionPrimerosNTextosInformacionNumerosFiltrados" Grid.Row="7" Grid.Column="0" Margin="10" GroupName="Opciones" Checked="opcionPrimerosNTextosInformacionNumerosFiltrados_Checked" Unchecked="opcionPrimerosNTextosInformacionNumerosFiltrados_Unchecked">Primeras N cadenas de texto de cada número</RadioButton>
+            <TextBox x:Name="NPrimerosTextosInformacionNumerosFiltrados" Grid.Row="7" Grid.Column="1" Margin="10" Visibility="Collapsed" Width="50"></TextBox>
+                <RadioButton x:Name="opcionUltimoTextoInformacionNumerosFiltrados" Grid.Row="8" Grid.Column="0" Margin="10" GroupName="Opciones">Última cadena de texto de cada número</RadioButton>
+                <RadioButton x:Name="opcionUltimosNTextosInformacionNumerosFiltrados" Grid.Row="9" Grid.Column="0" Margin="10" GroupName="Opciones" Checked="opcionUltimosNTextosInformacionNumerosFiltrados_Checked" Unchecked="opcionUltimosNTextosInformacionNumerosFiltrados_Unchecked">Ultimas N cadenas de texto de cada número</RadioButton>
+            <TextBox x:Name="NUltimosTextosInformacionNumerosFiltrados" Grid.Row="9" Grid.Column="1" Margin="10" Visibility="Collapsed" Width="50"></TextBox>
+            <RadioButton x:Name="opcionTextosInformacionCumplenCondicionesNumerosFiltrados" Grid.Row="10" Grid.Column="0" Margin="10" GroupName="Opciones" Checked="opcionTextosInformacionCumplenCondicionesNumerosFiltrados_Checked" Unchecked="opcionTextosInformacionCumplenCondicionesNumerosFiltrados_Unchecked">Cadenas de texto de cada número, que cumplen condiciones si/entonces:</RadioButton>
+            <Grid x:Name="opcionesCondicionesNumerosFiltrados" Grid.Row="10" Grid.Column="1" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Condiciones:OpcionCondicionesFlujo x:Name="condicionesTextoNumerosFiltrados" Width="400" MaxWidth="400" Margin="10" Grid.Column="0" />
+            </Grid>
+                <RadioButton x:Name="opcionTextosInformacionPosicionesNumerosFiltrados" GroupName="Opciones" Grid.Row="11" Grid.Column="0" Margin="10" Checked="opcionTextosInformacionPosicionesNumerosFiltrados_Checked" Unchecked="opcionTextosInformacionPosicionesNumerosFiltrados_Unchecked">Cadenas de texto de cada número, que están en las posiciones:</RadioButton>
+                <Grid x:Name="posicionesNumerosFiltrados" Grid.Row="11" Grid.Column="1" Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Margin="10" Grid.Column="0">(Separadas por coma)</TextBlock>
+                    <TextBox x:Name="posicionesTextosNumerosFiltrados" Margin="10" Grid.Row="0" Grid.Column="1" Width="70"></TextBox>
+                </Grid>
+            </Grid>
+
+        <TextBlock Grid.Row="1" Grid.Column="3" Margin="10">Sólo número actual en la ejecución</TextBlock>
+        
+        <Grid Grid.Row="2" Grid.Column="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <RadioButton x:Name="opcionTodosTextosInformacionNumero" Grid.Row="0" Grid.Column="0" Margin="10" GroupName="Opciones">Todas las cadenas de texto</RadioButton>
+            <RadioButton x:Name="opcionTextosInformacionNombreNumero" GroupName="Opciones" Grid.Row="1" Grid.Column="0" Margin="10" >Cadena de texto que corresponde al nombre</RadioButton>
+                <RadioButton x:Name="opcionTextosInformacionCantidadNumero" GroupName="Opciones" Grid.Row="2" Grid.Column="0" Margin="10" >Cadena de texto que corresponde al valor numérico</RadioButton>
+                <RadioButton x:Name="opcionTextoInformacionFijoPosicion" GroupName="Opciones" Grid.Row="3" Grid.Column="0" Margin="10" >Cadena de texto que corresponde a la posición dentro del vector</RadioButton>
+                <RadioButton x:Name="opcionPrimerTextoInformacionNumero" Grid.Row="4" Grid.Column="0" Margin="10" GroupName="Opciones">Primera cadena de texto</RadioButton>
+                <RadioButton x:Name="opcionPrimerosNTextosInformacionNumero" Grid.Row="5" Grid.Column="0" Margin="10" GroupName="Opciones" Checked="opcionPrimerosNTextosInformacionNumero_Checked" Unchecked="opcionPrimerosNTextosInformacionNumero_Unchecked">Primeras N cadenas de texto</RadioButton>
+                <TextBox x:Name="NPrimerosTextosInformacionNumero" Grid.Row="5" Grid.Column="1" Margin="10" Visibility="Collapsed" Width="50"></TextBox>
+                <RadioButton x:Name="opcionUltimoTextoInformacionNumero" Grid.Row="6" Grid.Column="0" Margin="10" GroupName="Opciones">Última cadena de texto</RadioButton>
+                <RadioButton x:Name="opcionUltimosNTextosInformacionNumero" Grid.Row="7" Grid.Column="0" Margin="10" GroupName="Opciones" Checked="opcionUltimosNTextosInformacionNumero_Checked" Unchecked="opcionUltimosNTextosInformacionNumero_Unchecked">Ultimas N cadenas de texto</RadioButton>
+                <TextBox x:Name="NUltimosTextosInformacionNumero" Grid.Row="7" Grid.Column="1" Margin="10" Visibility="Collapsed" Width="50"></TextBox>
+                <RadioButton x:Name="opcionTextosInformacionCumplenCondicionesNumero" Grid.Row="8" Grid.Column="0" Margin="10" GroupName="Opciones" Checked="opcionTextosInformacionCumplenCondicionesNumero_Checked" Unchecked="opcionTextosInformacionCumplenCondicionesNumero_Unchecked">Cadenas de texto, que cumplen condiciones si/entonces:</RadioButton>
+                <Grid x:Name="opcionesCondicionesNumero" Grid.Row="8" Grid.Column="1" Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Condiciones:OpcionCondicionesFlujo x:Name="condicionesTextoNumero" Width="400" MaxWidth="400" Margin="10" Grid.Column="0" />
+                </Grid>
+                <RadioButton x:Name="opcionTextosInformacionPosicionesNumero" GroupName="Opciones" Grid.Row="9" Grid.Column="0" Margin="10" Checked="opcionTextosInformacionPosicionesNumero_Checked" Unchecked="opcionTextosInformacionPosicionesNumero_Unchecked">Cadenas de texto, que están en las posiciones:</RadioButton>
+                <Grid x:Name="posicionesNumeroActual" Grid.Row="9" Grid.Column="1" Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Margin="10" Grid.Column="0">(Separadas por coma)</TextBlock>
+                    <TextBox x:Name="posicionesTextosNumero" Margin="10" Grid.Row="0" Grid.Column="1" Width="70"></TextBox>
+                </Grid>
+            </Grid>
+
+        <RadioButton x:Name="opcionTextoInformacionFijoNombreOperacion" GroupName="Opciones" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Margin="10" >Cadena de texto fija que corresponde al nombre de esta variable o vector</RadioButton>
+            <RadioButton x:Name="opcionTextoInformacionFijoCantidadOperacion" GroupName="Opciones" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" Margin="10" >Cadena de texto fija que corresponde al valor númerico de esta variable o vector</RadioButton>
+            <RadioButton x:Name="opcionTextoInformacionPosicionDefinicion" GroupName="Opciones" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Margin="10" >Cadena de texto que contiene la posición actual de esta definición</RadioButton>
+            <RadioButton x:Name="opcionTextoInformacionPosicionOperando" GroupName="Opciones" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Margin="10" >Cadena de texto que contiene la posición actual del operando con respecto a la ista de operandos de la operación actual</RadioButton>
+
+            <RadioButton x:Name="opcionTextosInformacionFijos" GroupName="Opciones" Grid.Row="7" Grid.Column="0" Margin="10" Grid.ColumnSpan="4" Checked="opcionTextosInformacionFijos_Checked" Unchecked="opcionTextosInformacionFijos_Unchecked">Cadenas de texto fijas:</RadioButton>
+        <TextBox x:Name="textoInformacionFijo" Margin="10" Grid.Row="7" Grid.Column="1" Width="100" Visibility="Collapsed" Grid.ColumnSpan="3"></TextBox>
+
+        <CheckBox x:Name="opcionIncluirTextosImplica" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" Margin="10">Establecer las demas cadenas de texto como textos que implican en el número.</CheckBox>
+
+            <CheckBox x:Name="opcionIncluirComillas" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4" Margin="10">Incluir comillas simples</CheckBox>
+
+            <Grid Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="Guardar" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Margin="10" Padding="10" Click="Guardar_Click">Guardar</Button>
+                <Button x:Name="Cerrar" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="10" Padding="10" Click="Cerrar_Click">Cancelar</Button>
+            </Grid>
+            
+        
+    </Grid>
+    </ScrollViewer>
+</Window>

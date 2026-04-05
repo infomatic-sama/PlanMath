@@ -1,0 +1,169 @@
+﻿<UserControl x:Class="ProcessCalc.Controles.EntradaEspecifica"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc"
+             mc:Ignorable="d" d:DesignWidth="1200" Height="Auto" Width="Auto" Background="{DynamicResource {x:Static SystemColors.InactiveBorderBrushKey}}">
+    <Border BorderThickness="0,0,0,0.5" BorderBrush="Black">
+        <StackPanel Orientation="Vertical">
+        <WrapPanel Orientation="Horizontal" >
+        
+        <Border x:Name="primeraColumna" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"></Border>
+
+        <Image x:Name="iconoNumero" Visibility="Collapsed" Margin="10" Width="32" Height="32" Source="/ProcessCalc;component/Imagenes/13_01.png"></Image>
+        <Image x:Name="iconoNumeros" Visibility="Collapsed" Margin="10" Width="32" Height="32" Source="/ProcessCalc;component/Imagenes/13_02.png"></Image>
+        <Image x:Name="iconoTextosInformacion" Visibility="Collapsed" Margin="10" Width="32" Height="32" Source="/ProcessCalc;component/Imagenes/Iconos4/12.png"></Image>
+        
+        <Grid VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label x:Name="nombre" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Margin="10">Nombre:</Label>
+            <TextBox x:Name="nombreEntrada" Margin="10" TextWrapping="Wrap" VerticalAlignment="Center" Text="Variable o vector de entrada 1" FontSize="14" Grid.Row="0" Grid.Column="1" TextChanged="nombreEntrada_TextChanged" AcceptsReturn="True" LostFocus="nombreEntrada_LostFocus" ></TextBox>
+
+                    <Button x:Name="subir" Margin="10" Padding="5" Grid.Column="2" Visibility="Collapsed" Click="subir_Click">Subir</Button>
+                    <Button x:Name="bajar" Margin="10" Padding="5" Grid.Column="3" Visibility="Collapsed" Click="bajar_Click">Bajar</Button>
+                </Grid>
+
+            <Button x:Name="seleccionarTipo" VerticalAlignment="Center" Margin="10" Padding="5" Click="seleccionarTipo_Click" >Tipo de variable o vector</Button>
+
+                <CheckBox x:Name="opcionEjecutarEntradaDesdeCalculos" VerticalAlignment="Center" Visibility="Collapsed" Margin="10" Checked="opcionEjecutarEntradaDesdeCalculos_Checked" Unchecked="opcionEjecutarEntradaDesdeCalculos_Unchecked">Ejecutar esta variable o vector desde los cálculos.</CheckBox>
+
+            <Grid x:Name="opcionesNumero" VerticalAlignment="Center" Visibility="Collapsed" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnNumeroFijo" Margin="10" Grid.Row="0" Grid.Column="0" Padding="20,1" Click="btnNumeroFijo_Click">Es una variable número fija</Button>
+            <Button x:Name="btnSeDigita" Margin="10" Grid.Row="0" Grid.Column="1" Padding="20,1" Click="btnSeDigita_Click">Se digita</Button>
+            <Button x:Name="btnSeObtiene" Margin="10" Grid.Row="0" Grid.Column="2" Padding="20,1" Click="btnSeObtiene_Click">Se obtiene</Button>
+        
+        </Grid>
+
+            <Grid x:Name="opcionesConjuntoNumeros" VerticalAlignment="Center" Visibility="Collapsed" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnConjuntoNumerosFijo" Margin="10" Grid.Row="0" Grid.Column="0" Padding="20,1" Click="btnConjuntoNumerosFijo_Click">Es un vector de números fijo</Button>
+            <Button x:Name="btnSeDigitaConjunto" Margin="10" Grid.Row="0" Grid.Column="1" Padding="20,1" Click="btnSeDigitaConjunto_Click" >Se digita</Button>
+            <Button x:Name="btnSeObtieneConjunto" Margin="10" Grid.Row="0" Grid.Column="2" Padding="20,1" Click="btnSeObtieneConjunto_Click" >Se obtiene</Button>
+
+        </Grid>
+
+            <Grid x:Name="opcionesTextosInformacion" VerticalAlignment="Center" Visibility="Collapsed" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnTextosInformacionFijos" Margin="10" Grid.Row="0" Grid.Column="0" Padding="20,1" Click="btnTextosInformacionFijos_Click" >Es un vector de cadenas de texto fijo</Button>
+            <Button x:Name="btnSeDigitaTextosInformacion" Margin="10" Grid.Row="0" Grid.Column="1" Padding="20,1" Click="btnSeDigitaTextosInformacion_Click" >Se digitan</Button>
+            <Button x:Name="btnSeObtieneTextosInformacion" Margin="10" Grid.Row="0" Grid.Column="2" Padding="20,1" Click="btnSeObtieneTextosInformacion_Click" >Se obtienen</Button>
+
+        </Grid>
+
+            <Grid x:Name="columnaSeObtieneOtroOrigen" VerticalAlignment="Center" Visibility="Collapsed" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+                <Button x:Name="btnSeObtieneOtroOrigen" Margin="10" VerticalAlignment="Center" Grid.Row="1" Padding="20,1" Click="btnSeObtieneOtroOrigen_Click">Obtener desde otro origen</Button>
+        </Grid>
+
+            <Grid x:Name="columnaSeObtieneOtroOrigenConjuntoNums" VerticalAlignment="Center" Visibility="Collapsed" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+                <Button x:Name="btnSeObtieneOtroOrigenConjuntoNums" VerticalAlignment="Center" Margin="10" Grid.Row="1" Padding="20,1" Click="btnSeObtieneOtroOrigenConjuntoNums_Click" >Obtener desde otro origen</Button>
+        </Grid>
+
+            <Grid x:Name="columnaSeObtieneOtroOrigenTextosInformacion" VerticalAlignment="Center" Visibility="Collapsed" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+                <Button x:Name="btnSeObtieneOtroOrigenTextosInformacion" Margin="10" VerticalAlignment="Center" Grid.Row="1" Padding="20,1" Click="btnSeObtieneOtroOrigenTextosInformacion_Click" >Obtener desde otro origen</Button>
+        </Grid>
+    </WrapPanel>
+        
+        <WrapPanel Orientation="Horizontal">
+        <Button x:Name="opcionesTextosInformacionPredefinidosDigitacion" Visibility="Collapsed" Margin="10" Padding="5" Click="opcionesTextosInformacionPredefinidosDigitacion_Click">
+            <TextBlock>Cadenas de texto 
+        <LineBreak></LineBreak>predefinidas a digitar
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="opcionListaNumerosPredefinidosDigitacion" Visibility="Collapsed" Margin="10" Padding="5" Click="opcionListaNumerosPredefinidosDigitacion_Click" >
+            <TextBlock>Vector de números 
+        <LineBreak></LineBreak>predefinido a seleccionar
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="opcionCantidadFijaNumerosDefinidosDigitacion" Visibility="Collapsed" Margin="10" Padding="5" Click="opcionCantidadFijaNumerosDefinidosDigitacion_Click"  >
+            <TextBlock>Cantidad de variables de números 
+        <LineBreak></LineBreak>definidos a digitar
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="opcionCantidadFijaTextosDefinidosDigitacion" Visibility="Collapsed" Margin="10" Padding="5" Click="opcionCantidadFijaTextosDefinidosDigitacion_Click"  >
+            <TextBlock>Cantidad de cadenas de texto 
+<LineBreak></LineBreak>definidas a digitar
+            </TextBlock>
+        </Button>
+
+        <Button x:Name="opcionesNombresCantidades" Margin="10" Padding="5" Click="opcionesNombresCantidades_Click">
+            <TextBlock>Nombres de 
+        <LineBreak></LineBreak>variables de números
+            </TextBlock>
+        </Button>
+
+        <CheckBox x:Name="opcionCantidadesComoTextosInformacion" Margin="10" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" VerticalAlignment="Center" VerticalContentAlignment="Center" Checked="opcionCantidadesComoTextosInformacion_Checked" Unchecked="opcionCantidadesComoTextosInformacion_Unchecked">
+            <TextBlock>
+            Agregar los números como <LineBreak></LineBreak>otras de sus cadenas de texto
+            </TextBlock>
+        </CheckBox>
+
+                <CheckBox x:Name="opcionConfirmarComprobarCantidades" Margin="10" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" VerticalAlignment="Center" VerticalContentAlignment="Center" Checked="opcionConfirmarComprobarCantidades_Checked" Unchecked="opcionConfirmarComprobarCantidades_Unchecked">
+                    <TextBlock>
+    Comprobar y confirmar los números obtenidos <LineBreak></LineBreak>desde esta entrada, en ejecución
+                    </TextBlock>
+                </CheckBox>
+
+                <Button x:Name="opcionesSeleccionCantidades" Margin="10" Padding="5" Visibility="Collapsed" Click="opcionesSeleccionCantidades_Click" >
+                <TextBlock>Selección de 
+<LineBreak></LineBreak>números obtenidos
+                </TextBlock>
+            </Button>
+        </WrapPanel>
+        
+        <WrapPanel x:Name="opcionesOtraEntrada" >
+            <Button x:Name="btnOtraEntrada" Margin="10" Grid.Row="0" Grid.Column="0" Padding="20,1" Click="btnOtraEntrada_Click" >Agregar otra variable o vector</Button>
+            <Button x:Name="btnQuitarEntrada" Margin="10" Grid.Row="0" Grid.Column="1" Padding="20,1" Click="btnQuitarEntrada_Click" >Quitar esta variable o vector</Button>
+        </WrapPanel>
+    </StackPanel>
+    </Border>
+</UserControl>

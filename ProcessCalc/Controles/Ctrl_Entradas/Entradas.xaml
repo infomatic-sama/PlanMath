@@ -1,0 +1,108 @@
+﻿<UserControl x:Class="ProcessCalc.Controles.Entradas"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1300" Loaded="UserControl_Loaded" >
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel x:Name="encabezado" CanHorizontallyScroll="True" CanVerticallyScroll="True" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" >
+                <StackPanel x:Name="infoArchivo" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+                    <Label x:Name="nombreArchivo" FontWeight="Bold" >NombreCalculo.pmcalc</Label>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition ></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="btnAbrirCarpeta" Grid.Column="1" Margin="5" Padding="5" VerticalAlignment="Center" Click="btnAbrirCarpeta_Click">Abrir carpeta</Button>
+                        <Label x:Name="rutaArchivo" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" >C:\Carpeta\SubCarpeta\NombreCalculo.pmcalc</Label>
+                    </Grid>
+                </StackPanel>
+
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Margin="10">Buscar entradas:</Label>
+                    <TextBox x:Name="textoBusquedaEntradas" Grid.Column="1" MinWidth="250" Margin="10"></TextBox>
+                    <Button x:Name="buscarEntradas" Grid.Column="2" Margin="5" Click="buscarEntradas_Click" >
+                        <Button.Content>
+                            <Image Source="/ProcessCalc;component/Imagenes/18.png" Width="16" Height="16"></Image>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="limpiarBusqueda" Grid.Column="3" Margin="5" Click="limpiarBusqueda_Click" >
+                        <Button.Content>
+                            <Image Source="/ProcessCalc;component/Imagenes/Iconos3/07.png" Width="16" Height="16"></Image>
+                        </Button.Content>
+                    </Button>
+
+                    <CheckBox x:Name="opcionFiltroTextos" Margin="10" Grid.Column="4" VerticalAlignment="Center" Checked="opcionFiltroTextos_Checked" Unchecked="opcionFiltroTextos_Unchecked">Cadenas de texto</CheckBox>
+                    <CheckBox x:Name="opcionFiltroNumeros" Margin="10" Grid.Column="5" VerticalAlignment="Center" Checked="opcionFiltroNumeros_Checked" Unchecked="opcionFiltroNumeros_Unchecked">Variables de números</CheckBox>
+                    <CheckBox x:Name="opcionFiltroConjuntoNumeros" Margin="10" Grid.Column="6" VerticalAlignment="Center" Checked="opcionFiltroConjuntoNumeros_Checked" Unchecked="opcionFiltroConjuntoNumeros_Unchecked">Vectores de números</CheckBox>
+
+                    <CheckBox x:Name="opcionFiltroFijas" Margin="10" Grid.Column="7" VerticalAlignment="Center" Checked="opcionFiltroFijas_Checked" Unchecked="opcionFiltroFijas_Unchecked">Cantidades fijas</CheckBox>
+                    <CheckBox x:Name="opcionFiltroDigitadas" Margin="10" Grid.Column="8" VerticalAlignment="Center" Checked="opcionFiltroDigitadas_Checked" Unchecked="opcionFiltroDigitadas_Unchecked">Cantidades digitadas</CheckBox>
+                    <CheckBox x:Name="opcionFiltroObtenidas" Margin="10" Grid.Column="9" VerticalAlignment="Center" Checked="opcionFiltroObtenidas_Checked" Unchecked="opcionFiltroObtenidas_Unchecked">Cantidades obtenidas</CheckBox>
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="64"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Column="0" Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Grid x:Name="listaCalculos" Grid.Row="0" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="10">Cálculos:</Label>
+
+                        </Grid>
+                        <ScrollViewer x:Name="contenedorCalculos" Grid.Row="1"  HorizontalScrollBarVisibility="Hidden"  VerticalScrollBarVisibility="Auto" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"  >
+                            <Grid x:Name="calculos" ></Grid>
+                        </ScrollViewer>
+                    </Grid>
+
+                    <StackPanel x:Name="contenedorEntradas" Grid.Column="1" Grid.Row="0" >
+
+                    </StackPanel>
+                    <Border x:Name="primeraColumna" Grid.Column="2" Grid.Row="0" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}"></Border>
+                </Grid>
+
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>

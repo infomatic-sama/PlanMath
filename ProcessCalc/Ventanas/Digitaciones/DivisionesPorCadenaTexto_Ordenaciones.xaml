@@ -1,0 +1,33 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.Digitaciones.DivisionesPorCadenaTexto_Ordenaciones"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas.Digitaciones"
+        mc:Ignorable="d"
+        Title="Divisiones por cadena de texto para ordenaciones" Height="450" Width="800" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="agregarDivisionTexto" Margin="10" Padding="10" Grid.Column="0" Click="agregarDivisionTexto_Click">Agregar división</Button>
+            <Button x:Name="quitarDivisionTexto" Margin="10" Padding="10" Grid.Column="1" Click="quitarDivisionTexto_Click">Quitar división</Button>
+            
+        </Grid>
+        <ScrollViewer Grid.Row="1" CanContentScroll="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <StackPanel x:Name="divisionesTexto" Orientation="Vertical">
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

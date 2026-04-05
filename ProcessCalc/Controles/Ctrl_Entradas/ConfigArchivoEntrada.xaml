@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="ProcessCalc.Controles.Ctrl_Entradas.ConfigArchivoEntrada"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc.Controles.Ctrl_Entradas"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1500" Width="Auto" Height="Auto" Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button x:Name="configurarSeleccionCarpetaArchivo" Margin="10" Padding="5" MaxWidth="200" Grid.Column="0" Grid.Row="0" VerticalContentAlignment="Center" Click="configurarSeleccionCarpetaArchivo_Click">Definir configuración</Button>
+        <TextBlock x:Name="etiquetaDefinicionSeleccionArchivoCarpeta" Margin="10" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"  VerticalAlignment="Center"></TextBlock>
+
+        <Button x:Name="btnCambiarArchivo" Grid.Column="1" Grid.Row="1" Margin="10" Padding="5" Width="200" Click="btnCambiarArchivo_Click">Seleccionar archivo y/o carpeta</Button>
+        <ComboBox x:Name="tipoArchivo" Grid.Column="0" Grid.Row="1" MaxWidth="200" Margin="10" Width="Auto" SelectionChanged="tipoArchivo_SelectionChanged">
+            <ComboBoxItem Content="Equipo local" Uid="1"/>
+            <ComboBoxItem Content="Red local" Uid="2"/>
+            <!--<ComboBoxItem Content="Servidor FTP" Uid="3"/>-->
+            <ComboBoxItem Content="Internet" Uid="4"/>
+        </ComboBox>
+        <Label x:Name="lblRutaArchivo" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="3" VerticalContentAlignment="Center">Se obtendrá el número de la entrada (variable o vector), del archivo C:\Carpeta\SubCarpeta\Archivo.txt</Label>
+
+        <CheckBox x:Name="opcionURLDocumento" Visibility="Collapsed" Margin="10,10,0,0" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="2" Checked="opcionURLDocumento_Checked" Unchecked="opcionURLDocumento_Unchecked" Content="Usar la url del documento (lo contrario es utilizar la ruta de archivo local)"/>
+        <Button x:Name="verTextosBusquedasWord" Visibility="Collapsed" Grid.Row="3" Grid.Column="2" MaxWidth="300" MinWidth="300" HorizontalAlignment="Left" Margin="10" Click="verTextosBusquedasWord_Click">Ver cadenas de texto de búsqueda en el documento Word</Button>
+
+        <Button x:Name="btnDefinirTextosInformacionFijos" Grid.Column="0" Grid.Row="3" Margin="10" Padding="5" Width="200" Click="btnDefinirTextosInformacionFijos_Click" >
+            <Button.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/ProcessCalc;component/Imagenes/Iconos4/01.png" Height="24" Width="24" Grid.Column="0"></Image>
+                    <Label Grid.Column="1" VerticalAlignment="Center">Cadenas de texto fijas</Label>
+                </Grid>
+            </Button.Content>
+        </Button>
+
+        <Grid Grid.Column="1" Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <CheckBox x:Name="opcionEsperarArchivo" Grid.Row="0" Grid.Column="0" Margin="10" Padding="5" VerticalContentAlignment="Center" VerticalAlignment="Center" Checked="opcionEsperarArchivo_Checked" Unchecked="opcionEsperarArchivo_Unchecked">Esperar al archivo si no está en la carpeta</CheckBox>
+
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" VerticalAlignment="Center" Padding="10">Tiempo de espera:</TextBlock>
+                <TextBox x:Name="cantidadTiempo" Grid.Column="1" Margin="10" MaxWidth="100" Width="100" TextChanged="cantidadTiempo_TextChanged"></TextBox>
+                <ComboBox x:Name="opcionCantidadTiempo" Grid.Column="2" Padding="5" Margin="10" SelectionChanged="opcionCantidadTiempo_SelectionChanged">
+                    <ComboBoxItem Content="Segundos" IsSelected="True" Uid="1"/>
+                    <ComboBoxItem Content="Minutos" Uid="2"/>
+                    <ComboBoxItem Content="Horas" Uid="3"/>
+                    <ComboBoxItem Content="Días" Uid="4"/>
+                </ComboBox>
+            </Grid>
+        </Grid>
+
+        <CheckBox x:Name="opcionAgregarTextos_DeNombresArchivos" Margin="10" Grid.Row="4" Grid.Column="0" VerticalContentAlignment="Center" Checked="opcionAgregarTextos_DeNombresArchivos_Checked" Unchecked="opcionAgregarTextos_DeNombresArchivos_Unchecked">Incluir cadenas de texto a partir de las cadenas de texto dentro de los nombres y ruta de archivos, utilizando comodines (*)</CheckBox>
+        <CheckBox x:Name="opcionEntradaManual" Margin="10" Grid.Column="1" Grid.Row="4" Checked="opcionEntradaManual_Checked" Unchecked="opcionEntradaManual_Unchecked">Abrir el archivo manualmente en la ejecución</CheckBox>
+        
+        <CheckBox x:Name="opcionEstablecerLecturasNavegaciones_Busquedas" Margin="10" Padding="5" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" VerticalContentAlignment="Center" Checked="opcionEstablecerLecturasNavegaciones_Busquedas_Checked" Unchecked="opcionEstablecerLecturasNavegaciones_Busquedas_Unchecked">Establecer las lecturas y sus búsquedas a realizar</CheckBox>
+
+        <local:ConjuntoLecturasNavegacionesEntrada x:Name="conjuntoLecturas" Grid.Row="6" Visibility="Collapsed" Grid.Column="0" Grid.ColumnSpan="3" />
+        
+    </Grid>
+</UserControl>

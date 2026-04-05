@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="ProcessCalc.Controles.Definicion_TextosInformacion"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="100" Width="Auto" Height="Auto" AllowDrop="True" SizeChanged="UserControl_SizeChanged">
+    <UserControl.Resources>
+        <Style BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" TargetType="Button"></Style>
+    </UserControl.Resources>
+    <Button x:Name="botonFondo" BorderBrush="{x:Null}" Width="Auto" Height="Auto" PreviewMouseLeftButtonDown="Button_PreviewMouseLeftButtonDown"  >
+        <StackPanel Orientation="Horizontal">
+            <Image x:Name="iconoTextosInformacion" Margin="2" Width="24" Height="24" Source="/ProcessCalc;component/Imagenes/Iconos4/12.png"></Image>
+            <TextBlock x:Name="nombreDefinicion" Margin="2"  VerticalAlignment="Center" TextWrapping="Wrap" MaxWidth="150" >Definición 1</TextBlock>
+
+            <TextBox x:Name="edicionNombre" TextWrapping="Wrap" Margin="2" Visibility="Collapsed" KeyDown="edicionNombre_KeyDown">Definición 1</TextBox>
+            <Button x:Name="btnGuardarNombre" Visibility="Collapsed" Click="btnGuardarNombre_Click">Guardar</Button>
+
+        </StackPanel>
+    </Button>
+</UserControl>

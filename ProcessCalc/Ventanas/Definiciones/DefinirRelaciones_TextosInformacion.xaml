@@ -1,0 +1,44 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.DefinirRelaciones_TextosInformacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas" xmlns:textosinformacion="clr-namespace:ProcessCalc.Controles.TextosInformacion"
+        mc:Ignorable="d"
+        Title="Definir lógicas de asignaciones de cadenas de texto" MaxHeight="600" Height="1000" Width="1500" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition ></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0" CanContentScroll="true" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MaxHeight="500">
+            <textosinformacion:Implicacion_TextosInformacion x:Name="listaTextos" />
+    </ScrollViewer>
+
+    <TextBlock x:Name="entradaRelacionada" Margin="10" Grid.Row="1" Visibility="Collapsed">
+            Estas lógicas se ejecutarán en función de las cadenas de texto obtenidas en esta ejecución de cálculo 
+            <LineBreak></LineBreak><TextBlock x:Name="nombreCalculoRelacionado" FontWeight="Bold"></TextBlock> desde la variable o vector de entrada : <TextBlock x:Name="nombreEntradaRelacionada" FontWeight="Bold"></TextBlock>
+            <LineBreak></LineBreak>La variable o vector relacionado es: <TextBlock x:Name="nombreOperacionRelacionada" FontWeight="Bold"></TextBlock>
+            <TextBlock x:Name="elementosDefinicionOperacionRelacionados" Visibility="Collapsed"><LineBreak></LineBreak> y el elemento de definición de la lógica es: <TextBlock x:Name="nombreElementoDefinicionOperacionRelacionado" FontWeight="Bold"></TextBlock>.</TextBlock>
+        </TextBlock>
+
+        <Grid Grid.Row="2" HorizontalAlignment="Center" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                 <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <Button x:Name="btnContinuar" Margin="10" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" MaxWidth="100" Click="btnContinuar_Click">Guardar</Button>
+            <Button x:Name="btnCancelar" Margin="10" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" MaxWidth="100" Click="btnCancelar_Click">Cancelar</Button>
+        </Grid>
+        
+    </Grid>
+    
+</Window>

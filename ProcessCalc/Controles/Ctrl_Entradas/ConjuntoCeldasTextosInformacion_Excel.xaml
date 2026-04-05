@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="ProcessCalc.Controles.Ctrl_Entradas.ConjuntoCeldasTextosInformacion_Excel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc.Controles.Ctrl_Entradas"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="quitarConjunto" Grid.Row="0" HorizontalAlignment="Right" Margin="10" Click="quitarConjunto_Click">Quitar</Button>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Margin="10">Celda número:</TextBlock>
+            <TextBox x:Name="celdaNumero" Grid.Column="1" Grid.Row="0" Margin="10" TextChanged="celdaNumero_TextChanged"></TextBox>
+            <TextBlock Grid.Column="0" Grid.Row="1" Margin="10">Celda texto de información:</TextBlock>
+            <TextBox x:Name="celdaTextoInformacion" Grid.Column="1" Grid.Row="1" Margin="10" TextChanged="celdaTextoInformacion_TextChanged"></TextBox>
+
+        </Grid>
+    </Grid>
+</UserControl>

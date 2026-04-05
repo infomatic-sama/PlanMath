@@ -1,0 +1,84 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.SeleccionarTipoOperacionEjecucion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas"
+        mc:Ignorable="d"
+        Title="Seleccionar tipo de lógica para la ejecución" Height="450" Width="800" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" Loaded="Window_Loaded">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <RadioButton x:Name="optOperacionTodosJuntos" Margin="10" Grid.Row="1" Grid.ColumnSpan="2" IsChecked="True" HorizontalAlignment="Left" VerticalContentAlignment="Center" Checked="optOperacionTodosJuntos_Checked">
+            <RadioButton.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Column="0" Width="32px" Height="32px" Margin="10" Source="/ProcessCalc;component/Imagenes/24.png"></Image>
+                    <TextBlock Grid.Column="1" VerticalAlignment="Center">Operar todas las variables y vectores juntos</TextBlock>
+                </Grid>
+                
+            </RadioButton.Content>
+        </RadioButton>
+        <RadioButton x:Name="optOperarPorSeparado" Margin="10" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalContentAlignment="Center" Checked="optOperarPorSeparado_Checked">
+            <RadioButton.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Column="0" Width="32px" Height="32px" Margin="10" Source="/ProcessCalc;component/Imagenes/23.png"></Image>
+                    <TextBlock Grid.Column="1" VerticalAlignment="Center">Operar las variables o vectores por separado</TextBlock>
+                </Grid>
+
+            </RadioButton.Content>
+        </RadioButton>
+        <RadioButton x:Name="optOperarPorFilas" Margin="10" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalContentAlignment="Center" Checked="optOperarPorFilas_Checked">
+            <RadioButton.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Column="0" Width="32px" Height="32px" Margin="10" Source="/ProcessCalc;component/Imagenes/25.png"></Image>
+                    <TextBlock Grid.Column="1" VerticalAlignment="Center">Operar los números de las variables y vectores por filas (tipo tabla/matriz)</TextBlock>
+                </Grid>
+
+            </RadioButton.Content>
+        </RadioButton>
+        <RadioButton x:Name="optOperarPorSeparadoPorFilas" Margin="10" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalContentAlignment="Center" Checked="optOperarPorSeparadoPorFilas_Checked" >
+            <RadioButton.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Column="0" Width="32px" Height="32px" Margin="10" Source="/ProcessCalc;component/Imagenes/Iconos9/icono_pm.png"></Image>
+                    <TextBlock Grid.Column="1" VerticalAlignment="Center">Operar las variables y vectores por separado y sus números por filas (tipo tabla/matriz de 1 columna)</TextBlock>
+                </Grid>
+
+            </RadioButton.Content>
+        </RadioButton>
+
+        <Button x:Name="btnContinuar" Margin="10" Grid.Row="5" Grid.Column="1" MaxWidth="150" Click="btnContinuar_Click">Guardar tipo de lógica</Button>
+        <Button x:Name="btnCancelar" Margin="10" Grid.Row="5" Grid.Column="0" MaxWidth="100" Click="btnCancelar_Click">Cancelar</Button>
+    </Grid>
+</Window>

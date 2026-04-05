@@ -1,0 +1,227 @@
+﻿<Window x:Class="ProcessCalc.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc" xmlns:vistas="clr-namespace:ProcessCalc.Vistas"
+        xmlns:tooltip="clr-namespace:ProcessCalc.Controles.Calculos"
+        mc:Ignorable="d"
+        Title="PlanMath" Height="450" Width="1000" Activated="Window_Activated" Loaded="Window_Loaded" Closing="Window_Closing" SizeChanged="Window_SizeChanged" StateChanged="Window_StateChanged" LocationChanged="Window_LocationChanged" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" Icon="/ProcessCalc;component/Imagenes/03.png" MouseMove="Window_MouseMove" Deactivated="Window_Deactivated">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition ></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Image x:Name="logo" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Height="64" Margin="10,10,0,0" VerticalAlignment="Center" Width="64" Source="/ProcessCalc;component/Imagenes/02.png"/>
+        <ToolBarPanel VerticalAlignment="Center" Orientation="Vertical" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+            <ToolBar x:Name="opciones" Margin="0,0,-0.2,0" Background="{x:Null}"  ToolBarTray.IsLocked="True" Loaded="opciones_Loaded" VerticalAlignment="Center">
+                <Button x:Name="btnEjecutar" Padding="5" Click="btnEjecutar_Click" >
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/ProcessCalc;component/Imagenes/04.png" Grid.Column="0" Width="24" Height="24"></Image>
+                            <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Ejecutar</Label>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="btnAbrir" Padding="5" Click="btnAbrir_Click">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/ProcessCalc;component/Imagenes/05.png" Grid.Column="0" Width="24" Height="24"></Image>
+                            <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Abrir</Label>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="btnGuardar"  Padding="5" Click="btnGuardar_Click" >
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/ProcessCalc;component/Imagenes/06.png" Grid.Column="0" Width="24" Height="24"></Image>
+                            <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Guardar</Label>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="btnGuardarTodo"  Padding="5" Click="btnGuardarTodo_Click" >
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/ProcessCalc;component/Imagenes/Iconos18/icono 01.png" Grid.Column="0" Width="24" Height="24"></Image>
+                            <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Guardar todo</Label>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="btnNuevo"  Padding="5" Click="btnNuevo_Click" >
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/ProcessCalc;component/Imagenes/07.png" Grid.Column="0" Width="24" Height="24"></Image>
+                            <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Nuevo</Label>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="btnNuevaVentana"  Padding="5" Click="btnNuevaVentana_Click" >
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/ProcessCalc;component/Imagenes/08.png" Grid.Column="0" Width="24" Height="24"></Image>
+                            <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Nueva ventana</Label>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+
+                <Separator x:Name="separadorOpciones3" ></Separator>
+                <Button x:Name="btnInfo" Padding="5" Click="btnInfo_Click">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/ProcessCalc;component/Imagenes/31.png" Grid.Column="0" Width="24" Height="24"></Image>
+                            <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Información</Label>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="btnEditarInfo" Padding="5" Click="btnEditarInfo_Click">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/ProcessCalc;component/Imagenes/30.png" Grid.Column="0" Width="24" Height="24"></Image>
+                            <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Ajustes archivo</Label>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+
+                <Separator x:Name="separadorOpciones4" ></Separator>
+                <Button x:Name="botonCerrar" Background="{x:Null}" Click="botonCerrar_Click" >
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/ProcessCalc;component/Imagenes/17.png" Grid.Column="0" Width="24" Height="24"></Image>
+                            <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Cerrar</Label>
+                        </Grid>
+                    </Button.Content>
+
+                    <Button.ContextMenu>
+                        <ContextMenu x:Name="menuCerrar">
+                            <MenuItem Header="Cerrar actual" Click="Label_MouseLeftButtonDown"></MenuItem>
+                            <MenuItem Header="Cerrar todo" Click="Label_MouseLeftButtonDown_1"></MenuItem>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+
+            </ToolBar>
+            <ToolBar x:Name="opcionesCalculo" Margin="0,0,-0.2,0" Background="{x:Null}" ToolBarTray.IsLocked="True" Loaded="opciones_Loaded" VerticalAlignment="Center">
+                <Button x:Name="btnOperaciones"  Padding="5" Click="btnOperaciones_Click">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/ProcessCalc;component/Imagenes/29.png" Grid.Column="0" Width="24" Height="24"></Image>
+                            <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Cálculos</Label>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="btnCalculos"  Padding="5" Click="btnCalculos_Click">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/ProcessCalc;component/Imagenes/19.png" Grid.Column="0" Width="24" Height="24"></Image>
+                            <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Conjunto de cálculos</Label>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="btnResultados" Padding="5" Click="btnResultados_Click">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/ProcessCalc;component/Imagenes/14.png" Grid.Column="0" Width="24" Height="24"></Image>
+                            <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Variables o vectores retornados</Label>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+
+                <Separator x:Name="separadorOpciones2" ></Separator>
+
+                <Button x:Name="btnEntradas" Padding="5" Click="btnEntradas_Click">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/ProcessCalc;component/Imagenes/13_02.png" Grid.Column="0" Width="24" Height="24"></Image>
+                            <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Variables o vectores de entradas predefinidas</Label>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="btnTextosInformacion"  Padding="5" Click="btnTextosInformacion_Click" >
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/ProcessCalc;component/Imagenes/Iconos4/12.png" Grid.Column="0" Width="24" Height="24"></Image>
+                            <Label Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">Cadenas de texto</Label>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+
+            </ToolBar>
+        </ToolBarPanel>
+        
+        <TabControl x:Name="contenido" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Padding="5" BorderThickness="0" SelectionChanged="contenido_SelectionChanged" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+            <TabItem x:Name="inicio" Header="Inicio">
+                <ContentControl>
+                    <vistas:VistaInicio x:Name="vistaInicio"></vistas:VistaInicio>
+                </ContentControl>
+            </TabItem>
+        </TabControl>
+
+        <Popup x:Name="popup" Focusable="True" StaysOpen="True" Placement="Right" AllowsTransparency="True" Width="Auto" Height="Auto">
+            <tooltip:ToolTipElementoVisual></tooltip:ToolTipElementoVisual>
+        </Popup>
+    </Grid>
+    
+</Window>

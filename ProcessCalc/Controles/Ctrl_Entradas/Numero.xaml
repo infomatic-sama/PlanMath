@@ -1,0 +1,69 @@
+﻿<UserControl xmlns:Ctrl_Entradas="clr-namespace:ProcessCalc.Controles.Ctrl_Entradas"  x:Class="ProcessCalc.Controles.Numero"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="800" Width="Auto" Height="Auto" Loaded="UserControl_Loaded">
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Margin="10">Nombre de variable:</Label>
+            <TextBox x:Name="nombreNumero" Margin="10" VerticalAlignment="Center" TextWrapping="Wrap" Text="Número 1" FontSize="14" Grid.Row="0" Grid.Column="1"  AcceptsReturn="True" TextChanged="nombreNumero_TextChanged" ></TextBox>
+            
+        </Grid>
+        <Grid x:Name="digitarNumero" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Margin="10">Variable de número:</Label>
+            <TextBox x:Name="numeroDigitado" MinWidth="100" Grid.Row="0" Grid.Column="1" Margin="10" TextChanged="numeroDigitado_TextChanged" ></TextBox>
+            <ComboBox x:Name="opcionesNumeros" MinWidth="100" Margin="10" Grid.Row="0" Grid.Column="1" Visibility="Collapsed" IsEditable="True" TextBoxBase.TextChanged="numeroDigitado_TextChanged"></ComboBox>
+            <ComboBox x:Name="opcionesListaNumeros" Margin="10" Grid.Row="0" Grid.Column="2" Visibility="Collapsed" SelectionChanged="opcionesListaNumeros_SelectionChanged" TextBoxBase.TextChanged="opcionesListaNumeros_TextChanged"></ComboBox>
+        </Grid>
+        
+        <Grid x:Name="opcionesOtraEntrada" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnOtroNumero" Margin="10" Grid.Row="0" Grid.Column="0" Padding="20,1" Click="btnOtroNumero_Click" >Agregar otra variable de número</Button>
+            <Button x:Name="btnQuitarNumero" Margin="10" Grid.Row="1" Grid.Column="0" Padding="20,1" Click="btnQuitarNumero_Click" >Quitar esta variable de número</Button>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto" MaxHeight="200" Height="Auto">
+            <StackPanel CanVerticallyScroll="True">
+                <Ctrl_Entradas:TextosEtiquetas_Entrada x:Name="textos" Width="Auto" Height="Auto" />
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>

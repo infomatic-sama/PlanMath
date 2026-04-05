@@ -1,0 +1,129 @@
+﻿<UserControl x:Class="ProcessCalc.Vistas.VistaEjecucionCalculo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1000" Loaded="UserControl_Loaded">
+    <Grid Background="{DynamicResource {x:Static SystemColors.InactiveBorderBrushKey}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">                
+                <StackPanel x:Name="estado" Orientation="Horizontal" Margin="10">
+                    <Image x:Name="iconoEjecutando" Margin="10,10,10,10" Width="48" Height="48" Source="/ProcessCalc;component/Imagenes/10.png"></Image>
+                    <TextBlock x:Name="textoEjecutando" Margin="10" VerticalAlignment="Center" FontSize="25">Ejecutando </TextBlock>
+                    <TextBlock x:Name="textoPorcentajeEjecucion" Margin="10" VerticalAlignment="Center" FontWeight="Bold" FontSize="25">0 %</TextBlock>
+                    <Button x:Name="pausar" Margin="10" Padding="10" Click="pausar_Click">Pausar</Button>
+                    <Button x:Name="detener" Margin="10" Padding="10" Click="detener_Click">Detener</Button>
+                </StackPanel>
+                <StackPanel x:Name="detenido" Orientation="Horizontal" Visibility="Collapsed" Margin="10">
+                    <Image Margin="10" Height="48" Width="48" Source="/ProcessCalc;component/Imagenes/05.png"></Image>                    
+                    <TextBlock Margin="10" FontSize="25" VerticalAlignment="Center">Este cálculo se ha detenido.</TextBlock>
+                    <TextBlock x:Name="textoPorcentajeEjecucion1" Margin="10" VerticalAlignment="Center" FontWeight="Bold" FontSize="25">0 %</TextBlock>
+                    <Button x:Name="cerrar" Margin="10" Padding="10" Click="cerrar_Click">Cerrar</Button>
+                </StackPanel>
+                <StackPanel x:Name="pausado" Orientation="Horizontal" Visibility="Collapsed" Margin="10">
+                    <Image Margin="10" Height="48" Width="48" Source="/ProcessCalc;component/Imagenes/06.png"></Image>                    
+                    <TextBlock Margin="10" VerticalAlignment="Center" FontSize="25">Este cálculo se ha pausado.</TextBlock>
+                    <TextBlock x:Name="textoPorcentajeEjecucion2" Margin="10" VerticalAlignment="Center" FontWeight="Bold" FontSize="25">0 %</TextBlock>
+                    <Button x:Name="reanudar" Margin="10" Padding="10" Click="reanudar_Click" >Reanudar</Button>
+                    <Button x:Name="detenerDesdePausa" Margin="10" Padding="10" Click="detener_Click" >Detener</Button>
+                </StackPanel>
+                <StackPanel x:Name="finalizado" Orientation="Horizontal" Visibility="Collapsed" Margin="10">
+                    <Image Margin="10" Height="48" Width="48" Source="/ProcessCalc;component/Imagenes/12.png"></Image>
+                    <TextBlock Margin="10" VerticalAlignment="Center" FontSize="25">Este cálculo ha finalizado.</TextBlock>
+                    <Button x:Name="verResultados" Margin="10" Padding="10" Click="verResultados_Click" >
+                        <Button.Content>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/ProcessCalc;component/Imagenes/16.png" Height="24" Width="24" Grid.Column="0"></Image>
+                                <Label Grid.Column="1" VerticalAlignment="Center">Ver resultados</Label>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="cerrarFinalizado" Margin="10" Padding="10" Click="cerrarFinalizado_Click" >
+                        <Button.Content>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/ProcessCalc;component/Imagenes/17.png" Height="24" Width="24" Grid.Column="0"></Image>
+                                <Label Grid.Column="1" VerticalAlignment="Center">Cerrar</Label>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Margin="10">
+                    <Label x:Name="nombreArchivo" FontWeight="Bold" >NombreCalculo.pmcalc</Label>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition ></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="btnAbrirCarpeta" Grid.Column="1" Margin="5" Padding="5" VerticalAlignment="Center" Click="btnAbrirCarpeta_Click">Abrir carpeta</Button>
+                        <Label x:Name="rutaArchivo" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" >C:\Carpeta\SubCarpeta\NombreCalculo.pmcalc</Label>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <ScrollViewer x:Name="contenedorLog" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+                <StackPanel x:Name="logEjecucion" Orientation="Vertical"></StackPanel>
+            </ScrollViewer>
+            <Grid Width="Auto" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Background="{DynamicResource {x:Static SystemColors.InactiveBorderBrushKey}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition x:Name="columnaAgrupadores" Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ScrollViewer Grid.Row="0" Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <Border BorderThickness="1,0,0,0" BorderBrush="Black">
+                        <Canvas x:Name="diagramaCalculos" Background="{DynamicResource {x:Static SystemColors.InactiveBorderBrushKey}}" ></Canvas>
+                    </Border>
+                </ScrollViewer>
+                <!--<ScrollViewer Grid.Row="0" Grid.Column="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <Border BorderThickness="1,1,0,0" BorderBrush="Black">
+                        <Canvas x:Name="diagrama" Background="{DynamicResource {x:Static SystemColors.InactiveBorderBrushKey}}" ></Canvas>
+                    </Border>
+                </ScrollViewer>-->
+                <TabControl x:Name="diagramasCalculos" Grid.Row="0" Grid.Column="1" Width="Auto">
+
+                </TabControl>
+                <TabControl x:Name="diagramasAgrupadores" Grid.Row="0" Grid.Column="2" Width="Auto">
+                    
+                </TabControl>
+            </Grid>
+
+        </Grid>
+        <ProgressBar x:Name="progreso" Grid.Row="2" Height="25" Margin="10" ></ProgressBar>
+    </Grid>
+</UserControl>

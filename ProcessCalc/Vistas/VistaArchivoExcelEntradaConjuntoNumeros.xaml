@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="ProcessCalc.Vistas.VistaArchivoExcelEntradaConjuntoNumeros"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc.Vistas"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1300" Loaded="UserControl_Loaded">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <StackPanel x:Name="encabezado" CanHorizontallyScroll="True" CanVerticallyScroll="True" AllowDrop="True">
+            <StackPanel x:Name="infoArchivo" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+                <Label x:Name="nombreArchivo" FontWeight="Bold" >NombreCalculo.pmcalc</Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition ></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="btnAbrirCarpeta" Grid.Column="1" Margin="5" Padding="5" VerticalAlignment="Center" Click="btnAbrirCarpeta_Click">Abrir carpeta</Button>
+                    <Label x:Name="rutaArchivo" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" >C:\Carpeta\SubCarpeta\NombreCalculo.pmcalc</Label>
+                </Grid>
+            </StackPanel>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <Grid Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="lblNombreEntrada" Grid.Column="0" Grid.Row="0" FontSize="15" VerticalContentAlignment="Center" Padding="10">Variable o vector de entrada</Label>
+
+                    <Button x:Name="configurarSeleccionCarpetaArchivo" Margin="10" Padding="5" Grid.Column="0" Grid.Row="1" MaxWidth="150" VerticalContentAlignment="Center" Click="configurarSeleccionCarpetaArchivo_Click">Definir configuración</Button>
+                    <TextBlock x:Name="etiquetaDefinicionSeleccionArchivoCarpeta" Margin="10" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Center"></TextBlock>
+
+                    <Button x:Name="btnCambiarArchivo" Grid.Column="0" Grid.Row="2" Margin="10" Padding="5" Width="200" Click="btnCambiarArchivo_Click">Seleccionar archivo y/o carpeta</Button>
+                    <Label x:Name="lblRutaArchivo" Grid.Column="1" Grid.Row="2" VerticalContentAlignment="Center">Se obtendrá el vector de números de la variable o vector de entrada, del archivo C:\Carpeta\SubCarpeta\Archivo.txt</Label>
+
+                    <CheckBox x:Name="opcionCantidadAgregarNumeros" Grid.Row="2" Grid.Column="2" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Center" Checked="opcionCantidadAgregarNumeros_Checked" Unchecked="opcionCantidadAgregarNumeros_Unchecked">Utilizar cantidad de números en el vector</CheckBox>
+                    <ComboBox x:Name="opcionUtilizacionCantidadAgregarNumeros" Grid.Row="2" Grid.Column="3" Margin="10" VerticalAlignment="Center" SelectionChanged="opcionUtilizacionCantidadAgregarNumeros_SelectionChanged">
+                        <ComboBoxItem Content="Agregar cantidad de números como un número más en el vector" Uid="1"/>
+                        <ComboBoxItem Content="Dejar la cantidad de números como el único número en el vector" Uid="2"/>
+                    </ComboBox>
+
+                    <CheckBox x:Name="opcionURLLibro" Margin="10" Grid.Column="0" Grid.Row="3" Checked="opcionURLLibro_Checked" Unchecked="opcionURLLibro_Unchecked">Usar la url del libro (lo contrario es utilizar la ruta de archivo)</CheckBox>
+                    <CheckBox x:Name="opcionEntradaManual" Margin="10" Grid.Column="1" Grid.Row="3" Checked="opcionEntradaManual_Checked" Unchecked="opcionEntradaManual_Unchecked">Abrir el archivo manualmente en la ejecución</CheckBox>
+                    
+                    <Button x:Name="btnDefinirTextosInformacionFijos" Grid.Column="0" Grid.Row="4" Margin="10" Padding="5" Width="200" Click="btnDefinirTextosInformacionFijos_Click" >
+                        <Button.Content>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/ProcessCalc;component/Imagenes/Iconos4/01.png" Height="24" Width="24" Grid.Column="0"></Image>
+                                <Label Grid.Column="1" VerticalAlignment="Center">Cadenas de texto fijas</Label>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+
+                    <TextBlock Grid.Column="1" Grid.Row="4" Margin="10" VerticalAlignment="Center">Lógica interna a realizar:</TextBlock>
+                    <ComboBox x:Name="operacionInterna" Grid.Column="2" Grid.Row="4" Margin="10" VerticalAlignment="Center" SelectionChanged="operacionInterna_SelectionChanged">
+                        <ComboBoxItem Content="Ninguna" Uid="0"/>
+                        <ComboBoxItem Content="Suma" Uid="3"/>
+                        <ComboBoxItem Content="Resta" Uid="4"/>
+                        <ComboBoxItem Content="Multiplicación" Uid="5"/>
+                        <ComboBoxItem Content="División" Uid="6"/>
+                        <ComboBoxItem Content="Porcentaje" Uid="16"/>
+                        <ComboBoxItem Content="Potencia" Uid="9"/>
+                        <ComboBoxItem Content="Raíz" Uid="10"/>
+                        <ComboBoxItem Content="Logaritmo" Uid="17"/>
+                        <ComboBoxItem Content="Inverso" Uid="18"/>
+                        <ComboBoxItem Content="Lógica de seleccionar números" Uid="11"/>
+                    </ComboBox>
+
+                    <ComboBox x:Name="opcionesElementosFijosInverso" Visibility="Collapsed" Margin="10" Grid.Column="3" Grid.Row="4" SelectionChanged="opcionesElementosFijosInverso_SelectionChanged">
+                        <ComboBoxItem Content="Inverso de la suma y resta" Uid="2"/>
+                        <ComboBoxItem Content="Inverso de la multiplicación y división" Uid="3"/>
+                    </ComboBox>
+                    
+                    <Button x:Name="btnDefinirTextosInformacionOperacionInterna" Grid.Column="3" Grid.Row="4" Margin="10" Padding="5" Width="230" Visibility="Collapsed" Click="btnDefinirTextosInformacionOperacionInterna_Click">Cadenas de texto de la variable o vector</Button>
+                </Grid>
+            </ScrollViewer>
+
+            <StackPanel x:Name="conjuntosCeldas" Orientation="Vertical" Background="{DynamicResource {x:Static SystemColors.InactiveBorderBrush}}"></StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

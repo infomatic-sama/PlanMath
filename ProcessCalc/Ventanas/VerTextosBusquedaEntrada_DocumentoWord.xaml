@@ -1,0 +1,21 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.VerTextosBusquedaEntrada_DocumentoWord"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas"
+        mc:Ignorable="d"
+        Title="Ver cadenas de texto de busqueda en variable o vector desde documento Word" Height="450" Width="800" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" MaxHeight="1000" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <StackPanel x:Name="textos"  Margin="10" ></StackPanel>
+        </ScrollViewer>
+
+        <Button x:Name="cerrar" Grid.Row="1" Margin="10" MaxWidth="100" MaxHeight="50" Click="cerrar_Click">Cerrar</Button>
+    </Grid>
+</Window>

@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="ProcessCalc.Controles.EjecucionArchivoEspecifica"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc"
+             mc:Ignorable="d" 
+             d:DesignHeight="60" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="icono" Grid.Column="0" Width="24" Height="24" Margin="10" Source="/ProcessCalc;component/Imagenes/12.png" ></Image>
+
+        <TextBlock x:Name="verResultados" Margin="5"  Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" Cursor="Hand" Foreground="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" MouseLeftButtonUp="verResultados_MouseLeftButtonUp">Ver resultados</TextBlock>
+        <TextBlock x:Name="fechaHoraEjecucion" Margin="5"  Grid.Column="2" TextWrapping="Wrap" VerticalAlignment="Center">Fecha y hora de apertura calculo 1</TextBlock>
+        <TextBlock x:Name="descripcionCalculo" Margin="5"  Grid.Column="3" TextWrapping="Wrap" VerticalAlignment="Center">Descripcion calculo 1</TextBlock>
+
+        <TextBlock x:Name="nombreArchivo" Margin="5"  Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Center" Cursor="Hand">Nombre Archivo 1</TextBlock>
+
+        <TextBlock x:Name="rutaArchivo" Margin="5" VerticalAlignment="Center" Grid.Column="5" TextWrapping="Wrap" >Ruta Archivo 1</TextBlock>
+        <Button x:Name="btnQuitar" Grid.Column="6" Margin="5" VerticalAlignment="Center" Click="btnQuitar_Click">Quitar</Button>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,44 @@
+﻿<Window x:Class="ProcessCalc.Ventanas.EstablecerTextosInformacionPredefinidos_Digitacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessCalc.Ventanas"
+        mc:Ignorable="d"
+        Title="Establecer cadenas de texto predefinidas del vector a digitar" Height="450" Width="800"  WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="tituloParametros" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" FontWeight="Bold" Margin="10">Cadenas de texto predefinidas para digitar en el vector de entrada en ejecución:</TextBlock>
+            <CheckBox x:Name="opcionCiclo" Grid.Row="1" Grid.Column="0" Margin="10" Checked="opcionCiclo_Checked" Unchecked="opcionCiclo_Unchecked">Utilizar ciclicamente cuando la cantidad de números o cadenas de texto sobrepase esta cantidad de predefinidos</CheckBox>
+            
+            <Grid x:Name="parametros" Grid.Row="2" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </Grid>
+
+        <Button x:Name="continuar" Margin="10" Grid.Row="2" Grid.Column="1" MaxWidth="100" Padding="7" Click="continuar_Click">Cerrar</Button>
+    </Grid>
+</Window>

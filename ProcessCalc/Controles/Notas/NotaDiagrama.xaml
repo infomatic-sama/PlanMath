@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="ProcessCalc.Controles.Notas.NotaDiagrama"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcessCalc.Controles.Notas"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="100" Height="Auto" Width="Auto" >
+    <Border x:Name="fondo" BorderThickness="0" BorderBrush="Black" Background="{x:Null}" Height="Auto" Width="Auto" >
+        <Button Background="Transparent" BorderThickness="0" Height="Auto" Width="Auto" MouseLeftButtonDown="textoNota_MouseLeftButtonDown">
+            <Button.Content>
+                <Grid Background="{x:Null}" Margin="2" MouseLeftButtonDown="textoNota_MouseLeftButtonDown">
+                    <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+                    <TextBox x:Name="textoEdicion" TextWrapping="Wrap" BorderThickness="0" AcceptsReturn="True" Visibility="Collapsed" TextChanged="textoEdicion_TextChanged"></TextBox>
+                    <TextBlock x:Name="textoNota" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="textoNota_MouseLeftButtonDown"></TextBlock>
+
+                    <Button x:Name="guardarTexto" Grid.Row="1" Visibility="Collapsed" Click="guardarTexto_Click">Guardar</Button>
+                </Grid>
+            </Button.Content>
+        </Button>
+    </Border>
+</UserControl>
