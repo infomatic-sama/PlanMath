@@ -2,6 +2,10 @@
 
 
 
+Sitio web: www.planmath.cl
+
+
+
 Este software es un diseñador visual y ejecutor de procesos matemáticos, es decir, operaciones aritméticas elementales en forma de flujo o proceso.
 
 
